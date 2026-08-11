@@ -19,6 +19,10 @@ cd results && sha256sum -c sha256sums.txt
 
 `sha256sums.txt` and `MANIFEST.md` are themselves excluded from the checksum list -- they are
 derived from the evidence files rather than part of it, and hashing them here would be circular.
+The same applies to the three `sha256_*` manifests covering the Hugging Face artifacts
+([`sha256_checkpoints.txt`](sha256_checkpoints.txt), [`sha256_measurements.txt`](sha256_measurements.txt),
+[`sha256_generated_images.csv`](sha256_generated_images.csv)): they are checksum lists, not evidence,
+and the files they describe live on the Hub rather than in this tree.
 
 
 ## Files in git
@@ -230,18 +234,42 @@ aggregation that preceded the disclosed change to top-3.
 
 ## Large artifacts (Hugging Face)
 
-The following artifacts back the same results but are far too large for git. They will be uploaded
-to a Hugging Face repository; the URLs are recorded here once upload completes.
+The following artifacts back the same results but are far too large for git. They are published on
+the Hugging Face Hub, in two public repositories:
 
-| Artifact | What it is | Approx. size | Location |
-| --- | --- | ---: | --- |
-| LoRA checkpoints | All 10 trained arms: the final step-10000 adapter used to generate the images scored in Table 3, plus the intermediate checkpoints at steps 2000/4000/6000/8000 (50 `.safetensors` files in total) | 3.36 GB (3.13 GiB) | (URL recorded after upload) |
-| Head CA measurement tensors | The raw head-granularity CA measurements for the 13-timestep sweep, 13 timesteps x {full, half0, half1} = 39 `.safetensors` files. The `half0`/`half1` splits are what the split-half agreement in Table 2 is computed from | 191 MB (182 MiB) | (URL recorded after upload) |
-| Generated images | 11 arms x 900 PNG at 1024x1024 (500 in-domain + 4 weather conditions x 100), the exact images scored for CMMD and CLIPScore in Table 3 | 12.0 GB (11.2 GiB) | (URL recorded after upload) |
+- **Checkpoints (model repo):** <https://huggingface.co/chs35/improving-ca-lora-checkpoints>
+- **Measurements + generated images (dataset repo):** <https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts>
+
+| Artifact | What it is | Files | Size | Location |
+| --- | --- | ---: | ---: | --- |
+| LoRA checkpoints | All 10 trained arms: the final step-10000 adapter used to generate the images scored in Table 3, plus the intermediate checkpoints at steps 2000/4000/6000/8000 (50 `.safetensors` files in total) | 50 | 3,357,944,280 B (3.36 GB / 3.13 GiB) | [model repo](https://huggingface.co/chs35/improving-ca-lora-checkpoints), `<arm>/lora-{step002000,step004000,step006000,step008000,final}.safetensors` |
+| Module-granularity pilot checkpoints | An undocumented earlier pilot of arm `A_t81` at *module* granularity, retained only as a granularity-ablation data point. No number in the report comes from it | 5 | 35,077,048 B (35.1 MB / 33.5 MiB) | [model repo](https://huggingface.co/chs35/improving-ca-lora-checkpoints), `pilot_module_granularity/A_t81/` |
+| Head CA measurement tensors | The raw head-granularity CA measurements for the 13-timestep sweep, 13 timesteps x {full, half0, half1} = 39 `.safetensors` files. The `half0`/`half1` splits are what the split-half agreement in Table 2 is computed from | 39 | 190,967,712 B (191 MB / 182 MiB) | [dataset repo](https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts), `measurements/tsweep_sdxl_head/` |
+| Generated images | 11 arms x 900 PNG at 1024x1024 (500 in-domain + 4 weather conditions x 100), the exact images scored for CMMD and CLIPScore in Table 3, plus each arm's `manifest.json` | 9,911 (9,900 PNG + 11 `manifest.json`) | 12,037,555,772 B (12.04 GB / 11.21 GiB) | [dataset repo](https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts), `generated/<arm>/` |
+
+**15,621,544,812 bytes (15.62 GB / 14.55 GiB) across 10,005 files** on the Hub. Every file was
+verified after upload against the manifests below: the Hub's own `lfs.sha256` for the 9,994 LFS
+objects and the git blob id for the 11 `manifest.json` files, 10,005 / 10,005 matching, 0 mismatches.
+
+Full-length sha256 for all of it, keyed by the same repo-relative paths the Hub uses:
+
+| Manifest | Covers | Format |
+| --- | --- | --- |
+| [`sha256_checkpoints.txt`](sha256_checkpoints.txt) | all 55 checkpoint files (50 trained + 5 pilot) | `<sha256>  <path>` |
+| [`sha256_measurements.txt`](sha256_measurements.txt) | the 39 CA measurement tensors | `<sha256>  <path>` |
+| [`sha256_generated_images.csv`](sha256_generated_images.csv) | all 9,911 generated-image files | `path,bytes,sha256` |
+
+To verify a download, e.g. for the checkpoints:
+
+```bash
+hf download chs35/improving-ca-lora-checkpoints --local-dir ckpt
+cd ckpt && sha256sum -c ../results/sha256_checkpoints.txt
+```
 
 Each generated-image set is paired with the `generation_manifest.json` already released in this
-tree, which records the prompt, condition and seed behind every individual PNG -- so per-image
-scores can be recomputed once the images are downloaded.
+tree (identical to the `manifest.json` uploaded alongside the images), which records the prompt,
+condition and seed behind every individual PNG -- so per-image scores can be recomputed once the
+images are downloaded.
 
 ### Not released: the Cityscapes reference crops
 
@@ -273,5 +301,5 @@ actually trained.
 ## Total released size
 
 **92 files, 16,805,053 bytes (16.03 MiB) tracked in git.**
-Excluding the ~15.5 GB of checkpoints, measurement tensors and generated images that are distributed
+Excluding the 15.62 GB of checkpoints, measurement tensors and generated images that are distributed
 via Hugging Face rather than git.
