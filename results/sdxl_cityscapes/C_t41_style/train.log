@@ -1,0 +1,297 @@
+06:12:24 | INFO    | calora.models.loader | Loading StableDiffusionXLPipeline from stabilityai/stable-diffusion-xl-base-1.0 (cuda, torch.float32)
+06:12:24 | INFO    | httpx | HTTP Request: GET https://huggingface.co/api/models/stabilityai/stable-diffusion-xl-base-1.0 "HTTP/1.1 200 OK"
+06:12:24 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+06:12:24 | WARNING | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+06:12:24 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/stabilityai/stable-diffusion-xl-base-1.0/462165984030d82259a11f4367a4eed129e94a7b/model_index.json "HTTP/1.1 200 OK"
+Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]Loading pipeline components...:  29%|██▊       | 2/7 [00:00<00:00, 17.33it/s]
+Loading weights:   0%|          | 0/517 [00:00<?, ?it/s][A
+Loading weights:  27%|██▋       | 142/517 [00:00<00:00, 1400.94it/s][A
+Loading weights:  55%|█████▌    | 286/517 [00:00<00:00, 1420.44it/s][A
+Loading weights:  83%|████████▎ | 429/517 [00:00<00:00, 423.55it/s] [ALoading weights: 100%|██████████| 517/517 [00:00<00:00, 592.84it/s]
+Loading pipeline components...:  57%|█████▋    | 4/7 [00:03<00:03,  1.13s/it]Loading pipeline components...:  71%|███████▏  | 5/7 [00:04<00:01,  1.18it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][A
+Loading weights:  76%|███████▌  | 148/196 [00:00<00:00, 1435.59it/s][ALoading weights: 100%|██████████| 196/196 [00:00<00:00, 1615.65it/s]
+Loading pipeline components...:  86%|████████▌ | 6/7 [00:04<00:00,  1.39it/s]Loading pipeline components...: 100%|██████████| 7/7 [00:04<00:00,  1.54it/s]
+06:18:55 | INFO    | calora.models.loader | Adapter ready: {'class': 'StableDiffusionXLAdapter', 'device': 'cuda', 'dtype': 'torch.float32', 'num_train_timesteps': 1000, 'prediction_type': 'epsilon', 'scheduler': 'EulerDiscreteScheduler', 'pipeline': 'StableDiffusionXLPipeline', 'vae_scale_factor': 8, 'latent_channels': 4, 'scaling_factor': 0.13025, 'resolution': 1024}
+06:18:55 | INFO    | train_lora | Arm 'single:single' [head]: 208 units over 58 matrices, 22,642,688 params (2.370% of attention)
+06:18:55 | INFO    | calora.train.lora | Head-granularity selection: 208 head unit(s) over 58 matrices (type A/out-column: 4, type B/qkv-row: 54; 0 fully selected)
+06:18:55 | INFO    | calora.data.cityscapes | Cityscapes train: 2975 images across 18 cities
+06:18:56 | INFO    | calora.data.cityscapes | Cityscapes train: 2975 images across 18 cities
+06:19:36 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+06:27:28 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 472.1s
+06:27:28 | INFO    | train_lora | Drift baseline at t=41 (autocast=bf16): 208 projections, Jaccard vs trained set = 0.726
+06:27:28 | INFO    | calora.train.lora | Sliced LoRA attached to 58 matrices covering 208/1160 head(s) (rank=64, alpha=64, 7,127,040 LoRA params)
+06:27:28 | INFO    | calora.train.lora | Trainable LoRA parameters: 7,127,040
+06:27:28 | INFO    | calora.train.lora | Random horizontal flip enabled (paper augmentation: random crop + hflip)
+06:27:28 | WARNING | calora.train.lora | train.cache_latents=true ignored: the dataset uses a random crop, so dataset[i] is not a fixed image. Falling back to per-step VAE encoding.
+06:27:30 | INFO    | calora.train.lora | Pre-encoded 1 distinct caption(s); text encoders moved to CPU (VAE stays on cuda)
+06:28:32 | INFO    | calora.train.lora | step 50/10000  loss=0.08434  lr=1.00e-04  (62.4s, 1.25s/step, ETA 3:26:54)
+06:30:09 | INFO    | calora.train.lora | step 100/10000  loss=0.06973  lr=1.00e-04  (159.4s, 1.59s/step, ETA 4:22:59)
+06:31:28 | INFO    | calora.train.lora | step 150/10000  loss=0.17362  lr=1.00e-04  (237.5s, 1.58s/step, ETA 4:19:56)
+06:33:09 | INFO    | calora.train.lora | step 200/10000  loss=0.01537  lr=1.00e-04  (338.6s, 1.69s/step, ETA 4:36:31)
+06:34:02 | INFO    | calora.train.lora | step 250/10000  loss=0.41824  lr=1.00e-04  (391.8s, 1.57s/step, ETA 4:14:39)
+06:35:35 | INFO    | calora.train.lora | step 300/10000  loss=0.56609  lr=1.00e-04  (484.9s, 1.62s/step, ETA 4:21:18)
+06:36:52 | INFO    | calora.train.lora | step 350/10000  loss=0.00309  lr=1.00e-04  (562.3s, 1.61s/step, ETA 4:18:22)
+06:37:49 | INFO    | calora.train.lora | step 400/10000  loss=0.36681  lr=1.00e-04  (619.1s, 1.55s/step, ETA 4:07:38)
+06:38:47 | INFO    | calora.train.lora | step 450/10000  loss=0.10525  lr=1.00e-04  (677.3s, 1.51s/step, ETA 3:59:35)
+06:39:54 | INFO    | calora.train.lora | step 500/10000  loss=0.00608  lr=1.00e-04  (743.9s, 1.49s/step, ETA 3:55:34)
+06:39:54 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+06:47:40 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 466.4s
+06:47:41 | INFO    | train_lora | drift @ step 500: jaccard=0.130 spearman=0.936
+06:48:47 | INFO    | calora.train.lora | step 550/10000  loss=0.04554  lr=1.00e-04  (1277.1s, 2.32s/step, ETA 6:05:43)
+06:49:52 | INFO    | calora.train.lora | step 600/10000  loss=0.02003  lr=1.00e-04  (1341.9s, 2.24s/step, ETA 5:50:23)
+06:50:45 | INFO    | calora.train.lora | step 650/10000  loss=0.29303  lr=1.00e-04  (1394.7s, 2.15s/step, ETA 5:34:23)
+06:51:42 | INFO    | calora.train.lora | step 700/10000  loss=0.03786  lr=1.00e-04  (1451.7s, 2.07s/step, ETA 5:21:26)
+06:52:48 | INFO    | calora.train.lora | step 750/10000  loss=0.20348  lr=1.00e-04  (1517.7s, 2.02s/step, ETA 5:11:59)
+06:53:54 | INFO    | calora.train.lora | step 800/10000  loss=0.06330  lr=1.00e-04  (1584.0s, 1.98s/step, ETA 5:03:36)
+06:54:50 | INFO    | calora.train.lora | step 850/10000  loss=0.17304  lr=1.00e-04  (1639.6s, 1.93s/step, ETA 4:54:10)
+06:55:43 | INFO    | calora.train.lora | step 900/10000  loss=0.00626  lr=1.00e-04  (1692.4s, 1.88s/step, ETA 4:45:12)
+06:56:47 | INFO    | calora.train.lora | step 950/10000  loss=0.14699  lr=1.00e-04  (1756.7s, 1.85s/step, ETA 4:38:55)
+06:57:53 | INFO    | calora.train.lora | step 1000/10000  loss=0.03065  lr=1.00e-04  (1823.2s, 1.82s/step, ETA 4:33:29)
+06:57:54 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+07:05:22 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 448.4s
+07:08:10 | INFO    | train_lora | drift @ step 1000: jaccard=0.143 spearman=0.904
+07:09:21 | INFO    | calora.train.lora | step 1050/10000  loss=0.26097  lr=1.00e-04  (2510.5s, 2.39s/step, ETA 5:56:39)
+07:10:21 | INFO    | calora.train.lora | step 1100/10000  loss=0.19061  lr=1.00e-04  (2571.0s, 2.34s/step, ETA 5:46:42)
+07:11:14 | INFO    | calora.train.lora | step 1150/10000  loss=0.10796  lr=1.00e-04  (2623.4s, 2.28s/step, ETA 5:36:29)
+07:12:06 | INFO    | calora.train.lora | step 1200/10000  loss=0.30202  lr=1.00e-04  (2675.9s, 2.23s/step, ETA 5:27:03)
+07:12:58 | INFO    | calora.train.lora | step 1250/10000  loss=0.11006  lr=1.00e-04  (2728.4s, 2.18s/step, ETA 5:18:19)
+07:13:55 | INFO    | calora.train.lora | step 1300/10000  loss=0.00154  lr=1.00e-04  (2785.2s, 2.14s/step, ETA 5:10:39)
+07:14:48 | INFO    | calora.train.lora | step 1350/10000  loss=0.02076  lr=1.00e-04  (2837.6s, 2.10s/step, ETA 5:03:02)
+07:15:45 | INFO    | calora.train.lora | step 1400/10000  loss=0.01155  lr=1.00e-04  (2894.9s, 2.07s/step, ETA 4:56:23)
+07:16:38 | INFO    | calora.train.lora | step 1450/10000  loss=0.02707  lr=1.00e-04  (2947.4s, 2.03s/step, ETA 4:49:40)
+07:17:30 | INFO    | calora.train.lora | step 1500/10000  loss=0.00294  lr=1.00e-04  (2999.9s, 2.00s/step, ETA 4:43:20)
+07:17:30 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+07:24:49 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 438.5s
+07:24:49 | INFO    | train_lora | drift @ step 1500: jaccard=0.121 spearman=0.898
+07:25:42 | INFO    | calora.train.lora | step 1550/10000  loss=0.27610  lr=1.00e-04  (3491.5s, 2.25s/step, ETA 5:17:14)
+07:26:34 | INFO    | calora.train.lora | step 1600/10000  loss=0.05125  lr=1.00e-04  (3544.1s, 2.22s/step, ETA 5:10:06)
+07:27:27 | INFO    | calora.train.lora | step 1650/10000  loss=0.02735  lr=1.00e-04  (3596.9s, 2.18s/step, ETA 5:03:22)
+07:28:20 | INFO    | calora.train.lora | step 1700/10000  loss=0.00857  lr=1.00e-04  (3649.6s, 2.15s/step, ETA 4:56:58)
+07:29:12 | INFO    | calora.train.lora | step 1750/10000  loss=0.10088  lr=1.00e-04  (3702.1s, 2.12s/step, ETA 4:50:53)
+07:30:05 | INFO    | calora.train.lora | step 1800/10000  loss=0.02773  lr=1.00e-04  (3754.5s, 2.09s/step, ETA 4:45:04)
+07:30:57 | INFO    | calora.train.lora | step 1850/10000  loss=0.27565  lr=1.00e-04  (3807.0s, 2.06s/step, ETA 4:39:32)
+07:31:50 | INFO    | calora.train.lora | step 1900/10000  loss=0.00663  lr=1.00e-04  (3859.5s, 2.03s/step, ETA 4:34:14)
+07:32:47 | INFO    | calora.train.lora | step 1950/10000  loss=0.01228  lr=1.00e-04  (3916.8s, 2.01s/step, ETA 4:29:29)
+07:33:39 | INFO    | calora.train.lora | step 2000/10000  loss=0.20092  lr=1.00e-04  (3969.4s, 1.98s/step, ETA 4:24:37)
+07:33:40 | INFO    | calora.train.lora | Saved LoRA weights to runs/sdxl_cityscapes/C_t41_style/lora-step002000.safetensors (head granularity)
+07:33:40 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+07:40:54 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 434.5s
+07:40:55 | INFO    | train_lora | drift @ step 2000: jaccard=0.127 spearman=0.921
+07:41:47 | INFO    | calora.train.lora | step 2050/10000  loss=0.14535  lr=1.00e-04  (4457.3s, 2.17s/step, ETA 4:48:06)
+07:44:13 | INFO    | calora.train.lora | step 2100/10000  loss=0.04711  lr=1.00e-04  (4602.9s, 2.19s/step, ETA 4:48:36)
+07:45:10 | INFO    | calora.train.lora | step 2150/10000  loss=0.00441  lr=1.00e-04  (4659.8s, 2.17s/step, ETA 4:43:34)
+07:46:03 | INFO    | calora.train.lora | step 2200/10000  loss=0.19775  lr=1.00e-04  (4712.6s, 2.14s/step, ETA 4:38:28)
+07:46:55 | INFO    | calora.train.lora | step 2250/10000  loss=0.00915  lr=1.00e-04  (4765.3s, 2.12s/step, ETA 4:33:34)
+07:47:48 | INFO    | calora.train.lora | step 2300/10000  loss=0.01052  lr=1.00e-04  (4817.9s, 2.09s/step, ETA 4:28:49)
+07:48:41 | INFO    | calora.train.lora | step 2350/10000  loss=0.08795  lr=1.00e-04  (4870.7s, 2.07s/step, ETA 4:24:16)
+07:49:33 | INFO    | calora.train.lora | step 2400/10000  loss=0.00658  lr=1.00e-04  (4923.4s, 2.05s/step, ETA 4:19:51)
+07:50:26 | INFO    | calora.train.lora | step 2450/10000  loss=0.00156  lr=1.00e-04  (4975.8s, 2.03s/step, ETA 4:15:34)
+07:51:18 | INFO    | calora.train.lora | step 2500/10000  loss=0.32596  lr=1.00e-04  (5028.4s, 2.01s/step, ETA 4:11:25)
+07:51:19 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+07:58:34 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 435.2s
+07:58:34 | INFO    | train_lora | drift @ step 2500: jaccard=0.127 spearman=0.852
+07:59:27 | INFO    | calora.train.lora | step 2550/10000  loss=0.04612  lr=1.00e-04  (5516.5s, 2.16s/step, ETA 4:28:37)
+08:00:19 | INFO    | calora.train.lora | step 2600/10000  loss=0.00521  lr=1.00e-04  (5569.0s, 2.14s/step, ETA 4:24:10)
+08:01:24 | INFO    | calora.train.lora | step 2650/10000  loss=0.02445  lr=1.00e-04  (5634.3s, 2.13s/step, ETA 4:20:27)
+08:02:17 | INFO    | calora.train.lora | step 2700/10000  loss=0.00878  lr=1.00e-04  (5687.3s, 2.11s/step, ETA 4:16:17)
+08:03:10 | INFO    | calora.train.lora | step 2750/10000  loss=0.04316  lr=1.00e-04  (5739.8s, 2.09s/step, ETA 4:12:12)
+08:04:15 | INFO    | calora.train.lora | step 2800/10000  loss=0.01798  lr=1.00e-04  (5805.0s, 2.07s/step, ETA 4:08:47)
+08:05:21 | INFO    | calora.train.lora | step 2850/10000  loss=0.09588  lr=1.00e-04  (5870.7s, 2.06s/step, ETA 4:05:28)
+08:07:14 | INFO    | calora.train.lora | step 2900/10000  loss=0.14229  lr=1.00e-04  (5984.1s, 2.06s/step, ETA 4:04:11)
+08:08:07 | INFO    | calora.train.lora | step 2950/10000  loss=0.00634  lr=1.00e-04  (6036.8s, 2.05s/step, ETA 4:00:27)
+08:08:59 | INFO    | calora.train.lora | step 3000/10000  loss=0.33698  lr=1.00e-04  (6089.3s, 2.03s/step, ETA 3:56:48)
+08:09:00 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+08:16:11 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 431.4s
+08:16:11 | INFO    | train_lora | drift @ step 3000: jaccard=0.134 spearman=0.912
+08:17:09 | INFO    | calora.train.lora | step 3050/10000  loss=0.29251  lr=1.00e-04  (6578.7s, 2.16s/step, ETA 4:09:51)
+08:18:02 | INFO    | calora.train.lora | step 3100/10000  loss=0.32831  lr=1.00e-04  (6631.6s, 2.14s/step, ETA 4:06:01)
+08:18:54 | INFO    | calora.train.lora | step 3150/10000  loss=0.01130  lr=1.00e-04  (6684.2s, 2.12s/step, ETA 4:02:16)
+08:19:47 | INFO    | calora.train.lora | step 3200/10000  loss=0.25861  lr=1.00e-04  (6737.3s, 2.11s/step, ETA 3:58:37)
+08:20:40 | INFO    | calora.train.lora | step 3250/10000  loss=0.03076  lr=1.00e-04  (6790.1s, 2.09s/step, ETA 3:55:02)
+08:22:19 | INFO    | calora.train.lora | step 3300/10000  loss=0.00513  lr=1.00e-04  (6889.3s, 2.09s/step, ETA 3:53:07)
+08:23:12 | INFO    | calora.train.lora | step 3350/10000  loss=0.02069  lr=1.00e-04  (6942.3s, 2.07s/step, ETA 3:49:41)
+08:24:05 | INFO    | calora.train.lora | step 3400/10000  loss=0.01497  lr=1.00e-04  (6995.0s, 2.06s/step, ETA 3:46:19)
+08:25:04 | INFO    | calora.train.lora | step 3450/10000  loss=0.26086  lr=1.00e-04  (7053.5s, 2.04s/step, ETA 3:43:11)
+08:26:09 | INFO    | calora.train.lora | step 3500/10000  loss=0.03067  lr=1.00e-04  (7118.9s, 2.03s/step, ETA 3:40:21)
+08:26:09 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+08:33:20 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 430.6s
+08:33:20 | INFO    | train_lora | drift @ step 3500: jaccard=0.106 spearman=0.883
+08:34:13 | INFO    | calora.train.lora | step 3550/10000  loss=0.33687  lr=1.00e-04  (7603.1s, 2.14s/step, ETA 3:50:14)
+08:35:19 | INFO    | calora.train.lora | step 3600/10000  loss=0.28373  lr=1.00e-04  (7668.6s, 2.13s/step, ETA 3:47:13)
+08:36:11 | INFO    | calora.train.lora | step 3650/10000  loss=0.04641  lr=1.00e-04  (7721.2s, 2.12s/step, ETA 3:43:53)
+08:37:04 | INFO    | calora.train.lora | step 3700/10000  loss=0.00200  lr=1.00e-04  (7774.0s, 2.10s/step, ETA 3:40:37)
+08:37:57 | INFO    | calora.train.lora | step 3750/10000  loss=0.21376  lr=1.00e-04  (7827.0s, 2.09s/step, ETA 3:37:25)
+08:38:54 | INFO    | calora.train.lora | step 3800/10000  loss=0.26674  lr=1.00e-04  (7884.2s, 2.07s/step, ETA 3:34:24)
+08:39:51 | INFO    | calora.train.lora | step 3850/10000  loss=0.31562  lr=1.00e-04  (7941.2s, 2.06s/step, ETA 3:31:25)
+08:40:48 | INFO    | calora.train.lora | step 3900/10000  loss=0.00208  lr=1.00e-04  (7998.1s, 2.05s/step, ETA 3:28:30)
+08:41:41 | INFO    | calora.train.lora | step 3950/10000  loss=0.05912  lr=1.00e-04  (8050.5s, 2.04s/step, ETA 3:25:31)
+08:42:33 | INFO    | calora.train.lora | step 4000/10000  loss=0.07694  lr=1.00e-04  (8103.0s, 2.03s/step, ETA 3:22:34)
+08:42:33 | INFO    | calora.train.lora | Saved LoRA weights to runs/sdxl_cityscapes/C_t41_style/lora-step004000.safetensors (head granularity)
+08:42:33 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+08:49:44 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 430.8s
+08:49:45 | INFO    | train_lora | drift @ step 4000: jaccard=0.112 spearman=0.893
+08:50:37 | INFO    | calora.train.lora | step 4050/10000  loss=0.25084  lr=1.00e-04  (8586.9s, 2.12s/step, ETA 3:30:15)
+08:51:29 | INFO    | calora.train.lora | step 4100/10000  loss=0.00292  lr=1.00e-04  (8639.3s, 2.11s/step, ETA 3:27:12)
+08:52:26 | INFO    | calora.train.lora | step 4150/10000  loss=0.02044  lr=1.00e-04  (8696.2s, 2.10s/step, ETA 3:24:18)
+08:53:32 | INFO    | calora.train.lora | step 4200/10000  loss=0.33131  lr=1.00e-04  (8761.5s, 2.09s/step, ETA 3:21:39)
+08:54:24 | INFO    | calora.train.lora | step 4250/10000  loss=0.02679  lr=1.00e-04  (8814.0s, 2.07s/step, ETA 3:18:45)
+08:56:03 | INFO    | calora.train.lora | step 4300/10000  loss=0.01352  lr=1.00e-04  (8912.9s, 2.07s/step, ETA 3:16:55)
+08:56:56 | INFO    | calora.train.lora | step 4350/10000  loss=0.32177  lr=1.00e-04  (8965.5s, 2.06s/step, ETA 3:14:05)
+08:57:48 | INFO    | calora.train.lora | step 4400/10000  loss=0.02863  lr=1.00e-04  (9018.2s, 2.05s/step, ETA 3:11:18)
+08:58:41 | INFO    | calora.train.lora | step 4450/10000  loss=0.27620  lr=1.00e-04  (9070.7s, 2.04s/step, ETA 3:08:33)
+08:59:33 | INFO    | calora.train.lora | step 4500/10000  loss=0.33339  lr=1.00e-04  (9123.2s, 2.03s/step, ETA 3:05:51)
+08:59:33 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+09:06:44 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 430.7s
+09:06:45 | INFO    | train_lora | drift @ step 4500: jaccard=0.089 spearman=0.897
+09:07:38 | INFO    | calora.train.lora | step 4550/10000  loss=0.07582  lr=1.00e-04  (9607.6s, 2.11s/step, ETA 3:11:48)
+09:09:17 | INFO    | calora.train.lora | step 4600/10000  loss=0.15982  lr=1.00e-04  (9706.9s, 2.11s/step, ETA 3:09:55)
+09:10:14 | INFO    | calora.train.lora | step 4650/10000  loss=0.18129  lr=1.00e-04  (9764.0s, 2.10s/step, ETA 3:07:14)
+09:11:07 | INFO    | calora.train.lora | step 4700/10000  loss=0.01914  lr=1.00e-04  (9816.8s, 2.09s/step, ETA 3:04:30)
+09:12:04 | INFO    | calora.train.lora | step 4750/10000  loss=0.06663  lr=1.00e-04  (9874.0s, 2.08s/step, ETA 3:01:53)
+09:12:57 | INFO    | calora.train.lora | step 4800/10000  loss=0.00709  lr=1.00e-04  (9926.7s, 2.07s/step, ETA 2:59:14)
+09:13:50 | INFO    | calora.train.lora | step 4850/10000  loss=0.25327  lr=1.00e-04  (9979.5s, 2.06s/step, ETA 2:56:37)
+09:14:42 | INFO    | calora.train.lora | step 4900/10000  loss=0.03246  lr=1.00e-04  (10032.2s, 2.05s/step, ETA 2:54:02)
+09:15:35 | INFO    | calora.train.lora | step 4950/10000  loss=0.13862  lr=1.00e-04  (10085.3s, 2.04s/step, ETA 2:51:29)
+09:16:28 | INFO    | calora.train.lora | step 5000/10000  loss=0.31113  lr=1.00e-04  (10138.0s, 2.03s/step, ETA 2:48:58)
+09:16:28 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+09:23:40 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 431.6s
+09:23:40 | INFO    | train_lora | drift @ step 5000: jaccard=0.112 spearman=0.886
+09:24:33 | INFO    | calora.train.lora | step 5050/10000  loss=0.33584  lr=1.00e-04  (10623.0s, 2.10s/step, ETA 2:53:33)
+09:25:26 | INFO    | calora.train.lora | step 5100/10000  loss=0.25478  lr=1.00e-04  (10675.4s, 2.09s/step, ETA 2:50:57)
+09:26:18 | INFO    | calora.train.lora | step 5150/10000  loss=0.18915  lr=1.00e-04  (10727.9s, 2.08s/step, ETA 2:48:23)
+09:27:10 | INFO    | calora.train.lora | step 5200/10000  loss=0.30845  lr=1.00e-04  (10780.3s, 2.07s/step, ETA 2:45:51)
+09:28:03 | INFO    | calora.train.lora | step 5250/10000  loss=0.03829  lr=1.00e-04  (10832.8s, 2.06s/step, ETA 2:43:21)
+09:28:56 | INFO    | calora.train.lora | step 5300/10000  loss=0.20632  lr=1.00e-04  (10885.7s, 2.05s/step, ETA 2:40:53)
+09:29:48 | INFO    | calora.train.lora | step 5350/10000  loss=0.24747  lr=1.00e-04  (10938.2s, 2.04s/step, ETA 2:38:27)
+09:30:41 | INFO    | calora.train.lora | step 5400/10000  loss=0.01784  lr=1.00e-04  (10990.8s, 2.04s/step, ETA 2:36:03)
+09:31:33 | INFO    | calora.train.lora | step 5450/10000  loss=0.04915  lr=1.00e-04  (11043.3s, 2.03s/step, ETA 2:33:40)
+09:32:26 | INFO    | calora.train.lora | step 5500/10000  loss=0.00202  lr=1.00e-04  (11095.7s, 2.02s/step, ETA 2:31:18)
+09:32:26 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+09:39:37 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 430.6s
+09:39:37 | INFO    | train_lora | drift @ step 5500: jaccard=0.130 spearman=0.899
+09:40:30 | INFO    | calora.train.lora | step 5550/10000  loss=0.32810  lr=1.00e-04  (11579.6s, 2.09s/step, ETA 2:34:45)
+09:41:22 | INFO    | calora.train.lora | step 5600/10000  loss=0.01515  lr=1.00e-04  (11632.1s, 2.08s/step, ETA 2:32:19)
+09:42:15 | INFO    | calora.train.lora | step 5650/10000  loss=0.00728  lr=1.00e-04  (11684.5s, 2.07s/step, ETA 2:29:56)
+09:43:07 | INFO    | calora.train.lora | step 5700/10000  loss=0.02720  lr=1.00e-04  (11737.0s, 2.06s/step, ETA 2:27:34)
+09:44:00 | INFO    | calora.train.lora | step 5750/10000  loss=0.02982  lr=1.00e-04  (11789.5s, 2.05s/step, ETA 2:25:14)
+09:44:52 | INFO    | calora.train.lora | step 5800/10000  loss=0.00300  lr=1.00e-04  (11842.0s, 2.04s/step, ETA 2:22:55)
+09:45:49 | INFO    | calora.train.lora | step 5850/10000  loss=0.21863  lr=1.00e-04  (11898.9s, 2.03s/step, ETA 2:20:41)
+09:46:42 | INFO    | calora.train.lora | step 5900/10000  loss=0.06452  lr=1.00e-04  (11951.7s, 2.03s/step, ETA 2:18:25)
+09:47:34 | INFO    | calora.train.lora | step 5950/10000  loss=0.00564  lr=1.00e-04  (12004.2s, 2.02s/step, ETA 2:16:11)
+09:48:27 | INFO    | calora.train.lora | step 6000/10000  loss=0.02838  lr=1.00e-04  (12056.7s, 2.01s/step, ETA 2:13:58)
+09:48:27 | INFO    | calora.train.lora | Saved LoRA weights to runs/sdxl_cityscapes/C_t41_style/lora-step006000.safetensors (head granularity)
+09:48:27 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+09:55:39 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 431.4s
+09:55:39 | INFO    | train_lora | drift @ step 6000: jaccard=0.118 spearman=0.928
+09:56:31 | INFO    | calora.train.lora | step 6050/10000  loss=0.02002  lr=1.00e-04  (12541.4s, 2.07s/step, ETA 2:16:28)
+09:57:24 | INFO    | calora.train.lora | step 6100/10000  loss=0.31829  lr=1.00e-04  (12593.8s, 2.06s/step, ETA 2:14:12)
+09:58:16 | INFO    | calora.train.lora | step 6150/10000  loss=0.03714  lr=1.00e-04  (12646.2s, 2.06s/step, ETA 2:11:57)
+09:59:09 | INFO    | calora.train.lora | step 6200/10000  loss=0.14460  lr=1.00e-04  (12698.7s, 2.05s/step, ETA 2:09:43)
+10:00:01 | INFO    | calora.train.lora | step 6250/10000  loss=0.31926  lr=1.00e-04  (12751.1s, 2.04s/step, ETA 2:07:31)
+10:00:54 | INFO    | calora.train.lora | step 6300/10000  loss=0.14728  lr=1.00e-04  (12803.6s, 2.03s/step, ETA 2:05:20)
+10:01:46 | INFO    | calora.train.lora | step 6350/10000  loss=0.02302  lr=1.00e-04  (12856.1s, 2.02s/step, ETA 2:03:10)
+10:02:39 | INFO    | calora.train.lora | step 6400/10000  loss=0.19366  lr=1.00e-04  (12908.6s, 2.02s/step, ETA 2:01:01)
+10:03:31 | INFO    | calora.train.lora | step 6450/10000  loss=0.11880  lr=1.00e-04  (12961.0s, 2.01s/step, ETA 1:58:54)
+10:04:24 | INFO    | calora.train.lora | step 6500/10000  loss=0.35400  lr=1.00e-04  (13013.5s, 2.00s/step, ETA 1:56:47)
+10:04:24 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+10:11:39 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 435.4s
+10:11:40 | INFO    | train_lora | drift @ step 6500: jaccard=0.124 spearman=0.917
+10:12:32 | INFO    | calora.train.lora | step 6550/10000  loss=0.11511  lr=1.00e-04  (13502.0s, 2.06s/step, ETA 1:58:32)
+10:13:25 | INFO    | calora.train.lora | step 6600/10000  loss=0.25844  lr=1.00e-04  (13554.4s, 2.05s/step, ETA 1:56:23)
+10:14:17 | INFO    | calora.train.lora | step 6650/10000  loss=0.07818  lr=1.00e-04  (13607.0s, 2.05s/step, ETA 1:54:15)
+10:15:10 | INFO    | calora.train.lora | step 6700/10000  loss=0.01469  lr=1.00e-04  (13659.5s, 2.04s/step, ETA 1:52:08)
+10:16:02 | INFO    | calora.train.lora | step 6750/10000  loss=0.00259  lr=1.00e-04  (13712.0s, 2.03s/step, ETA 1:50:02)
+10:16:55 | INFO    | calora.train.lora | step 6800/10000  loss=0.00169  lr=1.00e-04  (13764.7s, 2.02s/step, ETA 1:47:58)
+10:17:47 | INFO    | calora.train.lora | step 6850/10000  loss=0.04162  lr=1.00e-04  (13817.2s, 2.02s/step, ETA 1:45:54)
+10:18:40 | INFO    | calora.train.lora | step 6900/10000  loss=0.30385  lr=1.00e-04  (13869.7s, 2.01s/step, ETA 1:43:51)
+10:19:32 | INFO    | calora.train.lora | step 6950/10000  loss=0.25460  lr=1.00e-04  (13922.1s, 2.00s/step, ETA 1:41:50)
+10:20:25 | INFO    | calora.train.lora | step 7000/10000  loss=0.16182  lr=1.00e-04  (13974.6s, 2.00s/step, ETA 1:39:49)
+10:20:25 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+10:27:37 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 432.0s
+10:27:37 | INFO    | train_lora | drift @ step 7000: jaccard=0.109 spearman=0.922
+10:28:30 | INFO    | calora.train.lora | step 7050/10000  loss=0.31737  lr=1.00e-04  (14460.2s, 2.05s/step, ETA 1:40:51)
+10:29:23 | INFO    | calora.train.lora | step 7100/10000  loss=0.30922  lr=1.00e-04  (14512.8s, 2.04s/step, ETA 1:38:48)
+10:30:15 | INFO    | calora.train.lora | step 7150/10000  loss=0.15355  lr=1.00e-04  (14565.3s, 2.04s/step, ETA 1:36:46)
+10:31:08 | INFO    | calora.train.lora | step 7200/10000  loss=0.02234  lr=1.00e-04  (14618.0s, 2.03s/step, ETA 1:34:45)
+10:32:01 | INFO    | calora.train.lora | step 7250/10000  loss=0.07450  lr=1.00e-04  (14670.6s, 2.02s/step, ETA 1:32:45)
+10:32:58 | INFO    | calora.train.lora | step 7300/10000  loss=0.00163  lr=1.00e-04  (14727.7s, 2.02s/step, ETA 1:30:47)
+10:33:50 | INFO    | calora.train.lora | step 7350/10000  loss=0.03151  lr=1.00e-04  (14780.3s, 2.01s/step, ETA 1:28:49)
+10:34:43 | INFO    | calora.train.lora | step 7400/10000  loss=0.11168  lr=1.00e-04  (14832.9s, 2.00s/step, ETA 1:26:52)
+10:35:35 | INFO    | calora.train.lora | step 7450/10000  loss=0.29512  lr=1.00e-04  (14885.4s, 2.00s/step, ETA 1:24:55)
+10:36:28 | INFO    | calora.train.lora | step 7500/10000  loss=0.29592  lr=1.00e-04  (14938.0s, 1.99s/step, ETA 1:22:59)
+10:36:28 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+10:43:42 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 433.5s
+10:43:42 | INFO    | train_lora | drift @ step 7500: jaccard=0.115 spearman=0.900
+10:44:35 | INFO    | calora.train.lora | step 7550/10000  loss=0.03382  lr=1.00e-04  (15424.7s, 2.04s/step, ETA 1:23:25)
+10:45:27 | INFO    | calora.train.lora | step 7600/10000  loss=0.22841  lr=1.00e-04  (15477.2s, 2.04s/step, ETA 1:21:28)
+10:46:20 | INFO    | calora.train.lora | step 7650/10000  loss=0.24403  lr=1.00e-04  (15529.8s, 2.03s/step, ETA 1:19:31)
+10:47:12 | INFO    | calora.train.lora | step 7700/10000  loss=0.16788  lr=1.00e-04  (15582.3s, 2.02s/step, ETA 1:17:34)
+10:48:05 | INFO    | calora.train.lora | step 7750/10000  loss=0.02580  lr=1.00e-04  (15635.0s, 2.02s/step, ETA 1:15:39)
+10:48:58 | INFO    | calora.train.lora | step 7800/10000  loss=0.02934  lr=1.00e-04  (15687.5s, 2.01s/step, ETA 1:13:45)
+10:49:50 | INFO    | calora.train.lora | step 7850/10000  loss=0.16339  lr=1.00e-04  (15740.1s, 2.01s/step, ETA 1:11:51)
+10:50:43 | INFO    | calora.train.lora | step 7900/10000  loss=0.09940  lr=1.00e-04  (15792.5s, 2.00s/step, ETA 1:09:58)
+10:51:35 | INFO    | calora.train.lora | step 7950/10000  loss=0.03116  lr=1.00e-04  (15845.1s, 1.99s/step, ETA 1:08:06)
+10:52:28 | INFO    | calora.train.lora | step 8000/10000  loss=0.05494  lr=1.00e-04  (15897.6s, 1.99s/step, ETA 1:06:14)
+10:52:28 | INFO    | calora.train.lora | Saved LoRA weights to runs/sdxl_cityscapes/C_t41_style/lora-step008000.safetensors (head granularity)
+10:52:28 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+10:59:39 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 431.1s
+10:59:40 | INFO    | train_lora | drift @ step 8000: jaccard=0.106 spearman=0.887
+11:00:32 | INFO    | calora.train.lora | step 8050/10000  loss=0.28736  lr=1.00e-04  (16382.1s, 2.04s/step, ETA 1:06:08)
+11:01:25 | INFO    | calora.train.lora | step 8100/10000  loss=0.30636  lr=1.00e-04  (16434.6s, 2.03s/step, ETA 1:04:15)
+11:02:17 | INFO    | calora.train.lora | step 8150/10000  loss=0.25141  lr=1.00e-04  (16487.1s, 2.02s/step, ETA 1:02:22)
+11:03:10 | INFO    | calora.train.lora | step 8200/10000  loss=0.27370  lr=1.00e-04  (16539.6s, 2.02s/step, ETA 1:00:31)
+11:04:02 | INFO    | calora.train.lora | step 8250/10000  loss=0.01008  lr=1.00e-04  (16592.0s, 2.01s/step, ETA 0:58:40)
+11:05:07 | INFO    | calora.train.lora | step 8300/10000  loss=0.33383  lr=1.00e-04  (16657.4s, 2.01s/step, ETA 0:56:52)
+11:06:00 | INFO    | calora.train.lora | step 8350/10000  loss=0.00199  lr=1.00e-04  (16709.9s, 2.00s/step, ETA 0:55:02)
+11:06:53 | INFO    | calora.train.lora | step 8400/10000  loss=0.30969  lr=1.00e-04  (16762.5s, 2.00s/step, ETA 0:53:13)
+11:07:45 | INFO    | calora.train.lora | step 8450/10000  loss=0.21835  lr=1.00e-04  (16815.3s, 1.99s/step, ETA 0:51:24)
+11:08:38 | INFO    | calora.train.lora | step 8500/10000  loss=0.02165  lr=1.00e-04  (16867.8s, 1.98s/step, ETA 0:49:37)
+11:08:38 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+11:15:48 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 430.2s
+11:15:48 | INFO    | train_lora | drift @ step 8500: jaccard=0.121 spearman=0.901
+11:16:41 | INFO    | calora.train.lora | step 8550/10000  loss=0.05623  lr=1.00e-04  (17350.9s, 2.03s/step, ETA 0:49:03)
+11:17:33 | INFO    | calora.train.lora | step 8600/10000  loss=0.00168  lr=1.00e-04  (17403.3s, 2.02s/step, ETA 0:47:13)
+11:18:26 | INFO    | calora.train.lora | step 8650/10000  loss=0.00357  lr=1.00e-04  (17456.2s, 2.02s/step, ETA 0:45:24)
+11:19:19 | INFO    | calora.train.lora | step 8700/10000  loss=0.03234  lr=1.00e-04  (17508.9s, 2.01s/step, ETA 0:43:36)
+11:20:12 | INFO    | calora.train.lora | step 8750/10000  loss=0.29391  lr=1.00e-04  (17561.4s, 2.01s/step, ETA 0:41:49)
+11:21:04 | INFO    | calora.train.lora | step 8800/10000  loss=0.00382  lr=1.00e-04  (17614.1s, 2.00s/step, ETA 0:40:02)
+11:21:57 | INFO    | calora.train.lora | step 8850/10000  loss=0.31924  lr=1.00e-04  (17666.7s, 2.00s/step, ETA 0:38:16)
+11:22:49 | INFO    | calora.train.lora | step 8900/10000  loss=0.04224  lr=1.00e-04  (17719.3s, 1.99s/step, ETA 0:36:30)
+11:23:42 | INFO    | calora.train.lora | step 8950/10000  loss=0.34039  lr=1.00e-04  (17771.8s, 1.99s/step, ETA 0:34:45)
+11:24:34 | INFO    | calora.train.lora | step 9000/10000  loss=0.14037  lr=1.00e-04  (17824.3s, 1.98s/step, ETA 0:33:00)
+11:24:34 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+11:31:45 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 430.2s
+11:31:45 | INFO    | train_lora | drift @ step 9000: jaccard=0.092 spearman=0.881
+11:32:38 | INFO    | calora.train.lora | step 9050/10000  loss=0.23516  lr=1.00e-04  (18307.6s, 2.02s/step, ETA 0:32:02)
+11:33:30 | INFO    | calora.train.lora | step 9100/10000  loss=0.17152  lr=1.00e-04  (18360.2s, 2.02s/step, ETA 0:30:16)
+11:34:23 | INFO    | calora.train.lora | step 9150/10000  loss=0.05025  lr=1.00e-04  (18412.7s, 2.01s/step, ETA 0:28:30)
+11:35:15 | INFO    | calora.train.lora | step 9200/10000  loss=0.00368  lr=1.00e-04  (18465.2s, 2.01s/step, ETA 0:26:46)
+11:36:21 | INFO    | calora.train.lora | step 9250/10000  loss=0.00195  lr=1.00e-04  (18530.5s, 2.00s/step, ETA 0:25:02)
+11:37:13 | INFO    | calora.train.lora | step 9300/10000  loss=0.00176  lr=1.00e-04  (18583.1s, 2.00s/step, ETA 0:23:19)
+11:38:10 | INFO    | calora.train.lora | step 9350/10000  loss=0.27494  lr=1.00e-04  (18640.1s, 1.99s/step, ETA 0:21:36)
+11:39:03 | INFO    | calora.train.lora | step 9400/10000  loss=0.24010  lr=1.00e-04  (18692.6s, 1.99s/step, ETA 0:19:53)
+11:39:55 | INFO    | calora.train.lora | step 9450/10000  loss=0.04757  lr=1.00e-04  (18745.2s, 1.98s/step, ETA 0:18:11)
+11:40:48 | INFO    | calora.train.lora | step 9500/10000  loss=0.25719  lr=1.00e-04  (18797.9s, 1.98s/step, ETA 0:16:29)
+11:40:48 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+11:48:00 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 431.5s
+11:48:00 | INFO    | train_lora | drift @ step 9500: jaccard=0.109 spearman=0.911
+11:48:52 | INFO    | calora.train.lora | step 9550/10000  loss=0.04838  lr=1.00e-04  (19282.4s, 2.02s/step, ETA 0:15:09)
+11:49:45 | INFO    | calora.train.lora | step 9600/10000  loss=0.19037  lr=1.00e-04  (19334.8s, 2.01s/step, ETA 0:13:26)
+11:50:38 | INFO    | calora.train.lora | step 9650/10000  loss=0.10438  lr=1.00e-04  (19387.4s, 2.01s/step, ETA 0:11:43)
+11:51:30 | INFO    | calora.train.lora | step 9700/10000  loss=0.00662  lr=1.00e-04  (19439.9s, 2.00s/step, ETA 0:10:01)
+11:52:22 | INFO    | calora.train.lora | step 9750/10000  loss=0.33908  lr=1.00e-04  (19492.4s, 2.00s/step, ETA 0:08:20)
+11:53:15 | INFO    | calora.train.lora | step 9800/10000  loss=0.18628  lr=1.00e-04  (19544.9s, 1.99s/step, ETA 0:06:39)
+11:54:08 | INFO    | calora.train.lora | step 9850/10000  loss=0.35243  lr=1.00e-04  (19597.4s, 1.99s/step, ETA 0:04:58)
+11:55:00 | INFO    | calora.train.lora | step 9900/10000  loss=0.34387  lr=1.00e-04  (19649.9s, 1.98s/step, ETA 0:03:18)
+11:55:52 | INFO    | calora.train.lora | step 9950/10000  loss=0.23319  lr=1.00e-04  (19702.3s, 1.98s/step, ETA 0:01:39)
+11:56:45 | INFO    | calora.train.lora | step 10000/10000  loss=0.08045  lr=1.00e-04  (19754.8s, 1.98s/step, ETA 0:00:00)
+11:56:45 | INFO    | calora.ca.measure | t=41: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+12:03:54 | INFO    | calora.ca.measure | t=41 done: 256 contributions from 64 samples in 428.6s
+12:03:54 | INFO    | train_lora | drift @ step 10000: jaccard=0.118 spearman=0.912
+12:03:55 | INFO    | calora.train.lora | Saved LoRA weights to runs/sdxl_cityscapes/C_t41_style/lora-final.safetensors (head granularity)
+12:05:43 | INFO    | train_lora | Loss curve: runs/sdxl_cityscapes/C_t41_style/loss_curve.png
+12:05:43 | INFO    | train_lora | CA drift summary: {'num_snapshots': 20, 'final_jaccard': 0.11827956989247312, 'min_jaccard': 0.08900523560209424, 'final_spearman': 0.9122178949268173, 'min_spearman': 0.8523412177534643, 'final_jaccard_vs_trained': 0.11827956989247312, 'ever_left': ['down_blocks.2.attentions.0.transformer_blocks.5.attn2.to_k@h6', 'down_blocks.2.attentions.0.transformer_blocks.6.attn2.to_k@h1', 'down_blocks.2.attentions.0.transformer_blocks.6.attn2.to_k@h6', 'down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h12', 'down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h14', 'down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h4', 'down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h11', 'down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h14', 'down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h19', 'down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h0', 'down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h14', 'down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h17', 'down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h19', 'down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h3', 'down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h5', 'down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_q@h13', 'down_blocks.2.attentions.1.transformer_blocks.0.attn2.to_k@h18', 'down_blocks.2.attentions.1.transformer_blocks.0.attn2.to_k@h19', 'down_blocks.2.attentions.1.transformer_blocks.0.attn2.to_v@h18', 'down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h0', 'down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h4', 'down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h8', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h4', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h6', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h11', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h15', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h16', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h17', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_q@h16', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h0', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h1', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h12', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h16', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h17', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h4', 'down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h7', 'down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_out.0@h15', 'down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h0', 'down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h15', 'down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h2', 'down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h3', 'down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h8', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h1', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h18', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h5', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h0', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h1', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h10', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h18', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h5', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h6', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h10', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h12', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h16', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h18', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h19', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h5', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h6', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h7', 'down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h8', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h17', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h19', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h8', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h1', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h12', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h2', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_q@h17', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_q@h8', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h1', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h12', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h14', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h17', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h19', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h2', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h4', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h6', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h7', 'down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h8', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_k@h0', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_out.0@h3', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_q@h0', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h0', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h10', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h11', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h15', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h19', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h2', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h3', 'down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h5', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h17', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h7', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h9', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_q@h17', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h10', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h13', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h17', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h18', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h19', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h2', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h3', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h6', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h7', 'down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h9', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h11', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h17', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h18', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h2', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h13', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h15', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h17', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h2', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h4', 'down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h9', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h15', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h9', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h0', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h11', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h12', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h13', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h14', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h15', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h18', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h3', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h5', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h7', 'down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h9', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h0', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h12', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h14', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h18', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_q@h14', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h10', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h12', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h14', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h15', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h18', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h19', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h5', 'down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h6', 'down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h18', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h0', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h12', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h13', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h18', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h19', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h6', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_v@h14', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_v@h7', 'down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_v@h9', 'down_blocks.2.attentions.1.transformer_blocks.7.attn1.to_v@h8', 'down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h11', 'down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h4', 'down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h9', 'down_blocks.2.attentions.1.transformer_blocks.8.attn1.to_k@h6', 'down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_k@h16', 'down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_k@h17', 'down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_k@h4', 'down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_q@h4', 'down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_q@h5', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h1', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h10', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h12', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h13', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h15', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h16', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h19', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h2', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h4', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h5', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h6', 'down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_v@h5', 'mid_block.attentions.0.transformer_blocks.9.attn2.to_k@h10', 'up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h14', 'up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h15', 'up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h18', 'up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h5', 'up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h7', 'up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_q@h5', 'up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_k@h1', 'up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_k@h18', 'up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_k@h6', 'up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_q@h18', 'up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_v@h18', 'up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_v@h6', 'up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_k@h16', 'up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_k@h4', 'up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_q@h4', 'up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_v@h4', 'up_blocks.0.attentions.1.transformer_blocks.2.attn1.to_v@h13', 'up_blocks.0.attentions.1.transformer_blocks.2.attn1.to_v@h4', 'up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_k@h15', 'up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_q@h15', 'up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_v@h14', 'up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_v@h15', 'up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_v@h9', 'up_blocks.0.attentions.1.transformer_blocks.3.attn1.to_v@h16']}
+12:05:43 | INFO    | train_lora | Done: runs/sdxl_cityscapes/C_t41_style
+[W802 12:05:44.650855351 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

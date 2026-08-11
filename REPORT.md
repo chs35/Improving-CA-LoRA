@@ -69,7 +69,7 @@ components.
 
 ### 3.4 Tracking CA During Training
 
-To test whether the selection remains valid while it is being trained, we re-measure CA every 500 steps (20 snapshots per 10k-step run) on a fixed 64-sample subset and compare against a **step-0 baseline measured with the same 64 samples**. Re-measuring the baseline, rather than reusing the 256-sample selection scores, separates estimation noise from genuine drift; the overlap between the step-0 top-208 and the trained selection additionally quantifies that noise floor per run. We track the Jaccard overlap of the current top-208 with the baseline top-208 (membership drift) and the Spearman correlation of the full 10,400-unit CA ranking (global landscape drift). Snapshots run under bf16 autocast after passing a pre-registered equivalence gate against fp32 (rank Spearman 0.9988, top-2% Jaccard 0.935, 1.89× faster); the
+To test whether the selection remains valid while it is being trained, we re-measure CA every 500 steps (20 snapshots per 10k-step run) on a fixed 64-sample subset and compare against a **step-0 baseline measured with the same 64 samples**. Re-measuring the baseline, rather than reusing the 256-sample selection scores, separates estimation noise from genuine drift; the overlap between the step-0 top-208 and the trained selection additionally quantifies that noise floor per run. We track the Jaccard overlap of the current top-208 with the baseline top-208 (membership drift) and the Spearman correlation of the full 10,400-unit CA ranking (global landscape drift). Snapshots run under bf16 autocast after passing a pre-registered equivalence gate against fp32 (rank Spearman 0.9988, top-2% Jaccard 0.935, 1.89× faster; gate record: [`results/sdxl_cityscapes/drift_autocast_gate.json`](results/sdxl_cityscapes/drift_autocast_gate.json)); the
 gate thresholds were fixed as module constants before running. These re-measurements are purely observational: no selection, hyperparameter, or stopping decision in this study consumed them.
 
 ## 4. Experimental Setup
@@ -137,7 +137,7 @@ The measurement grid covers 13 timesteps [1, 41, 81, 121, 201, 301, 401, 481, 60
 | 12   | 301    | 0.788        | 10             | 0.251    | 0.229        | 0.318               | 0.277                   |
 | 13   | 981    | 0.868        | 8              | 0.623    | 0.294        | 0.647               | 0.427                   |
 
-**Table 2.** Head-level timestep ranking by ews (primary, lower is better), with the auxiliary conflict count at the primary quantile, per-axis mean CA of the selected set, and direction concentration.
+**Table 2.** Head-level timestep ranking by ews (primary, lower is better), with the auxiliary conflict count at the primary quantile, per-axis mean CA of the selected set, and direction concentration. Source: [`results/tsweep_sdxl_head/timestep_scores.json`](results/tsweep_sdxl_head/timestep_scores.json) (ranking, conflicts, CA, split-half) and [`results/tsweep_sdxl_head/measure_summary.json`](results/tsweep_sdxl_head/measure_summary.json) (direction concentration).
 
 Four observations:
 
@@ -177,7 +177,7 @@ Table 3 reports all metrics for the 8 CA runs, the two controls, and the 0% base
 | full attention (no CA) | —         | 0.596        | 21.84       | 24.31 | 18.87 | 21.53 | 17.87 | 20.65          |
 | 0% control (base SDXL) | —         | 4.078        | 28.81       | 32.86 | 30.26 | 32.03 | 31.56 | 31.68          |
 
-**Table 3.** Main results. CMMD: 500 in-domain generations vs. Cityscapes val. CLIP-Score per condition; weather mean over the four adverse conditions. All trained runs use one seed.
+**Table 3.** Main results. CMMD: 500 in-domain generations vs. Cityscapes val. CLIP-Score per condition; weather mean over the four adverse conditions. All trained runs use one seed. Source: `results/sdxl_cityscapes/<run>/eval.json`, where the run directories are `A_t81_*` (t = 81), `B_top3_*` (multi-t), `C_t41_*` (t = 41), `D_t1_*` (t = 1) with `_style`/`_viewpoint` suffixes, plus `E_random`, `E_all`, and `control_base` (0%).
 
 **The reproduction signature holds in 4 of 4 selection pairs.** For every selection criterion (t = 81, multi-t, t = 41, t = 1), the style adapter has lower CMMD than the viewpoint adapter (0.638 < 0.949, 0.711 < 1.576, 0.751 < 1.265, 0.752 < 1.237) and the viewpoint adapter has the higher weather CLIP-Score (gaps +2.91, +4.93, +1.92, +3.89). This is the qualitative contrast of the paper's Figure 6, reproduced under a quantitative, pre-registered criterion. Relative to the 0% control, the precise statement is that **both** axes lose weather controllability when they absorb the domain, but style loses far more: −8.5 to −11.7 points versus −6.1 to −7.8 for viewpoint. And since the multi-t and t = 81 style adapters nearly coincide (weather gap 0.31), the style-side collapse is a structural property of the style axis, not an artifact of any particular timestep choice.
 
@@ -204,7 +204,7 @@ Our interpretive hypothesis, which the present data cannot confirm (one seed per
 | rainy | +3.83 | +5.19 | +3.84 | +4.39 |
 | snowy | +5.44 | +6.88 | +3.16 | +5.07 |
 
-**Table 4.** Weather CLIP-Score gap (viewpoint − style) per condition. Foggy is the smallest gap in every pair; snowy and rainy are the largest; the t = 41 night-time entry is the only reversal.
+**Table 4.** Weather CLIP-Score gap (viewpoint − style) per condition. Foggy is the smallest gap in every pair; snowy and rainy are the largest; the t = 41 night-time entry is the only reversal. Derived from the per-condition CLIP scores in the same `results/sdxl_cityscapes/<run>/eval.json` files as Table 3.
 
 A plausible but unverified explanation: Cityscapes itself contains overcast and hazy captures, so foggy collides least with the absorbed domain style, while snowy and rainy are most alien to it and the style adapter's pull overrides the prompt most strongly there.
 
@@ -235,7 +235,7 @@ The two no-CA controls sharpen what the CA runs do and do not show:
 | random 2%          | 0.005²              | 0.083        | 0.101        | 0.74-0.87      |
 | full attention     | 0.020²              | 0.083        | 0.037        | 0.57-0.82      |
 
-**Table 5.** Drift summary. ¹ Jaccard between the step-0 re-measured top-208 (64 samples) and the trained selection (256 samples): the estimation-noise floor of the comparison. ² Not meaningful for the controls (their trained sets are not CA-based); listed for completeness.
+**Table 5.** Drift summary. ¹ Jaccard between the step-0 re-measured top-208 (64 samples) and the trained selection (256 samples): the estimation-noise floor of the comparison. ² Not meaningful for the controls (their trained sets are not CA-based); listed for completeness. Source: `results/sdxl_cityscapes/<run>/stability.json` (per-snapshot Jaccard and Spearman; run naming as in Table 3).
 
 ![Jaccard and Spearman drift curves for all ten runs](figures/drift_curves.png)
 

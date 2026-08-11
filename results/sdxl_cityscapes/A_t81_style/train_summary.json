@@ -1,0 +1,1671 @@
+{
+  "run": "sdxl_cityscapes",
+  "arm": "A_t81_style",
+  "selection": {
+    "strategy": "single:single",
+    "granularity": "head",
+    "num_projections": 208,
+    "num_modules": 65,
+    "units_total": 10400,
+    "unit_fraction_achieved": 0.02,
+    "params_selected": 22544384,
+    "params_total": 955187200,
+    "fraction_requested": 0.02,
+    "fraction_achieved": 0.02360205831903945,
+    "budget_basis": "unit_count",
+    "breakdown": {
+      "kind": {
+        "k": 96,
+        "out": 11,
+        "q": 16,
+        "v": 85
+      },
+      "attn": {
+        "attn1": 77,
+        "attn2": 131
+      },
+      "block_id": {
+        "down1": 0,
+        "down2": 174,
+        "mid": 1,
+        "up0": 33,
+        "up1": 0
+      }
+    },
+    "meta": {
+      "timesteps": [
+        81
+      ],
+      "axis": "style",
+      "normalization": "sum"
+    },
+    "names": [
+      "down_blocks.2.attentions.0.transformer_blocks.3.attn2.to_k@h1",
+      "down_blocks.2.attentions.0.transformer_blocks.5.attn2.to_k@h6",
+      "down_blocks.2.attentions.0.transformer_blocks.6.attn2.to_k@h1",
+      "down_blocks.2.attentions.0.transformer_blocks.6.attn2.to_k@h6",
+      "down_blocks.2.attentions.0.transformer_blocks.6.attn2.to_k@h19",
+      "down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h2",
+      "down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h12",
+      "down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h14",
+      "down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h18",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h11",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h12",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h19",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_q@h13",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h0",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h1",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h2",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h3",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h6",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h11",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h13",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h14",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h16",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h17",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h18",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.0.attn2.to_q@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.0.attn2.to_k@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.0.attn2.to_k@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_q@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_q@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_out.0@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_q@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_q@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_q@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_out.0@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_q@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_q@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_v@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn1.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_q@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_k@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_v@h5",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_q@h5",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_q@h18",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h5",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h7",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h11",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h12",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h14",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h15",
+      "up_blocks.0.attentions.0.transformer_blocks.9.attn2.to_k@h18",
+      "up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_k@h1",
+      "up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_k@h6",
+      "up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_k@h18",
+      "up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_v@h6",
+      "up_blocks.0.attentions.1.transformer_blocks.0.attn2.to_v@h18",
+      "up_blocks.0.attentions.1.transformer_blocks.1.attn1.to_v@h13",
+      "up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_q@h4",
+      "up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_k@h4",
+      "up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_k@h15",
+      "up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_k@h16",
+      "up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_v@h4",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn1.to_v@h4",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn1.to_v@h13",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_q@h9",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_q@h15",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_k@h9",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_k@h15",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_v@h9",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_v@h14",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_v@h15",
+      "up_blocks.0.attentions.1.transformer_blocks.3.attn1.to_v@h6",
+      "up_blocks.0.attentions.1.transformer_blocks.3.attn1.to_v@h16",
+      "up_blocks.0.attentions.1.transformer_blocks.5.attn2.to_q@h16",
+      "up_blocks.0.attentions.1.transformer_blocks.5.attn2.to_k@h16",
+      "mid_block.attentions.0.transformer_blocks.9.attn2.to_k@h10"
+    ],
+    "scores": [
+      0.2259872555732727,
+      0.2412785142660141,
+      0.25152117013931274,
+      0.22355656325817108,
+      0.219931960105896,
+      0.22159074246883392,
+      0.2515401244163513,
+      0.27287590503692627,
+      0.2383466213941574,
+      0.2453165054321289,
+      0.22166569530963898,
+      0.26656508445739746,
+      0.21968276798725128,
+      0.41193902492523193,
+      0.2568737864494324,
+      0.22413237392902374,
+      0.2179994434118271,
+      0.2615948021411896,
+      0.23982861638069153,
+      0.3152324855327606,
+      0.257710337638855,
+      0.23179447650909424,
+      0.3527420461177826,
+      0.30960285663604736,
+      0.3637959957122803,
+      0.2274847775697708,
+      0.24988412857055664,
+      0.2241581231355667,
+      0.2226310670375824,
+      0.21782946586608887,
+      0.2193252146244049,
+      0.21765585243701935,
+      0.2179211527109146,
+      0.21781834959983826,
+      0.21835529804229736,
+      0.22585947811603546,
+      0.2221883088350296,
+      0.22163480520248413,
+      0.2510839104652405,
+      0.21975161135196686,
+      0.22273841500282288,
+      0.2179325670003891,
+      0.2210705727338791,
+      0.23318682610988617,
+      0.22669218480587006,
+      0.21843098104000092,
+      0.22102296352386475,
+      0.2188558429479599,
+      0.23272013664245605,
+      0.23190203309059143,
+      0.22572411596775055,
+      0.23531697690486908,
+      0.21782904863357544,
+      0.23529449105262756,
+      0.2377849817276001,
+      0.21819116175174713,
+      0.22001634538173676,
+      0.23387272655963898,
+      0.21741777658462524,
+      0.2264823317527771,
+      0.2179083377122879,
+      0.2197113186120987,
+      0.2179330289363861,
+      0.22064895927906036,
+      0.22492004930973053,
+      0.2215847223997116,
+      0.21786099672317505,
+      0.21950730681419373,
+      0.22156880795955658,
+      0.2506049871444702,
+      0.22282126545906067,
+      0.2961098253726959,
+      0.2191375195980072,
+      0.24611911177635193,
+      0.24628520011901855,
+      0.22268956899642944,
+      0.2229224294424057,
+      0.23102246224880219,
+      0.22669631242752075,
+      0.2195112705230713,
+      0.22446957230567932,
+      0.2532562017440796,
+      0.2177833616733551,
+      0.2306264191865921,
+      0.22248199582099915,
+      0.24277307093143463,
+      0.23789909482002258,
+      0.21902087330818176,
+      0.2205515205860138,
+      0.21973378956317902,
+      0.22791369259357452,
+      0.23559381067752838,
+      0.21882779896259308,
+      0.22744441032409668,
+      0.22114130854606628,
+      0.22036884725093842,
+      0.23126086592674255,
+      0.23085714876651764,
+      0.2202891707420349,
+      0.2253185212612152,
+      0.2365221530199051,
+      0.23763763904571533,
+      0.23484459519386292,
+      0.23460590839385986,
+      0.21892085671424866,
+      0.24017880856990814,
+      0.2259770780801773,
+      0.21845023334026337,
+      0.2222922444343567,
+      0.23335660994052887,
+      0.21750511229038239,
+      0.22788365185260773,
+      0.21899385750293732,
+      0.24650928378105164,
+      0.2176966369152069,
+      0.22414210438728333,
+      0.21925272047519684,
+      0.22041726112365723,
+      0.22542297840118408,
+      0.23166175186634064,
+      0.2222948670387268,
+      0.2194644957780838,
+      0.2239254117012024,
+      0.2206939309835434,
+      0.23279324173927307,
+      0.22079211473464966,
+      0.26632508635520935,
+      0.2191387116909027,
+      0.22168388962745667,
+      0.22578467428684235,
+      0.231306254863739,
+      0.23218092322349548,
+      0.23197899758815765,
+      0.2208215445280075,
+      0.24831947684288025,
+      0.22988292574882507,
+      0.2731313705444336,
+      0.22059373557567596,
+      0.22107906639575958,
+      0.22551904618740082,
+      0.22441184520721436,
+      0.225595623254776,
+      0.22603151202201843,
+      0.22662994265556335,
+      0.21985270082950592,
+      0.21803532540798187,
+      0.23001842200756073,
+      0.22645927965641022,
+      0.2290087640285492,
+      0.21879306435585022,
+      0.2191411405801773,
+      0.21865107119083405,
+      0.2368508130311966,
+      0.2243133783340454,
+      0.22446642816066742,
+      0.25916168093681335,
+      0.22162574529647827,
+      0.22408463060855865,
+      0.2204141467809677,
+      0.2756721079349518,
+      0.2819438874721527,
+      0.22928062081336975,
+      0.24866999685764313,
+      0.25954675674438477,
+      0.2709295153617859,
+      0.29612332582473755,
+      0.23341631889343262,
+      0.2526766061782837,
+      0.21800141036510468,
+      0.24683892726898193,
+      0.2471124231815338,
+      0.220646932721138,
+      0.2734566330909729,
+      0.22857704758644104,
+      0.23463448882102966,
+      0.21738505363464355,
+      0.25345101952552795,
+      0.21872374415397644,
+      0.23228956758975983,
+      0.2267656773328781,
+      0.2592833936214447,
+      0.24037033319473267,
+      0.32608890533447266,
+      0.22712653875350952,
+      0.2245347946882248,
+      0.2356872260570526,
+      0.23998890817165375,
+      0.22684167325496674,
+      0.2276163101196289,
+      0.2783772945404053,
+      0.3320983052253723,
+      0.22510027885437012,
+      0.23998522758483887,
+      0.22889043390750885,
+      0.23260748386383057,
+      0.2613811194896698,
+      0.21880702674388885,
+      0.5423338413238525,
+      0.30127257108688354,
+      0.6486103534698486,
+      0.25308874249458313,
+      0.21851861476898193,
+      0.30239441990852356,
+      0.2210233062505722,
+      0.2561672329902649,
+      0.22127583622932434,
+      0.24455897510051727,
+      0.21886776387691498
+    ]
+  },
+  "final": {
+    "step": 10000,
+    "loss": 0.08055965602397919,
+    "learning_rate": 0.0001,
+    "elapsed": 20103.906164018437
+  },
+  "history": [
+    {
+      "step": 50,
+      "loss": 0.08442319929599762,
+      "learning_rate": 0.0001,
+      "elapsed": 53.51461980305612
+    },
+    {
+      "step": 100,
+      "loss": 0.06969540566205978,
+      "learning_rate": 0.0001,
+      "elapsed": 107.13850276730955
+    },
+    {
+      "step": 150,
+      "loss": 0.17358896136283875,
+      "learning_rate": 0.0001,
+      "elapsed": 160.79526875540614
+    },
+    {
+      "step": 200,
+      "loss": 0.015444967895746231,
+      "learning_rate": 0.0001,
+      "elapsed": 218.90201998315752
+    },
+    {
+      "step": 250,
+      "loss": 0.41827890276908875,
+      "learning_rate": 0.0001,
+      "elapsed": 272.5307851880789
+    },
+    {
+      "step": 300,
+      "loss": 0.5661227703094482,
+      "learning_rate": 0.0001,
+      "elapsed": 326.29561315476894
+    },
+    {
+      "step": 350,
+      "loss": 0.003060739953070879,
+      "learning_rate": 0.0001,
+      "elapsed": 380.1290060374886
+    },
+    {
+      "step": 400,
+      "loss": 0.3668063282966614,
+      "learning_rate": 0.0001,
+      "elapsed": 438.18055781535804
+    },
+    {
+      "step": 450,
+      "loss": 0.1053023487329483,
+      "learning_rate": 0.0001,
+      "elapsed": 508.9730976000428
+    },
+    {
+      "step": 500,
+      "loss": 0.006063304841518402,
+      "learning_rate": 0.0001,
+      "elapsed": 596.5359426643699
+    },
+    {
+      "step": 550,
+      "loss": 0.045533325523138046,
+      "learning_rate": 0.0001,
+      "elapsed": 1126.158946186304
+    },
+    {
+      "step": 600,
+      "loss": 0.020033899694681168,
+      "learning_rate": 0.0001,
+      "elapsed": 1180.160035846755
+    },
+    {
+      "step": 650,
+      "loss": 0.29323863983154297,
+      "learning_rate": 0.0001,
+      "elapsed": 1246.6403864640743
+    },
+    {
+      "step": 700,
+      "loss": 0.03793422132730484,
+      "learning_rate": 0.0001,
+      "elapsed": 1308.9852918833494
+    },
+    {
+      "step": 750,
+      "loss": 0.20314466953277588,
+      "learning_rate": 0.0001,
+      "elapsed": 1366.7047897037119
+    },
+    {
+      "step": 800,
+      "loss": 0.06321828067302704,
+      "learning_rate": 0.0001,
+      "elapsed": 1424.7980761788785
+    },
+    {
+      "step": 850,
+      "loss": 0.17310123145580292,
+      "learning_rate": 0.0001,
+      "elapsed": 1525.0246876943856
+    },
+    {
+      "step": 900,
+      "loss": 0.0062282877042889595,
+      "learning_rate": 0.0001,
+      "elapsed": 1578.4719691835344
+    },
+    {
+      "step": 950,
+      "loss": 0.14706847071647644,
+      "learning_rate": 0.0001,
+      "elapsed": 1636.875939387828
+    },
+    {
+      "step": 1000,
+      "loss": 0.03064248338341713,
+      "learning_rate": 0.0001,
+      "elapsed": 1690.382727863267
+    },
+    {
+      "step": 1050,
+      "loss": 0.2609977722167969,
+      "learning_rate": 0.0001,
+      "elapsed": 2173.7765661571175
+    },
+    {
+      "step": 1100,
+      "loss": 0.18993398547172546,
+      "learning_rate": 0.0001,
+      "elapsed": 2227.1846014950424
+    },
+    {
+      "step": 1150,
+      "loss": 0.10786597430706024,
+      "learning_rate": 0.0001,
+      "elapsed": 2297.9523399751633
+    },
+    {
+      "step": 1200,
+      "loss": 0.302022248506546,
+      "learning_rate": 0.0001,
+      "elapsed": 2351.456750191748
+    },
+    {
+      "step": 1250,
+      "loss": 0.1103564202785492,
+      "learning_rate": 0.0001,
+      "elapsed": 2405.024928746745
+    },
+    {
+      "step": 1300,
+      "loss": 0.0015295625198632479,
+      "learning_rate": 0.0001,
+      "elapsed": 2458.9029551353306
+    },
+    {
+      "step": 1350,
+      "loss": 0.020830117166042328,
+      "learning_rate": 0.0001,
+      "elapsed": 2559.259886333719
+    },
+    {
+      "step": 1400,
+      "loss": 0.01155729591846466,
+      "learning_rate": 0.0001,
+      "elapsed": 2659.573953928426
+    },
+    {
+      "step": 1450,
+      "loss": 0.02714439295232296,
+      "learning_rate": 0.0001,
+      "elapsed": 2742.6485498659313
+    },
+    {
+      "step": 1500,
+      "loss": 0.0029292358085513115,
+      "learning_rate": 0.0001,
+      "elapsed": 2796.1976775359362
+    },
+    {
+      "step": 1550,
+      "loss": 0.2758653163909912,
+      "learning_rate": 0.0001,
+      "elapsed": 3294.8163559939712
+    },
+    {
+      "step": 1600,
+      "loss": 0.05155586451292038,
+      "learning_rate": 0.0001,
+      "elapsed": 3357.360406683758
+    },
+    {
+      "step": 1650,
+      "loss": 0.027356117963790894,
+      "learning_rate": 0.0001,
+      "elapsed": 3415.1365692373365
+    },
+    {
+      "step": 1700,
+      "loss": 0.008564264513552189,
+      "learning_rate": 0.0001,
+      "elapsed": 3468.6872670799494
+    },
+    {
+      "step": 1750,
+      "loss": 0.100795678794384,
+      "learning_rate": 0.0001,
+      "elapsed": 3522.324679872021
+    },
+    {
+      "step": 1800,
+      "loss": 0.02772282063961029,
+      "learning_rate": 0.0001,
+      "elapsed": 3575.6971923597157
+    },
+    {
+      "step": 1850,
+      "loss": 0.27559754252433777,
+      "learning_rate": 0.0001,
+      "elapsed": 3629.34095306322
+    },
+    {
+      "step": 1900,
+      "loss": 0.006592107005417347,
+      "learning_rate": 0.0001,
+      "elapsed": 3682.991527395323
+    },
+    {
+      "step": 1950,
+      "loss": 0.012266527861356735,
+      "learning_rate": 0.0001,
+      "elapsed": 3740.7205829788
+    },
+    {
+      "step": 2000,
+      "loss": 0.20006702840328217,
+      "learning_rate": 0.0001,
+      "elapsed": 3793.9936305992305
+    },
+    {
+      "step": 2050,
+      "loss": 0.14525063335895538,
+      "learning_rate": 0.0001,
+      "elapsed": 4278.311991099268
+    },
+    {
+      "step": 2100,
+      "loss": 0.04703560099005699,
+      "learning_rate": 0.0001,
+      "elapsed": 4332.126078918576
+    },
+    {
+      "step": 2150,
+      "loss": 0.004386153072118759,
+      "learning_rate": 0.0001,
+      "elapsed": 4385.890333242714
+    },
+    {
+      "step": 2200,
+      "loss": 0.19756120443344116,
+      "learning_rate": 0.0001,
+      "elapsed": 4439.762968763709
+    },
+    {
+      "step": 2250,
+      "loss": 0.00915062427520752,
+      "learning_rate": 0.0001,
+      "elapsed": 4522.673875251785
+    },
+    {
+      "step": 2300,
+      "loss": 0.010529340244829655,
+      "learning_rate": 0.0001,
+      "elapsed": 4576.155873915181
+    },
+    {
+      "step": 2350,
+      "loss": 0.08794896304607391,
+      "learning_rate": 0.0001,
+      "elapsed": 4675.970735054463
+    },
+    {
+      "step": 2400,
+      "loss": 0.0065824417397379875,
+      "learning_rate": 0.0001,
+      "elapsed": 4729.34653608501
+    },
+    {
+      "step": 2450,
+      "loss": 0.0015606972156092525,
+      "learning_rate": 0.0001,
+      "elapsed": 4795.923207510263
+    },
+    {
+      "step": 2500,
+      "loss": 0.3259240984916687,
+      "learning_rate": 0.0001,
+      "elapsed": 4849.364230439067
+    },
+    {
+      "step": 2550,
+      "loss": 0.04619294032454491,
+      "learning_rate": 0.0001,
+      "elapsed": 5333.607343511656
+    },
+    {
+      "step": 2600,
+      "loss": 0.005249038338661194,
+      "learning_rate": 0.0001,
+      "elapsed": 5387.057829705998
+    },
+    {
+      "step": 2650,
+      "loss": 0.02447592467069626,
+      "learning_rate": 0.0001,
+      "elapsed": 5510.8011939153075
+    },
+    {
+      "step": 2700,
+      "loss": 0.008745922707021236,
+      "learning_rate": 0.0001,
+      "elapsed": 5564.334666017443
+    },
+    {
+      "step": 2750,
+      "loss": 0.04309232160449028,
+      "learning_rate": 0.0001,
+      "elapsed": 5651.677722202614
+    },
+    {
+      "step": 2800,
+      "loss": 0.018107376992702484,
+      "learning_rate": 0.0001,
+      "elapsed": 5705.071713043377
+    },
+    {
+      "step": 2850,
+      "loss": 0.09570714831352234,
+      "learning_rate": 0.0001,
+      "elapsed": 5758.961357939988
+    },
+    {
+      "step": 2900,
+      "loss": 0.14215317368507385,
+      "learning_rate": 0.0001,
+      "elapsed": 5812.500486968085
+    },
+    {
+      "step": 2950,
+      "loss": 0.006349166855216026,
+      "learning_rate": 0.0001,
+      "elapsed": 5878.879275774583
+    },
+    {
+      "step": 3000,
+      "loss": 0.3368740677833557,
+      "learning_rate": 0.0001,
+      "elapsed": 5932.217000771314
+    },
+    {
+      "step": 3050,
+      "loss": 0.292414128780365,
+      "learning_rate": 0.0001,
+      "elapsed": 6416.115303028375
+    },
+    {
+      "step": 3100,
+      "loss": 0.32826489210128784,
+      "learning_rate": 0.0001,
+      "elapsed": 6474.207959195599
+    },
+    {
+      "step": 3150,
+      "loss": 0.011232899501919746,
+      "learning_rate": 0.0001,
+      "elapsed": 6527.680509941652
+    },
+    {
+      "step": 3200,
+      "loss": 0.2584208846092224,
+      "learning_rate": 0.0001,
+      "elapsed": 6581.306475108489
+    },
+    {
+      "step": 3250,
+      "loss": 0.030758216977119446,
+      "learning_rate": 0.0001,
+      "elapsed": 6634.8809144143015
+    },
+    {
+      "step": 3300,
+      "loss": 0.005110924132168293,
+      "learning_rate": 0.0001,
+      "elapsed": 6692.641094960272
+    },
+    {
+      "step": 3350,
+      "loss": 0.020694730803370476,
+      "learning_rate": 0.0001,
+      "elapsed": 6746.072738390416
+    },
+    {
+      "step": 3400,
+      "loss": 0.01496838964521885,
+      "learning_rate": 0.0001,
+      "elapsed": 6799.702344428748
+    },
+    {
+      "step": 3450,
+      "loss": 0.2607477903366089,
+      "learning_rate": 0.0001,
+      "elapsed": 6853.303837334737
+    },
+    {
+      "step": 3500,
+      "loss": 0.03056856244802475,
+      "learning_rate": 0.0001,
+      "elapsed": 6936.408456530422
+    },
+    {
+      "step": 3550,
+      "loss": 0.3369000554084778,
+      "learning_rate": 0.0001,
+      "elapsed": 7420.890405897051
+    },
+    {
+      "step": 3600,
+      "loss": 0.2837509512901306,
+      "learning_rate": 0.0001,
+      "elapsed": 7474.8420442231
+    },
+    {
+      "step": 3650,
+      "loss": 0.04647710919380188,
+      "learning_rate": 0.0001,
+      "elapsed": 7528.426678089425
+    },
+    {
+      "step": 3700,
+      "loss": 0.0019996357150375843,
+      "learning_rate": 0.0001,
+      "elapsed": 7582.104900110513
+    },
+    {
+      "step": 3750,
+      "loss": 0.21378740668296814,
+      "learning_rate": 0.0001,
+      "elapsed": 7635.981462426484
+    },
+    {
+      "step": 3800,
+      "loss": 0.26630228757858276,
+      "learning_rate": 0.0001,
+      "elapsed": 7689.692425278947
+    },
+    {
+      "step": 3850,
+      "loss": 0.3158414959907532,
+      "learning_rate": 0.0001,
+      "elapsed": 7743.222712807357
+    },
+    {
+      "step": 3900,
+      "loss": 0.0020786095410585403,
+      "learning_rate": 0.0001,
+      "elapsed": 7797.581075323746
+    },
+    {
+      "step": 3950,
+      "loss": 0.059094998985528946,
+      "learning_rate": 0.0001,
+      "elapsed": 7851.2446318063885
+    },
+    {
+      "step": 4000,
+      "loss": 0.0770428329706192,
+      "learning_rate": 0.0001,
+      "elapsed": 7905.1675482317805
+    },
+    {
+      "step": 4050,
+      "loss": 0.25100305676460266,
+      "learning_rate": 0.0001,
+      "elapsed": 8393.724385712296
+    },
+    {
+      "step": 4100,
+      "loss": 0.0029118498787283897,
+      "learning_rate": 0.0001,
+      "elapsed": 8447.3400150761
+    },
+    {
+      "step": 4150,
+      "loss": 0.020539063960313797,
+      "learning_rate": 0.0001,
+      "elapsed": 8500.944175811484
+    },
+    {
+      "step": 4200,
+      "loss": 0.3311372995376587,
+      "learning_rate": 0.0001,
+      "elapsed": 8554.362111423165
+    },
+    {
+      "step": 4250,
+      "loss": 0.026738852262496948,
+      "learning_rate": 0.0001,
+      "elapsed": 8608.073160696775
+    },
+    {
+      "step": 4300,
+      "loss": 0.013538925908505917,
+      "learning_rate": 0.0001,
+      "elapsed": 8661.717008503154
+    },
+    {
+      "step": 4350,
+      "loss": 0.32116931676864624,
+      "learning_rate": 0.0001,
+      "elapsed": 8715.39239199832
+    },
+    {
+      "step": 4400,
+      "loss": 0.028603922575712204,
+      "learning_rate": 0.0001,
+      "elapsed": 8769.256452318281
+    },
+    {
+      "step": 4450,
+      "loss": 0.27590224146842957,
+      "learning_rate": 0.0001,
+      "elapsed": 8822.841475406662
+    },
+    {
+      "step": 4500,
+      "loss": 0.3330148160457611,
+      "learning_rate": 0.0001,
+      "elapsed": 8876.32533994317
+    },
+    {
+      "step": 4550,
+      "loss": 0.0759187638759613,
+      "learning_rate": 0.0001,
+      "elapsed": 9365.851394206285
+    },
+    {
+      "step": 4600,
+      "loss": 0.1596473753452301,
+      "learning_rate": 0.0001,
+      "elapsed": 9423.704210417345
+    },
+    {
+      "step": 4650,
+      "loss": 0.1811491996049881,
+      "learning_rate": 0.0001,
+      "elapsed": 9477.400514297187
+    },
+    {
+      "step": 4700,
+      "loss": 0.019173625856637955,
+      "learning_rate": 0.0001,
+      "elapsed": 9530.779517332092
+    },
+    {
+      "step": 4750,
+      "loss": 0.06690956652164459,
+      "learning_rate": 0.0001,
+      "elapsed": 9584.20460850373
+    },
+    {
+      "step": 4800,
+      "loss": 0.007104343734681606,
+      "learning_rate": 0.0001,
+      "elapsed": 9637.67257375829
+    },
+    {
+      "step": 4850,
+      "loss": 0.25346437096595764,
+      "learning_rate": 0.0001,
+      "elapsed": 9691.096474722028
+    },
+    {
+      "step": 4900,
+      "loss": 0.032356955111026764,
+      "learning_rate": 0.0001,
+      "elapsed": 9744.54375199601
+    },
+    {
+      "step": 4950,
+      "loss": 0.13854047656059265,
+      "learning_rate": 0.0001,
+      "elapsed": 9797.99296743609
+    },
+    {
+      "step": 5000,
+      "loss": 0.31099772453308105,
+      "learning_rate": 0.0001,
+      "elapsed": 9851.372370263562
+    },
+    {
+      "step": 5050,
+      "loss": 0.33557718992233276,
+      "learning_rate": 0.0001,
+      "elapsed": 10334.286463607103
+    },
+    {
+      "step": 5100,
+      "loss": 0.25472939014434814,
+      "learning_rate": 0.0001,
+      "elapsed": 10387.68298631534
+    },
+    {
+      "step": 5150,
+      "loss": 0.18882004916667938,
+      "learning_rate": 0.0001,
+      "elapsed": 10441.349614046514
+    },
+    {
+      "step": 5200,
+      "loss": 0.308004766702652,
+      "learning_rate": 0.0001,
+      "elapsed": 10494.838712165132
+    },
+    {
+      "step": 5250,
+      "loss": 0.038221199065446854,
+      "learning_rate": 0.0001,
+      "elapsed": 10548.2960612569
+    },
+    {
+      "step": 5300,
+      "loss": 0.2064279019832611,
+      "learning_rate": 0.0001,
+      "elapsed": 10601.785976011306
+    },
+    {
+      "step": 5350,
+      "loss": 0.2472739815711975,
+      "learning_rate": 0.0001,
+      "elapsed": 10655.250503666699
+    },
+    {
+      "step": 5400,
+      "loss": 0.017763318493962288,
+      "learning_rate": 0.0001,
+      "elapsed": 10708.529025727883
+    },
+    {
+      "step": 5450,
+      "loss": 0.04914448782801628,
+      "learning_rate": 0.0001,
+      "elapsed": 10761.926221460104
+    },
+    {
+      "step": 5500,
+      "loss": 0.002008276293054223,
+      "learning_rate": 0.0001,
+      "elapsed": 10815.355157319456
+    },
+    {
+      "step": 5550,
+      "loss": 0.32798516750335693,
+      "learning_rate": 0.0001,
+      "elapsed": 11297.413489071652
+    },
+    {
+      "step": 5600,
+      "loss": 0.015150858089327812,
+      "learning_rate": 0.0001,
+      "elapsed": 11350.88816905208
+    },
+    {
+      "step": 5650,
+      "loss": 0.007243981584906578,
+      "learning_rate": 0.0001,
+      "elapsed": 11404.184399299324
+    },
+    {
+      "step": 5700,
+      "loss": 0.02718602493405342,
+      "learning_rate": 0.0001,
+      "elapsed": 11457.7658178024
+    },
+    {
+      "step": 5750,
+      "loss": 0.029786333441734314,
+      "learning_rate": 0.0001,
+      "elapsed": 11511.192844638601
+    },
+    {
+      "step": 5800,
+      "loss": 0.00299828196875751,
+      "learning_rate": 0.0001,
+      "elapsed": 11564.79325777106
+    },
+    {
+      "step": 5850,
+      "loss": 0.21868456900119781,
+      "learning_rate": 0.0001,
+      "elapsed": 11631.420996947214
+    },
+    {
+      "step": 5900,
+      "loss": 0.06452237814664841,
+      "learning_rate": 0.0001,
+      "elapsed": 11684.870139265433
+    },
+    {
+      "step": 5950,
+      "loss": 0.005648343358188868,
+      "learning_rate": 0.0001,
+      "elapsed": 11738.1961392425
+    },
+    {
+      "step": 6000,
+      "loss": 0.028453806415200233,
+      "learning_rate": 0.0001,
+      "elapsed": 11792.007746908814
+    },
+    {
+      "step": 6050,
+      "loss": 0.019993122667074203,
+      "learning_rate": 0.0001,
+      "elapsed": 12278.161800518632
+    },
+    {
+      "step": 6100,
+      "loss": 0.3183901309967041,
+      "learning_rate": 0.0001,
+      "elapsed": 12331.75304979086
+    },
+    {
+      "step": 6150,
+      "loss": 0.037199441343545914,
+      "learning_rate": 0.0001,
+      "elapsed": 12385.094809949398
+    },
+    {
+      "step": 6200,
+      "loss": 0.1445428431034088,
+      "learning_rate": 0.0001,
+      "elapsed": 12438.618025958538
+    },
+    {
+      "step": 6250,
+      "loss": 0.3191611170768738,
+      "learning_rate": 0.0001,
+      "elapsed": 12505.12230999954
+    },
+    {
+      "step": 6300,
+      "loss": 0.14749649167060852,
+      "learning_rate": 0.0001,
+      "elapsed": 12571.397076394409
+    },
+    {
+      "step": 6350,
+      "loss": 0.02291285991668701,
+      "learning_rate": 0.0001,
+      "elapsed": 12624.714355783537
+    },
+    {
+      "step": 6400,
+      "loss": 0.1933864951133728,
+      "learning_rate": 0.0001,
+      "elapsed": 12678.252202145755
+    },
+    {
+      "step": 6450,
+      "loss": 0.11887384951114655,
+      "learning_rate": 0.0001,
+      "elapsed": 12731.666440883651
+    },
+    {
+      "step": 6500,
+      "loss": 0.3537055253982544,
+      "learning_rate": 0.0001,
+      "elapsed": 12789.444708442315
+    },
+    {
+      "step": 6550,
+      "loss": 0.11513078957796097,
+      "learning_rate": 0.0001,
+      "elapsed": 13270.859777459875
+    },
+    {
+      "step": 6600,
+      "loss": 0.25804758071899414,
+      "learning_rate": 0.0001,
+      "elapsed": 13324.434268802404
+    },
+    {
+      "step": 6650,
+      "loss": 0.07827463746070862,
+      "learning_rate": 0.0001,
+      "elapsed": 13377.851105377078
+    },
+    {
+      "step": 6700,
+      "loss": 0.014636230655014515,
+      "learning_rate": 0.0001,
+      "elapsed": 13460.94069276005
+    },
+    {
+      "step": 6750,
+      "loss": 0.002617395017296076,
+      "learning_rate": 0.0001,
+      "elapsed": 13514.398255910724
+    },
+    {
+      "step": 6800,
+      "loss": 0.0016914738807827234,
+      "learning_rate": 0.0001,
+      "elapsed": 13567.98626277037
+    },
+    {
+      "step": 6850,
+      "loss": 0.04175100475549698,
+      "learning_rate": 0.0001,
+      "elapsed": 13621.644197834656
+    },
+    {
+      "step": 6900,
+      "loss": 0.3039056658744812,
+      "learning_rate": 0.0001,
+      "elapsed": 13687.893357515335
+    },
+    {
+      "step": 6950,
+      "loss": 0.25440752506256104,
+      "learning_rate": 0.0001,
+      "elapsed": 13741.659423267469
+    },
+    {
+      "step": 7000,
+      "loss": 0.16163289546966553,
+      "learning_rate": 0.0001,
+      "elapsed": 13795.250647068024
+    },
+    {
+      "step": 7050,
+      "loss": 0.31748470664024353,
+      "learning_rate": 0.0001,
+      "elapsed": 14282.511703291908
+    },
+    {
+      "step": 7100,
+      "loss": 0.3090718984603882,
+      "learning_rate": 0.0001,
+      "elapsed": 14336.031656278297
+    },
+    {
+      "step": 7150,
+      "loss": 0.15318286418914795,
+      "learning_rate": 0.0001,
+      "elapsed": 14389.5020343028
+    },
+    {
+      "step": 7200,
+      "loss": 0.022331930696964264,
+      "learning_rate": 0.0001,
+      "elapsed": 14442.914790932089
+    },
+    {
+      "step": 7250,
+      "loss": 0.0743938684463501,
+      "learning_rate": 0.0001,
+      "elapsed": 14496.585357828066
+    },
+    {
+      "step": 7300,
+      "loss": 0.0016490527195855975,
+      "learning_rate": 0.0001,
+      "elapsed": 14579.606858540326
+    },
+    {
+      "step": 7350,
+      "loss": 0.03145536035299301,
+      "learning_rate": 0.0001,
+      "elapsed": 14633.072454860434
+    },
+    {
+      "step": 7400,
+      "loss": 0.11172956228256226,
+      "learning_rate": 0.0001,
+      "elapsed": 14686.56416076608
+    },
+    {
+      "step": 7450,
+      "loss": 0.29534050822257996,
+      "learning_rate": 0.0001,
+      "elapsed": 14740.016459388658
+    },
+    {
+      "step": 7500,
+      "loss": 0.29577481746673584,
+      "learning_rate": 0.0001,
+      "elapsed": 14793.474709616974
+    },
+    {
+      "step": 7550,
+      "loss": 0.03384104743599892,
+      "learning_rate": 0.0001,
+      "elapsed": 15277.0678508766
+    },
+    {
+      "step": 7600,
+      "loss": 0.2280833125114441,
+      "learning_rate": 0.0001,
+      "elapsed": 15330.52214816399
+    },
+    {
+      "step": 7650,
+      "loss": 0.2437000274658203,
+      "learning_rate": 0.0001,
+      "elapsed": 15384.067526033148
+    },
+    {
+      "step": 7700,
+      "loss": 0.1679999828338623,
+      "learning_rate": 0.0001,
+      "elapsed": 15437.581162180752
+    },
+    {
+      "step": 7750,
+      "loss": 0.025745294988155365,
+      "learning_rate": 0.0001,
+      "elapsed": 15504.138558154926
+    },
+    {
+      "step": 7800,
+      "loss": 0.029311727732419968,
+      "learning_rate": 0.0001,
+      "elapsed": 15583.497900079936
+    },
+    {
+      "step": 7850,
+      "loss": 0.16308796405792236,
+      "learning_rate": 0.0001,
+      "elapsed": 15637.231241678819
+    },
+    {
+      "step": 7900,
+      "loss": 0.0994996428489685,
+      "learning_rate": 0.0001,
+      "elapsed": 15695.094213146716
+    },
+    {
+      "step": 7950,
+      "loss": 0.031099833548069,
+      "learning_rate": 0.0001,
+      "elapsed": 15748.528440138325
+    },
+    {
+      "step": 8000,
+      "loss": 0.05501198023557663,
+      "learning_rate": 0.0001,
+      "elapsed": 15802.18938741833
+    },
+    {
+      "step": 8050,
+      "loss": 0.28719818592071533,
+      "learning_rate": 0.0001,
+      "elapsed": 16353.623487019911
+    },
+    {
+      "step": 8100,
+      "loss": 0.30614984035491943,
+      "learning_rate": 0.0001,
+      "elapsed": 16411.692774401978
+    },
+    {
+      "step": 8150,
+      "loss": 0.25152087211608887,
+      "learning_rate": 0.0001,
+      "elapsed": 16469.85535420105
+    },
+    {
+      "step": 8200,
+      "loss": 0.2733945846557617,
+      "learning_rate": 0.0001,
+      "elapsed": 16523.524928459898
+    },
+    {
+      "step": 8250,
+      "loss": 0.01009807176887989,
+      "learning_rate": 0.0001,
+      "elapsed": 16581.358951203525
+    },
+    {
+      "step": 8300,
+      "loss": 0.33384478092193604,
+      "learning_rate": 0.0001,
+      "elapsed": 16634.82222021371
+    },
+    {
+      "step": 8350,
+      "loss": 0.0019666627049446106,
+      "learning_rate": 0.0001,
+      "elapsed": 16692.580379711464
+    },
+    {
+      "step": 8400,
+      "loss": 0.30958831310272217,
+      "learning_rate": 0.0001,
+      "elapsed": 16746.025755867362
+    },
+    {
+      "step": 8450,
+      "loss": 0.21821609139442444,
+      "learning_rate": 0.0001,
+      "elapsed": 16803.891809066758
+    },
+    {
+      "step": 8500,
+      "loss": 0.021631726995110512,
+      "learning_rate": 0.0001,
+      "elapsed": 16857.40493223071
+    },
+    {
+      "step": 8550,
+      "loss": 0.056246232241392136,
+      "learning_rate": 0.0001,
+      "elapsed": 17366.06873974763
+    },
+    {
+      "step": 8600,
+      "loss": 0.0016562186647206545,
+      "learning_rate": 0.0001,
+      "elapsed": 17419.698071127757
+    },
+    {
+      "step": 8650,
+      "loss": 0.0035963510163128376,
+      "learning_rate": 0.0001,
+      "elapsed": 17477.790366830304
+    },
+    {
+      "step": 8700,
+      "loss": 0.03235645592212677,
+      "learning_rate": 0.0001,
+      "elapsed": 17612.9269562345
+    },
+    {
+      "step": 8750,
+      "loss": 0.29394060373306274,
+      "learning_rate": 0.0001,
+      "elapsed": 17666.54832775332
+    },
+    {
+      "step": 8800,
+      "loss": 0.0037924509961158037,
+      "learning_rate": 0.0001,
+      "elapsed": 17720.2724110689
+    },
+    {
+      "step": 8850,
+      "loss": 0.31934595108032227,
+      "learning_rate": 0.0001,
+      "elapsed": 17773.909405427054
+    },
+    {
+      "step": 8900,
+      "loss": 0.04222099483013153,
+      "learning_rate": 0.0001,
+      "elapsed": 17993.218451201916
+    },
+    {
+      "step": 8950,
+      "loss": 0.3404274880886078,
+      "learning_rate": 0.0001,
+      "elapsed": 18051.27023259364
+    },
+    {
+      "step": 9000,
+      "loss": 0.14010268449783325,
+      "learning_rate": 0.0001,
+      "elapsed": 18110.18389132805
+    },
+    {
+      "step": 9050,
+      "loss": 0.23516099154949188,
+      "learning_rate": 0.0001,
+      "elapsed": 18599.222921943292
+    },
+    {
+      "step": 9100,
+      "loss": 0.1714380383491516,
+      "learning_rate": 0.0001,
+      "elapsed": 18653.034872656688
+    },
+    {
+      "step": 9150,
+      "loss": 0.05019053444266319,
+      "learning_rate": 0.0001,
+      "elapsed": 18706.77237842977
+    },
+    {
+      "step": 9200,
+      "loss": 0.0036731380969285965,
+      "learning_rate": 0.0001,
+      "elapsed": 18765.061478501186
+    },
+    {
+      "step": 9250,
+      "loss": 0.0019147017737850547,
+      "learning_rate": 0.0001,
+      "elapsed": 18819.1676970385
+    },
+    {
+      "step": 9300,
+      "loss": 0.001777957659214735,
+      "learning_rate": 0.0001,
+      "elapsed": 18873.03281519562
+    },
+    {
+      "step": 9350,
+      "loss": 0.2746227979660034,
+      "learning_rate": 0.0001,
+      "elapsed": 18973.374104237184
+    },
+    {
+      "step": 9400,
+      "loss": 0.24012374877929688,
+      "learning_rate": 0.0001,
+      "elapsed": 19027.00391398929
+    },
+    {
+      "step": 9450,
+      "loss": 0.04765813425183296,
+      "learning_rate": 0.0001,
+      "elapsed": 19080.811631482095
+    },
+    {
+      "step": 9500,
+      "loss": 0.25713127851486206,
+      "learning_rate": 0.0001,
+      "elapsed": 19134.636619027704
+    },
+    {
+      "step": 9550,
+      "loss": 0.048473455011844635,
+      "learning_rate": 0.0001,
+      "elapsed": 19621.852426262572
+    },
+    {
+      "step": 9600,
+      "loss": 0.19012108445167542,
+      "learning_rate": 0.0001,
+      "elapsed": 19675.88535131514
+    },
+    {
+      "step": 9650,
+      "loss": 0.10430482029914856,
+      "learning_rate": 0.0001,
+      "elapsed": 19729.419824471697
+    },
+    {
+      "step": 9700,
+      "loss": 0.006641122978180647,
+      "learning_rate": 0.0001,
+      "elapsed": 19782.837822223082
+    },
+    {
+      "step": 9750,
+      "loss": 0.338941752910614,
+      "learning_rate": 0.0001,
+      "elapsed": 19836.269308902323
+    },
+    {
+      "step": 9800,
+      "loss": 0.18614433705806732,
+      "learning_rate": 0.0001,
+      "elapsed": 19889.951021375135
+    },
+    {
+      "step": 9850,
+      "loss": 0.3520069122314453,
+      "learning_rate": 0.0001,
+      "elapsed": 19943.393649319187
+    },
+    {
+      "step": 9900,
+      "loss": 0.34364232420921326,
+      "learning_rate": 0.0001,
+      "elapsed": 19996.84813582711
+    },
+    {
+      "step": 9950,
+      "loss": 0.23273161053657532,
+      "learning_rate": 0.0001,
+      "elapsed": 20050.323542386293
+    },
+    {
+      "step": 10000,
+      "loss": 0.08055965602397919,
+      "learning_rate": 0.0001,
+      "elapsed": 20103.906164018437
+    }
+  ]
+}

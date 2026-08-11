@@ -1,0 +1,111 @@
+name: tsweep_sdxl_head
+output_dir: runs
+model:
+  kind: sdxl
+  name: stabilityai/stable-diffusion-xl-base-1.0
+  revision: null
+  variant: null
+  dtype: float32
+  vae_dtype: float32
+  device: auto
+  resolution: 1024
+  enable_gradient_checkpointing: true
+  enable_xformers: false
+  toy: {}
+data:
+  kind: cityscapes
+  root: /workspace/data/cityscapes
+  split: train
+  caption_mode: template
+  caption_template: photorealistic first-person urban street view
+  caption_file: ''
+  augmentation_file: configs/prompt_augmentations.json
+  concept_axes:
+  - style
+  - viewpoint
+  max_items: null
+  crop: random
+  hflip: true
+  num_dummy_items: 8
+measure:
+  timesteps:
+  - 1
+  - 81
+  - 201
+  - 481
+  num_samples: 256
+  batch_size: 1
+  augs_per_sample: 4
+  split_half: true
+  granularity: matrix
+  accumulate_direction: true
+  compute_paired_cosine: true
+  save_direction_vectors: false
+  accum_device: auto
+  eps: 1.0e-12
+  seed: 0
+  paired_across_timesteps: true
+  log_every: 16
+  drift_autocast: bf16
+select:
+  granularity: head
+  fraction: 0.02
+  budget_basis: unit_count
+  axis: style
+  normalization: sum
+  aggregation: normalized_mean
+  single_timestep: 81
+  top_timesteps: 5
+  similarity_source: cos_of_means
+  tscore_ca_weighting: mean
+  tscore_ca_normalization: sum
+  conflict_sim_quantiles:
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  conflict_primary_quantile: 0.3
+  tscore_selection_multiplier: 5
+train:
+  lora:
+    rank: 64
+    alpha: 64
+    dropout: 0.0
+    init_lora_weights: gaussian
+  max_steps: 10000
+  batch_size: 1
+  gradient_accumulation_steps: 1
+  learning_rate: 0.0001
+  lr_scheduler: constant
+  lr_warmup_steps: 0
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 0.01
+  adam_epsilon: 1.0e-08
+  max_grad_norm: 1.0
+  mixed_precision: 'no'
+  cache_latents: true
+  prefetch: true
+  seed: 0
+  checkpoint_every: 2000
+  log_every: 50
+  stability_every: 500
+  stability_num_samples: 64
+eval:
+  num_images: 500
+  guidance_scale: 5.0
+  num_inference_steps: 25
+  prompt: photorealistic first-person urban street view
+  include_class_names: true
+  weather_conditions:
+  - foggy
+  - night-time
+  - rainy
+  - snowy
+  images_per_condition: 100
+  reference_split: val
+  reference_num_images: 500
+  clip_model: openai/clip-vit-large-patch14
+  generation_batch_size: 4
+  seed: 0

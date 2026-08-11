@@ -19,3 +19,17 @@ outputs/
 # a bare "data/" would also swallow the src/calora/data package.
 /data/
 /cityscapes/
+
+# ---------------------------------------------------------------------------
+# Released evidence tree. /results/ is the curated, version-controlled copy of
+# the run artifacts that back the report's tables; everything in it is meant to
+# be tracked. These negations exempt it from the generic rules above -- notably
+# "runs/" (would swallow a nested /results/*/runs/ dir) and "*.safetensors"
+# (would silently drop any weight file we choose to release here).
+# Keep both lines: "!/results/" re-includes the directory itself, "!/results/**"
+# re-includes every path underneath it. Verify with:
+#   git check-ignore -v results/<some file>          # must print nothing
+#   git check-ignore -v results/x.safetensors        # must print nothing
+# ---------------------------------------------------------------------------
+!/results/
+!/results/**

@@ -1,0 +1,37 @@
+10:18:17 | INFO    | check_drift_autocast_gate | Gating arm 'base' at t=1 (from config:measure.timesteps[0]) on the base model (no --lora)
+10:18:31 | INFO    | calora.models.loader | Loading StableDiffusionXLPipeline from stabilityai/stable-diffusion-xl-base-1.0 (cuda, torch.float32)
+10:18:31 | INFO    | httpx | HTTP Request: GET https://huggingface.co/api/models/stabilityai/stable-diffusion-xl-base-1.0 "HTTP/1.1 200 OK"
+10:18:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+10:18:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/stabilityai/stable-diffusion-xl-base-1.0/462165984030d82259a11f4367a4eed129e94a7b/model_index.json "HTTP/1.1 200 OK"
+Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]Loading pipeline components...:  14%|█▍        | 1/7 [00:00<00:01,  5.00it/s]Loading pipeline components...:  29%|██▊       | 2/7 [00:02<00:08,  1.61s/it]Loading pipeline components...:  57%|█████▋    | 4/7 [00:02<00:01,  1.57it/s]
+Loading weights:   0%|          | 0/517 [00:00<?, ?it/s][A
+Loading weights:  29%|██▉       | 149/517 [00:00<00:00, 1364.96it/s][A
+Loading weights:  55%|█████▌    | 286/517 [00:00<00:00, 1316.51it/s][A
+Loading weights:  81%|████████  | 418/517 [00:00<00:00, 1290.72it/s][ALoading weights: 100%|██████████| 517/517 [00:00<00:00, 1508.33it/s]
+Loading pipeline components...:  86%|████████▌ | 6/7 [00:03<00:00,  1.75it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][A
+Loading weights:  78%|███████▊  | 153/196 [00:00<00:00, 1509.83it/s][ALoading weights: 100%|██████████| 196/196 [00:00<00:00, 1499.81it/s]
+Loading pipeline components...: 100%|██████████| 7/7 [00:04<00:00,  2.01it/s]Loading pipeline components...: 100%|██████████| 7/7 [00:04<00:00,  1.67it/s]
+10:19:17 | INFO    | calora.models.loader | Adapter ready: {'class': 'StableDiffusionXLAdapter', 'device': 'cuda', 'dtype': 'torch.float32', 'num_train_timesteps': 1000, 'prediction_type': 'epsilon', 'scheduler': 'EulerDiscreteScheduler', 'pipeline': 'StableDiffusionXLPipeline', 'vae_scale_factor': 8, 'latent_channels': 4, 'scaling_factor': 0.13025, 'resolution': 1024}
+10:19:18 | INFO    | calora.data.cityscapes | Cityscapes train: 2975 images across 18 cities
+10:19:44 | INFO    | check_drift_autocast_gate | Prepared 64 drift samples (4 aug(s) each)
+10:19:46 | INFO    | check_drift_autocast_gate | Measuring CA at t=1 under drift_autocast='no'
+10:19:46 | INFO    | calora.ca.measure | t=1: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+10:19:59 | INFO    | calora.ca.measure | t=1  1/64 samples  (13.07s)
+10:23:23 | INFO    | calora.ca.measure | t=1  17/64 samples  (216.55s)
+10:26:46 | INFO    | calora.ca.measure | t=1  33/64 samples  (420.41s)
+10:30:10 | INFO    | calora.ca.measure | t=1  49/64 samples  (624.05s)
+10:33:21 | INFO    | calora.ca.measure | t=1 done: 256 contributions from 64 samples in 815.1s
+10:33:21 | INFO    | check_drift_autocast_gate |   drift_autocast='no': 815.1s, mean CA(style)=0.102231, 208 projections selected
+10:33:21 | INFO    | check_drift_autocast_gate | Measuring CA at t=1 under drift_autocast='bf16'
+10:33:21 | INFO    | calora.ca.measure | t=1: 10400 projections (955.19M params), 4 aug(s)/sample, 1 accumulator(s); ~0.0 GiB on cpu (0.0 persistent + 0.0 transient). Set measure.accum_device=cpu if that is tight.
+10:33:29 | INFO    | calora.ca.measure | t=1  1/64 samples  (7.78s)
+10:35:17 | INFO    | calora.ca.measure | t=1  17/64 samples  (115.46s)
+10:37:05 | INFO    | calora.ca.measure | t=1  33/64 samples  (223.47s)
+10:38:53 | INFO    | calora.ca.measure | t=1  49/64 samples  (331.47s)
+10:40:33 | INFO    | calora.ca.measure | t=1 done: 256 contributions from 64 samples in 432.0s
+10:40:34 | INFO    | check_drift_autocast_gate |   drift_autocast='bf16': 432.0s, mean CA(style)=0.105078, 208 projections selected
+10:40:34 | INFO    | check_drift_autocast_gate | drift_autocast gate PASS: spearman=0.998771 (>= 0.99) jaccard=0.9349 (>= 0.80)  [t=1, 64 samples, seed 0, bf16 may be enabled for arms C onward]
+10:40:34 | INFO    | check_drift_autocast_gate | Snapshot cost: 815.1s fp32 vs 432.0s bf16 (1.89x)
+10:40:34 | INFO    | check_drift_autocast_gate | Wrote runs/sdxl_cityscapes/base/drift_autocast_gate.json
+[W731 10:40:35.270608123 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

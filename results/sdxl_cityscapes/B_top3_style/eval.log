@@ -1,0 +1,35 @@
+19:14:29 | INFO    | calora.eval.embeddings | Loading CLIP openai/clip-vit-large-patch14 on cuda
+19:14:29 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+19:14:29 | WARNING | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+19:14:29 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-large-patch14/32bd64288804d66eefd0ccbe215aa642df71cc41/config.json "HTTP/1.1 200 OK"
+19:14:29 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+19:14:29 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-large-patch14/32bd64288804d66eefd0ccbe215aa642df71cc41/config.json "HTTP/1.1 200 OK"
+19:14:29 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 22508.79it/s]
+19:14:30 | INFO    | httpx | HTTP Request: GET https://huggingface.co/api/models/openai/clip-vit-large-patch14/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/chat_template.json "HTTP/1.1 404 Not Found"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/audio_tokenizer_config.json "HTTP/1.1 404 Not Found"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-large-patch14/32bd64288804d66eefd0ccbe215aa642df71cc41/preprocessor_config.json "HTTP/1.1 200 OK"
+19:14:30 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+19:14:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+19:14:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-large-patch14/32bd64288804d66eefd0ccbe215aa642df71cc41/preprocessor_config.json "HTTP/1.1 200 OK"
+19:14:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+19:14:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-large-patch14/32bd64288804d66eefd0ccbe215aa642df71cc41/config.json "HTTP/1.1 200 OK"
+19:14:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+19:14:31 | INFO    | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-large-patch14/32bd64288804d66eefd0ccbe215aa642df71cc41/tokenizer_config.json "HTTP/1.1 200 OK"
+19:14:31 | INFO    | httpx | HTTP Request: GET https://huggingface.co/api/models/openai/clip-vit-large-patch14/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+19:14:31 | INFO    | httpx | HTTP Request: GET https://huggingface.co/api/models/openai/clip-vit-large-patch14/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+19:14:57 | INFO    | evaluate | Reusing 500 verified reference images in runs/sdxl_cityscapes/reference
+19:14:57 | INFO    | calora.eval.metrics | CMMD over 500 reference and 500 generated images
+19:15:58 | INFO    | evaluate | CMMD = 0.7106 (lower is better)
+19:16:04 | INFO    | evaluate | CLIP-Score[foggy] = 23.155 (n=100)
+19:16:33 | INFO    | evaluate | CLIP-Score[in_domain] = 22.643 (n=500)
+19:16:40 | INFO    | evaluate | CLIP-Score[night-time] = 19.698 (n=100)
+19:16:45 | INFO    | evaluate | CLIP-Score[rainy] = 20.803 (n=100)
+19:16:51 | INFO    | evaluate | CLIP-Score[snowy] = 19.109 (n=100)
+19:17:43 | INFO    | evaluate | Wrote runs/sdxl_cityscapes/B_top3_style/eval.json
