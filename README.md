@@ -77,7 +77,7 @@ src/calora/     ca/ (measurement, statistics, selection), models/ (projection ta
                 SDXL + toy adapters), train/, eval/ (CMMD, CLIP-Score), analysis/ (CA drift), data/
 tests/          unit tests for every invariant (batch=1, pairing, head slicing, checkpoint metadata)
 figures/        the four report figures
-results/        experiment raw artifacts backing the report tables (added in this commit series)
+results/        experiment raw artifacts backing the report tables (with sha256 manifest)
 REPORT.md       the full research report
 PREREGISTRATION.md   pre-registered decisions and their deviations
 ```
@@ -88,5 +88,3 @@ PREREGISTRATION.md   pre-registered decisions and their deviations
 - **[PREREGISTRATION.md](PREREGISTRATION.md)** — the decisions fixed before measurement (primary metric, demotion rule, aggregation width, autocast gate thresholds) and every deviation from them.
 - **[results/MANIFEST.md](results/MANIFEST.md)** — artifact manifest: sha256 for each released artifact, plus the Hugging Face locations of the large files that are too big for git — LoRA checkpoints at [huggingface.co/chs35/improving-ca-lora-checkpoints](https://huggingface.co/chs35/improving-ca-lora-checkpoints), CA measurement safetensors and generated images at [huggingface.co/datasets/chs35/improving-ca-lora-artifacts](https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts), with their full sha256 lists in `results/sha256_checkpoints.txt`, `results/sha256_measurements.txt` and `results/sha256_generated_images.csv`.
 - **`scripts/make_figures.py`** regenerates the four figures from `results/`.
-
-The pre-registration, the `results/` tree with its manifest, and the figure script land across this commit series; the links above are their final locations.
