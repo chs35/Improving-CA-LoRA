@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# pytest tmp_path base (see pyproject addopts)
+.pytest_tmp/
+.pytest_cache/
+
+# experiment outputs
+runs/
+outputs/
+*.safetensors
+
+# datasets (Cityscapes is not redistributable). Rooted on purpose:
+# a bare "data/" would also swallow the src/calora/data package.
+/data/
+/cityscapes/

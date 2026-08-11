@@ -1,0 +1,79 @@
+# Offline CPU development config: toy UNet, synthetic data, no downloads.
+# Every script must run end-to-end under this config before touching a GPU.
+name: tiny_cpu
+output_dir: runs
+
+model:
+  kind: toy
+  dtype: float32
+  device: cpu
+  resolution: 64
+  toy:
+    base_channels: 32
+    context_dim: 32
+    latent_channels: 4
+    vae_scale_factor: 8
+    text_seq_len: 8
+    seed: 0
+
+data:
+  kind: dummy
+  num_dummy_items: 8
+  concept_axes: [style, viewpoint]
+  augmentation_file: configs/prompt_augmentations.json
+  caption_template: "photorealistic first-person urban street view"  # fixed prompt, no {city}
+  hflip: true             # so the smoke run exercises the flip + both-orientation cache
+
+measure:
+  timesteps: [1, 81, 201, 481]
+  num_samples: 8
+  batch_size: 1
+  augs_per_sample: 2      # >1 so the smoke test actually exercises the multi-aug path
+  split_half: true
+  granularity: matrix
+  accumulate_direction: true
+  compute_paired_cosine: true
+  accum_device: cpu
+  seed: 0
+  log_every: 0
+
+select:
+  granularity: head      # the pipeline default; the smoke test also exercises `module`
+  fraction: 0.1          # 2% of an 80-unit toy model would be a single head
+  budget_basis: auto     # -> unit_count here
+  axis: style
+  normalization: sum
+  aggregation: normalized_mean
+  top_timesteps: 2
+  similarity_source: cos_of_means
+  conflict_sim_quantiles: [0.1, 0.2, 0.3, 0.4, 0.5]
+  conflict_primary_quantile: 0.3
+  tscore_selection_multiplier: 5
+
+train:
+  lora:
+    rank: 4
+    alpha: 4
+  max_steps: 4
+  batch_size: 2
+  learning_rate: 1.0e-4
+  mixed_precision: "no"
+  checkpoint_every: 0
+  log_every: 1
+  stability_every: 2
+  stability_num_samples: 4
+
+# Small enough to run on CPU in seconds; the numbers are meaningless, only the
+# plumbing is being checked. scripts/evaluate.py is run with --embedder pixel here.
+eval:
+  num_images: 4
+  guidance_scale: 5.0
+  num_inference_steps: 4
+  prompt: "photorealistic first-person urban street view"
+  include_class_names: true
+  weather_conditions: [foggy]
+  images_per_condition: 2
+  reference_split: train      # the dummy dataset has no splits
+  reference_num_images: 4
+  generation_batch_size: 2
+  seed: 0

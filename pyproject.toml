@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calora"
+version = "0.1.0"
+description = "Reproduction and optimization of Concept-Aware LoRA (arXiv 2503.22172)"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.1",
+    "numpy>=1.24",
+    "safetensors>=0.4",
+    "PyYAML>=6.0",
+    "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+# Needed for real Stable Diffusion runs. The CA engine and all unit tests work
+# without these (see calora.models.toy). peft is not used by the released
+# head-granularity pipeline (the sliced LoRA is a custom module), but the
+# legacy module-granularity code path and its in-code install hint resolve here.
+diffusion = [
+    "diffusers>=0.27",
+    "transformers>=4.38",
+    "peft>=0.10",
+]
+# Full test suite without skips: several test modules importorskip peft
+# (peft-vs-sliced parity tests) and matplotlib (loss-curve plots).
+dev = [
+    "pytest>=8.0",
+    "peft>=0.10",
+    "matplotlib>=3.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+# Keep tmp_path inside the project: the default under %LOCALAPPDATA%\Temp can be
+# left permission-locked by an earlier run on Windows.
+addopts = "--basetemp=.pytest_tmp"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
