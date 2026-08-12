@@ -291,7 +291,7 @@ training revealed that top-2% membership collapses within hundreds of steps — 
 [10] Y. Lee, A. S. Chen, F. Tajwar, A. Kumar, H. Yao, P. Liang, and C. Finn. "Surgical Fine-Tuning Improves Adaptation to Distribution Shifts." ICLR 2023. arXiv:2210.11466.
 [11] I. Loshchilov and F. Hutter. "Decoupled Weight Decay Regularization." ICLR 2019. arXiv:1711.05101.
 [12] S. Mangrulkar, S. Gugger, L. Debut, Y. Belkada, S. Paul, and B. Bossan. "PEFT: State-of-the-art Parameter-Efficient Fine-Tuning Methods." https://github.com/huggingface/peft, 2022.
-[13] M. Park, S. Park, J. Lee, H. Park, K. Hwang, F. Porikli, J. Choo, and S. Choi. "Concept-Aware LoRA for Domain-Aligned Segmentation Dataset Generation." CVPR 2025. arXiv:2503.22172.
+[13] M. Park, S. Park, J. Lee, H. Park, K. Hwang, F. Porikli, J. Choo, and S. Choi. "Concept-Aware LoRA for Domain-Aligned Segmentation Dataset Generation." CVPR 2026. arXiv:2503.22172.
 [14] A. Paszke, S. Gross, F. Massa, A. Lerer, J. Bradbury, G. Chanan, T. Killeen, Z. Lin, N. Gimelshein, L. Antiga, et al. "PyTorch: An Imperative Style, High-Performance Deep Learning Library." NeurIPS 2019.
 [15] D. Podell, Z. English, K. Lacey, A. Blattmann, T. Dockhorn, J. Müller, J. Penna, and R. Rombach. "SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis." ICLR 2024. arXiv:2307.01952.
 [16] A. Radford, J. W. Kim, C. Hallacy, A. Ramesh, G. Goh, S. Agarwal, G. Sastry, A. Askell, P. Mishkin, J. Clark, et al. "Learning Transferable Visual Models From Natural Language Supervision." ICML 2021. arXiv:2103.00020.
