@@ -21,6 +21,7 @@ and reports:
 
 from __future__ import annotations
 
+import time
 from collections.abc import Iterator, Mapping, Sequence
 from contextlib import contextmanager, nullcontext
 from dataclasses import dataclass, field
@@ -122,6 +123,9 @@ class DriftSnapshot:
     num_selected: int
     entered: list[str] = field(default_factory=list)
     left: list[str] = field(default_factory=list)
+    #: Wall clock of the re-measurement behind this snapshot. Recorded so a
+    #: drift-tracking run's cost can be separated from its optimisation steps.
+    seconds: float = 0.0
 
     def to_dict(self) -> dict:
         return {
@@ -139,6 +143,7 @@ class DriftSnapshot:
             "num_left": len(self.left),
             "entered": self.entered,
             "left": self.left,
+            "seconds": self.seconds,
         }
 
 
@@ -178,7 +183,9 @@ class StabilityTracker:
         self.snapshots: list[DriftSnapshot] = []
         self._previous_names: list[str] = list(baseline_selection.names)
 
-    def record(self, step: int, scores: torch.Tensor, selection: Selection) -> DriftSnapshot:
+    def record(
+        self, step: int, scores: torch.Tensor, selection: Selection, *, seconds: float = 0.0
+    ) -> DriftSnapshot:
         scores = scores.detach().to(torch.float64).cpu()
         baseline_names = self.baseline_selection.names
         current = list(selection.names)
@@ -195,6 +202,7 @@ class StabilityTracker:
             num_selected=len(current),
             entered=sorted(set(current) - set(baseline_names)),
             left=sorted(set(baseline_names) - set(current)),
+            seconds=seconds,
         )
         self.snapshots.append(snapshot)
         self._previous_names = current
@@ -225,6 +233,7 @@ class StabilityTracker:
             "min_spearman": min(spearmans),
             "final_jaccard_vs_trained": self.snapshots[-1].jaccard_vs_trained,
             "ever_left": sorted({n for s in self.snapshots for n in s.left}),
+            "total_seconds": sum(s.seconds for s in self.snapshots),
         }
 
 
@@ -383,6 +392,7 @@ def make_stability_callback(
         if state.step % every != 0 and state.step != max_steps:
             return
 
+        started = time.perf_counter()
         was_training = adapter.unet.training
         with merged_lora(adapter.unet):
             table = ProjectionTable.from_model(
@@ -419,7 +429,9 @@ def make_stability_callback(
             budget_basis=budget_basis,
             strategy=f"drift@step{state.step}",
         )
-        snapshot = tracker.record(state.step, scores, selection)
+        snapshot = tracker.record(
+            state.step, scores, selection, seconds=time.perf_counter() - started
+        )
         if on_snapshot is not None:
             on_snapshot(snapshot)
 

@@ -150,7 +150,7 @@ This document is a retrospective consolidation, compiled 2026-08-11, of analysis
 
 ### 16. Drift re-measurement is observational only
 
-**Decision.** CA is re-measured every 500 steps on a fixed 64-sample subset (`train.stability_every: 500`, `train.stability_num_samples: 64`), against a step-0 baseline re-measured with those same 64 samples rather than reused from the 256-sample selection scores. No selection, hyperparameter, or stopping decision in this study consumes the drift signal.
+**Decision.** CA is re-measured every 500 steps on a fixed 64-sample subset (`train.stability_every: 500`, `train.stability_num_samples: 64`; in `configs/sdxl_cityscapes_drift.yaml` since the throughput change of 2026-09-25, which set the plain reproduction config to 0), against a step-0 baseline re-measured with those same 64 samples rather than reused from the 256-sample selection scores. No selection, hyperparameter, or stopping decision in this study consumes the drift signal.
 
 **Rationale.** Consuming drift would make the training trajectory depend on the quantity being observed, which is the study's third research question. Re-measuring the baseline at the snapshot's own sample count separates estimation noise from genuine drift and yields the per-run noise floor reported as the baseline ∩ trained column of Table 5.
 

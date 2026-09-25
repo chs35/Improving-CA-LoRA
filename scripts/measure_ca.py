@@ -24,6 +24,7 @@ from calora.ca.stats import save_measurement  # noqa: E402
 from calora.data import build_dataset  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
 from calora.models.projections import ProjectionTable  # noqa: E402
+from calora.utils.device import set_matmul_tf32  # noqa: E402
 from calora.utils.io import dump_json, load_json  # noqa: E402
 from calora.utils.logging import get_logger  # noqa: E402
 
@@ -39,6 +40,17 @@ def main() -> None:
     cfg = cli.resolve(args)
 
     adapter = load_adapter(cfg.model)
+    # The selection measurement keeps its own numeric and memory regime whatever
+    # the training settings of the same config say. TF32: the measurement is
+    # pre-registered as full fp32 and every arm's selection comes from it.
+    # Gradient checkpointing: the direction accumulators alone take ~36 GiB on
+    # SDXL, so the activations have to be recomputed rather than stored.
+    if cfg.model.allow_tf32:
+        logger.info("model.allow_tf32 is for training; the CA measurement stays full fp32")
+    set_matmul_tf32(False)
+    if not cfg.model.enable_gradient_checkpointing:
+        logger.info("Gradient checkpointing enabled for the measurement (memory, not numbers)")
+    adapter.enable_gradient_checkpointing()
     # select.granularity decides what a unit is (head slice vs fused matrix) for
     # the whole pipeline, measurement included: the saved statistics are per unit
     # and cannot be converted between the two after the fact.

@@ -12,17 +12,38 @@
 # mentioned, so it stays at 1 rather than being inflated to a larger effective
 # batch the paper never used. Still not stated anywhere: the CMMD reference set
 # and the CLIP backbone — see EvalConfig, where both are marked as our decision.
+#
+# Throughput (A100). The reported runs trained at ~2.0-2.3 s/step (5.6-6.3 h per
+# 10k-step arm) with fp32 matmuls, gradient checkpointing, a per-step VAE encode
+# and CA-drift snapshots every 500 steps. This config keeps every hyperparameter
+# above and changes only how the step is computed: bf16 autocast over fp32
+# weights, TF32 matmuls, no checkpointing, a latent cache with the random crop
+# taken in latent space, and no drift snapshots (use sdxl_cityscapes_drift.yaml
+# for those). To rerun exactly as reported:
+#   --set train.mixed_precision=no model.allow_tf32=false \
+#         model.enable_gradient_checkpointing=true train.cache_latents=false \
+#         train.stability_every=500
 name: sdxl_cityscapes
 output_dir: runs
 
 model:
   kind: sdxl
   name: stabilityai/stable-diffusion-xl-base-1.0
-  dtype: float32          # fp32 gradients; use bfloat16 if memory is tight
+  # Base weights stay fp32 even though training runs under bf16 autocast: the
+  # LoRA master weights and Adam state are created in this dtype (bf16 would
+  # round a 1e-4 update away), and CA is read off fp32 param.grad.
+  dtype: float32
   vae_dtype: float32      # the SDXL VAE produces NaNs in fp16
   device: auto
   resolution: 1024
-  enable_gradient_checkpointing: true
+  # TF32 for whatever still runs as an fp32 matmul (training forward is bf16
+  # anyway; generation is fp32). scripts/measure_ca.py and the drift gate force
+  # it off for themselves — the selection measurement is pre-registered fp32.
+  allow_tf32: true
+  # Off: batch-1 training fits an 80GB A100 without it, and recomputing the
+  # activations costs ~30-40% of every step. scripts/measure_ca.py turns it back
+  # on for itself (its direction accumulators alone take ~36 GiB).
+  enable_gradient_checkpointing: false
 
 data:
   kind: cityscapes
@@ -35,11 +56,13 @@ data:
   caption_template: "photorealistic first-person urban street view"
   concept_axes: [style, viewpoint]
   augmentation_file: configs/prompt_augmentations.json
-  # The paper's full augmentation (Table 12): random crop + random hflip. The
-  # random crop makes dataset[i] non-deterministic, so training falls back from
-  # the latent cache to per-step VAE encoding — slower, but dropping a documented
-  # augmentation would weaken the reproduction claim. Measurement call sites
-  # override both to center/no-flip regardless.
+  # The paper's full augmentation (Table 12): random crop + random hflip. With
+  # train.cache_latents the uncropped 2048x1024 frame is encoded once per
+  # orientation and the 1024px crop is taken as a 128-latent window per step
+  # (8px-granular offsets; see calora.train.lora._InputCache for how this differs
+  # from crop-then-encode). train.cache_latents=false restores the per-step pixel
+  # crop + VAE encode the reported runs used. Measurement call sites override
+  # both to center/no-flip regardless.
   crop: random
   hflip: true
 
@@ -98,11 +121,20 @@ train:
   lr_scheduler: constant
   lr_warmup_steps: 0
   max_grad_norm: 1.0
-  mixed_precision: "no"
+  # bf16 autocast around the UNet forward; LoRA weights, grads and Adam state
+  # stay fp32. bf16 needs no loss scaler (fp32's exponent range).
+  mixed_precision: "bf16"
+  # Uncropped-frame latent cache (see data.crop), kept on disk so only the first
+  # arm pays for the ~6k encodes; every later arm reads it back (sha256-checked).
+  cache_latents: true
+  latent_cache_dir: runs/latent_cache
   seed: 0
   checkpoint_every: 2000
   log_every: 50
-  stability_every: 500        # CA-drift tracking rides along on this run
+  # 0 = a clean reproduction run. Each drift snapshot is a full CA measurement
+  # (64 samples x 2 axes x 4 augs); configs/sdxl_cityscapes_drift.yaml turns it
+  # back on at the reported cadence of every 500 steps.
+  stability_every: 0
   stability_num_samples: 64
 
 eval:

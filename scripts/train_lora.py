@@ -7,12 +7,15 @@ Every ablation arm is this same command with a different ``--selection``, so any
 difference in the results is attributable to the projection choice alone.
 
 With ``train.stability_every > 0`` the run also produces
-``stability.json`` — the CA-drift curve — at no extra training cost.
+``stability.json`` — the CA-drift curve. It changes no training number, but each
+snapshot is a full CA measurement, so it does cost wall clock; the log and
+``train_summary.json`` report that time separately from the optimisation steps.
 """
 
 from __future__ import annotations
 
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
@@ -28,6 +31,7 @@ from calora.ca.select import Selection  # noqa: E402
 from calora.data import build_dataset  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
 from calora.models.projections import ProjectionTable  # noqa: E402
+from calora.train.latent_store import LatentStore  # noqa: E402
 from calora.train.lora import resolve_target_modules, train_lora  # noqa: E402
 from calora.utils.io import dump_json, load_json  # noqa: E402
 from calora.utils.logging import get_logger  # noqa: E402
@@ -109,7 +113,9 @@ def main() -> None:
 
     callbacks = []
     tracker: StabilityTracker | None = None
+    baseline_seconds = 0.0
     if cfg.train.stability_every > 0:
+        baseline_started = time.perf_counter()
         # A second, centre-cropped and un-mirrored view of the same data. Drift is
         # a comparison of CA measured at step 0 against CA measured at step N, so
         # those two measurements have to see the same pixels even when training is
@@ -141,12 +147,15 @@ def main() -> None:
             drift_autocast=cfg.measure.drift_autocast,
             granularity=granularity,
         )
+        baseline_seconds = time.perf_counter() - baseline_started
         logger.info(
-            "Drift baseline at t=%d (autocast=%s): %d projections, Jaccard vs trained set = %.3f",
+            "Drift baseline at t=%d (autocast=%s): %d projections, Jaccard vs trained set = %.3f "
+            "(%.1fs)",
             tracker.timestep,
             cfg.measure.drift_autocast,
             len(tracker.baseline_selection),
             tracker.baseline_selection.jaccard(selection),
+            baseline_seconds,
         )
         callbacks.append(
             make_stability_callback(
@@ -162,11 +171,19 @@ def main() -> None:
                 seed=cfg.measure.seed,
                 drift_autocast=cfg.measure.drift_autocast,
                 on_snapshot=lambda s: logger.info(
-                    "drift @ step %d: jaccard=%.3f spearman=%.3f",
-                    s.step, s.jaccard_vs_baseline, s.spearman_vs_baseline,
+                    "drift @ step %d: jaccard=%.3f spearman=%.3f (%.1fs)",
+                    s.step, s.jaccard_vs_baseline, s.spearman_vs_baseline, s.seconds,
                 ),
             )
         )
+
+    # Every arm encodes the same images through the same frozen VAE; on disk, the
+    # first arm pays for the latents and the rest read them back.
+    latent_store = (
+        LatentStore.for_run(cfg.train.latent_cache_dir, cfg.model, dataset)
+        if cfg.train.cache_latents and cfg.train.latent_cache_dir
+        else None
+    )
 
     state = train_lora(
         adapter,
@@ -176,6 +193,7 @@ def main() -> None:
         output_dir=output_dir,
         callbacks=callbacks,
         extra_metadata={"axis": axis},
+        latent_store=latent_store,
     )
 
     dump_json(
@@ -184,6 +202,21 @@ def main() -> None:
             "arm": args.run_name or selection_path.stem,
             "selection": selection.to_dict(),
             "final": state.to_dict(),
+            # Optimisation vs CA-drift wall clock, so arms with and without drift
+            # tracking can be compared on the part they share.
+            "timing": {
+                "train_seconds": state.train_elapsed,
+                "train_seconds_per_step": state.train_elapsed / max(state.step, 1),
+                "callback_seconds": state.callback_elapsed,
+                "drift_baseline_seconds": baseline_seconds,
+                "loop_seconds": state.elapsed,
+                "mixed_precision": cfg.train.mixed_precision,
+                "allow_tf32": cfg.model.allow_tf32,
+                "gradient_checkpointing": cfg.model.enable_gradient_checkpointing,
+                "stability_every": cfg.train.stability_every,
+                "crop": cfg.data.crop,
+                "cache_latents": cfg.train.cache_latents,
+            },
             "history": state.history,
         },
         output_dir / "train_summary.json",

@@ -1,0 +1,15 @@
+# sdxl_cityscapes.yaml plus the training-time CA-drift analysis (the report's
+# drift section): CA is re-measured every 500 steps on a fixed 64-sample subset
+# and compared against a step-0 baseline measured on the same samples. Nothing
+# about the training itself changes, and `name` is inherited, so an arm trained
+# here lands in the same runs/sdxl_cityscapes/<arm>/ directory that
+# generate_images.py and evaluate.py read under sdxl_cityscapes.yaml.
+#
+# The snapshots cost wall clock (bf16 autocast after the equivalence gate; see
+# measure.drift_autocast), and the training log and train_summary.json report
+# that time separately from the optimisation steps.
+_base_: sdxl_cityscapes.yaml
+
+train:
+  stability_every: 500
+  stability_num_samples: 64

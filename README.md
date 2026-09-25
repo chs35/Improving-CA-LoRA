@@ -33,7 +33,9 @@ python scripts/select_projections.py --config configs/tsweep_sdxl.yaml \
 python scripts/select_projections.py --config configs/tsweep_sdxl.yaml \
     --strategy random --seed 0 --out selection_random.json   # controls: --strategy all = full attention
 
-# 4. Train one arm (10k steps; CA drift snapshots ride along every 500 steps)
+# 4. Train one arm (10k steps). For the drift analysis use
+#    configs/sdxl_cityscapes_drift.yaml instead: same training, plus CA re-measured
+#    every 500 steps (outputs land in the same runs/sdxl_cityscapes/<arm>/).
 python scripts/train_lora.py --config configs/sdxl_cityscapes.yaml \
     --selection runs/tsweep_sdxl/selection_t41_style.json --run-name t41_style
 
@@ -45,6 +47,8 @@ python scripts/generate_images.py --config configs/sdxl_cityscapes.yaml \
 # 6. CMMD + CLIP-Score -> runs/sdxl_cityscapes/t41_style/eval.json
 python scripts/evaluate.py --config configs/sdxl_cityscapes.yaml --run-name t41_style
 ```
+
+**Training throughput.** `configs/sdxl_cityscapes.yaml` trains with bf16 autocast over fp32 weights, TF32 matmuls, no gradient checkpointing, and a latent cache: each uncropped 2048×1024 frame is VAE-encoded once per orientation and the paper's 1024px random crop is taken as a 128×128 latent window per step. The cache is written to `train.latent_cache_dir` (sha256-verified), so only the first arm pays for the encodes. Every hyperparameter is unchanged, but the numbers are not bit-identical to the reported runs, which used fp32, checkpointing, a per-step pixel crop + encode and drift snapshots (~2.0–2.3 s/step, 5.6–6.3 h per arm); the config header gives the `--set` overrides that restore that setup. The training log and `train_summary.json` report optimisation time separately from drift-snapshot time. `scripts/measure_ca.py` always runs full fp32 with checkpointing, whatever the config says.
 
 Repeat stages 3–6 per arm; the full run matrix is {t = 81, t = 41, t = 1, multi-t [41, 1, 81]} x {style, viewpoint} plus the random and full-attention controls. Every script takes `--config` and accepts dotted overrides via `--set key=value`. `scripts/check_drift_autocast_gate.py` is the one-off gate that validates the bf16 drift snapshots against fp32 before training (its thresholds are fixed in code).
 
@@ -70,8 +74,9 @@ The reported experiments ran on a single A100 80GB. Cityscapes must be obtained 
 ## Repository structure
 
 ```
-configs/        sdxl_cityscapes.yaml (reproduction), tsweep_sdxl.yaml (13-t sweep),
-                tiny_cpu.yaml (CPU toy), prompt_augmentations.json (the paper's c_Aug templates)
+configs/        sdxl_cityscapes.yaml (reproduction), sdxl_cityscapes_drift.yaml (+ CA drift),
+                tsweep_sdxl.yaml (13-t sweep), tiny_cpu.yaml (CPU toy),
+                prompt_augmentations.json (the paper's c_Aug templates)
 scripts/        the six pipeline stages + smoke_test.py and the drift autocast gate
 src/calora/     ca/ (measurement, statistics, selection), models/ (projection table, sliced LoRA,
                 SDXL + toy adapters), train/, eval/ (CMMD, CLIP-Score), analysis/ (CA drift), data/

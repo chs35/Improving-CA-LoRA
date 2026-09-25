@@ -32,3 +32,19 @@ def resolve_dtype(spec: str | torch.dtype) -> torch.dtype:
         return _DTYPES[spec.lower()]
     except KeyError as exc:
         raise ValueError(f"Unknown dtype {spec!r}; expected one of {sorted(_DTYPES)}") from exc
+
+
+def set_matmul_tf32(enabled: bool) -> None:
+    """Allow (or forbid) TF32 tensor cores for fp32 CUDA matmuls, process-wide.
+
+    Only the *matmul* flag is touched. cuDNN convolutions already run in TF32
+    under PyTorch's default (``torch.backends.cudnn.allow_tf32 = True``), and
+    every run this project has reported ran with that default, so forcing it
+    off here would change the numbers of paths that never asked for a change.
+    Harmless without CUDA: the flag is simply never consulted.
+    """
+    torch.backends.cuda.matmul.allow_tf32 = bool(enabled)
+
+
+def matmul_tf32_enabled() -> bool:
+    return bool(torch.backends.cuda.matmul.allow_tf32)

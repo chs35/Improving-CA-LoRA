@@ -55,6 +55,7 @@ from calora.data import build_dataset  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
 from calora.models.projections import ProjectionTable  # noqa: E402
 from calora.train.lora import load_lora  # noqa: E402
+from calora.utils.device import set_matmul_tf32  # noqa: E402
 from calora.utils.io import dump_json, load_json  # noqa: E402
 from calora.utils.logging import get_logger  # noqa: E402
 
@@ -293,6 +294,9 @@ def main() -> None:
     )
 
     adapter = load_adapter(cfg.model)
+    # The gate's reference is pre-registered as an fp32 measurement; with
+    # model.allow_tf32 on (a training setting) the "no" side would silently be TF32.
+    set_matmul_tf32(False)
     # Pre-injection, so the identity check below compares like with like. The gate
     # bounds the error of the drift measurement, so it has to run at the same unit
     # granularity the drift callback will.

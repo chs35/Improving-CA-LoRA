@@ -93,6 +93,10 @@ class DummyConceptDataset(Sequence):
         city = FAKE_CITIES[index % len(FAKE_CITIES)]
         return self.caption_template.format(city=city, key=f"dummy_{index:06d}")
 
+    def caption_at(self, index: int) -> str:
+        """Same contract as :meth:`CityscapesConceptDataset.caption_at`."""
+        return self.caption_for_index(index)
+
     def distinct_captions(self) -> list[str]:
         """Every caption, without synthesising an image — same contract as
         :class:`~calora.data.cityscapes.CityscapesConceptDataset`."""
