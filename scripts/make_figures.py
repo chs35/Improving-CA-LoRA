@@ -48,6 +48,7 @@ matplotlib.use("Agg")  # headless: no display on the pod, none in CI
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
+from calora.analysis.stability import drift_view  # noqa: E402
 from calora.utils.io import load_json  # noqa: E402
 from calora.utils.logging import get_logger  # noqa: E402
 
@@ -377,6 +378,10 @@ DRIFT_STYLES: dict[str, tuple] = {
 }
 
 
+#: Controls have no axis of their own; the figure draws them on this one.
+CONTROL_DRIFT_AXIS = "style"
+
+
 def drift_curves(results: Path, arm: str) -> tuple[list[int], list[float], list[float], dict]:
     """Steps, Jaccard and Spearman against the step-0 baseline, for one arm.
 
@@ -386,11 +391,15 @@ def drift_curves(results: Path, arm: str) -> tuple[list[int], list[float], list[
     of the figure, the collapse over the first 500 steps.
     """
     payload = load_json(results / arm / "stability.json")
-    snapshots = payload["snapshots"]
+    # Each run on the axis it was selected on; the no-axis controls on style.
+    view = drift_view(payload) if "axes" not in payload or payload["primary_axis"] else (
+        drift_view(payload, CONTROL_DRIFT_AXIS)
+    )
+    snapshots = view["snapshots"]
     steps = [0] + [int(entry["step"]) for entry in snapshots]
     jaccard = [1.0] + [float(entry["jaccard_vs_baseline"]) for entry in snapshots]
     spearman = [1.0] + [float(entry["spearman_vs_baseline"]) for entry in snapshots]
-    return steps, jaccard, spearman, payload
+    return steps, jaccard, spearman, view
 
 
 def plot_drift(results: Path, path: Path) -> Path:
@@ -552,7 +561,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--results",
         type=Path,
         default=Path("results"),
-        help="Results tree; sdxl_cityscapes/<arm>/{eval,stability}.json are read from it",
+        help="Results tree; <run-name>/<arm>/{eval,stability}.json are read from it",
+    )
+    parser.add_argument(
+        "--run-name",
+        default="sdxl_cityscapes",
+        help="Which experiment under --results to draw",
     )
     parser.add_argument("--figures-dir", type=Path, default=Path("figures"))
     parser.add_argument(
@@ -581,7 +595,7 @@ def main(argv: list[str] | None = None) -> None:
     args = build_parser().parse_args(argv)
     _apply_style()
 
-    arms = args.results / "sdxl_cityscapes"
+    arms = args.results / args.run_name
     if not arms.is_dir():
         raise SystemExit(f"No results tree at {arms}")
     wanted = FIGURES if args.only is None else (args.only,)

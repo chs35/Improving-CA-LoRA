@@ -59,6 +59,10 @@ def dataset_identity(dataset: Sequence[dict]) -> str:
     if callable(lister):
         paths = "\n".join(lister())
         return "files:" + hashlib.sha256(paths.encode()).hexdigest()
+    sources = getattr(dataset, "source_indices", None)
+    if sources is not None:
+        digest = hashlib.sha256(json.dumps(list(sources)).encode()).hexdigest()
+        return f"{type(dataset).__name__}:sources={digest}:seed={getattr(dataset, 'seed', None)}"
     return f"{type(dataset).__name__}:n={len(dataset)}:seed={getattr(dataset, 'seed', None)}"
 
 

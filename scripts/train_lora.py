@@ -22,13 +22,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from calora import cli  # noqa: E402
 from calora.analysis.stability import (  # noqa: E402
-    StabilityTracker,
-    build_stability_tracker,
+    MultiAxisStabilityTracker,
+    build_multi_axis_stability_tracker,
     make_stability_callback,
 )
 from calora.ca.measure import prepare_samples  # noqa: E402
 from calora.ca.select import Selection  # noqa: E402
-from calora.data import build_dataset  # noqa: E402
+from calora.data import apply_training_subset, build_dataset  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
 from calora.models.projections import ProjectionTable  # noqa: E402
 from calora.train.latent_store import LatentStore  # noqa: E402
@@ -96,6 +96,9 @@ def main() -> None:
     # trains both the style and the viewpoint adapter of an arm, and the two
     # checkpoints are otherwise indistinguishable.
     axis = str(selection.meta.get("axis", "") or "")
+    # What drift is tracked against, read before the label fallback below: a
+    # control selected on no axis has no axis of its own to be judged on.
+    drift_primary_axis = axis or None
     if not axis:
         axis = cfg.select.axis
         logger.warning(
@@ -110,9 +113,10 @@ def main() -> None:
         )
 
     dataset = build_dataset(cfg.data, resolution=cfg.model.resolution, seed=cfg.train.seed)
+    training_subset = _restrict_to_training_subset(cfg, dataset)
 
     callbacks = []
-    tracker: StabilityTracker | None = None
+    tracker: MultiAxisStabilityTracker | None = None
     baseline_seconds = 0.0
     if cfg.train.stability_every > 0:
         baseline_started = time.perf_counter()
@@ -134,12 +138,13 @@ def main() -> None:
             axes=cfg.data.concept_axes,
             num_samples=cfg.train.stability_num_samples,
         )
-        tracker = build_stability_tracker(
+        logger.info("Drift samples: %d of %d images", len(samples), len(measure_dataset))
+        tracker = build_multi_axis_stability_tracker(
             adapter,
             samples,
             axes=cfg.data.concept_axes,
             timestep=_baseline_timestep(cfg, selection, args.baseline_timestep),
-            selection_axis=cfg.select.axis,
+            primary_axis=drift_primary_axis,
             fraction=cfg.select.fraction,
             budget_basis=cfg.select.budget_basis,
             seed=cfg.measure.seed,
@@ -149,12 +154,15 @@ def main() -> None:
         )
         baseline_seconds = time.perf_counter() - baseline_started
         logger.info(
-            "Drift baseline at t=%d (autocast=%s): %d projections, Jaccard vs trained set = %.3f "
+            "Drift baseline at t=%d (autocast=%s, primary axis=%s): Jaccard vs trained set = %s "
             "(%.1fs)",
             tracker.timestep,
             cfg.measure.drift_autocast,
-            len(tracker.baseline_selection),
-            tracker.baseline_selection.jaccard(selection),
+            drift_primary_axis,
+            {
+                name: round(single.baseline_selection.jaccard(selection), 3)
+                for name, single in tracker.trackers.items()
+            },
             baseline_seconds,
         )
         callbacks.append(
@@ -165,14 +173,13 @@ def main() -> None:
                 axes=cfg.data.concept_axes,
                 every=cfg.train.stability_every,
                 max_steps=cfg.train.max_steps,
-                selection_axis=cfg.select.axis,
                 fraction=cfg.select.fraction,
                 budget_basis=cfg.select.budget_basis,
                 seed=cfg.measure.seed,
                 drift_autocast=cfg.measure.drift_autocast,
                 on_snapshot=lambda s: logger.info(
-                    "drift @ step %d: jaccard=%.3f spearman=%.3f (%.1fs)",
-                    s.step, s.jaccard_vs_baseline, s.spearman_vs_baseline, s.seconds,
+                    "drift @ step %d [%s]: jaccard=%.3f spearman=%.3f (%.1fs)",
+                    s.step, s.axis, s.jaccard_vs_baseline, s.spearman_vs_baseline, s.seconds,
                 ),
             )
         )
@@ -201,6 +208,7 @@ def main() -> None:
             "run": cfg.name,
             "arm": args.run_name or selection_path.stem,
             "selection": selection.to_dict(),
+            "training_subset": training_subset,
             "final": state.to_dict(),
             # Optimisation vs CA-drift wall clock, so arms with and without drift
             # tracking can be compared on the part they share.
@@ -228,6 +236,32 @@ def main() -> None:
         dump_json(tracker.to_dict(), output_dir / "stability.json")
         logger.info("CA drift summary: %s", tracker.summary())
     logger.info("Done: %s", output_dir)
+
+
+def _restrict_to_training_subset(cfg, dataset) -> dict | None:
+    """Apply ``train.subset_size`` and pin the draw to the run directory.
+
+    Arms are compared on the premise that they saw the same images, so the first
+    arm records the draw and every later one has to reproduce it.
+    """
+    if cfg.train.subset_size is None:
+        return None
+    record = apply_training_subset(dataset, cfg.train.subset_size, seed=cfg.train.subset_seed)
+    path = cfg.run_dir / "training_subset.json"
+    if path.exists():
+        recorded = load_json(path)
+        if recorded != record:
+            raise RuntimeError(
+                f"Training subset differs from the one recorded in {path}: "
+                f"{recorded.get('keys')} vs {record['keys']}. Arms of one run must share it."
+            )
+    else:
+        dump_json(record, path)
+    logger.info(
+        "Training on %d of %d images (subset_seed=%d): %s",
+        record["size"], record["source_size"], record["seed"], record["keys"],
+    )
+    return record
 
 
 def _baseline_timestep(cfg, selection: Selection, override: int | None) -> int:

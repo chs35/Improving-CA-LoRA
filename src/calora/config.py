@@ -269,6 +269,14 @@ class TrainConfig:
     #: spent in it is logged separately from the optimisation steps either way.
     stability_every: int = 0
     stability_num_samples: int = 64
+    #: Train on a random subset of this many images instead of the whole split
+    #: (the paper's few-shot setting). Training only: drift samples, generation
+    #: prompts and the CMMD reference keep reading the full data, so None vs 10
+    #: changes what the adapter learns from and nothing about how it is measured.
+    subset_size: int | None = None
+    #: Seeds the subset draw, independently of ``seed``, so every arm of a run
+    #: trains on the same images whatever else is varied.
+    subset_seed: int = 0
 
 
 @dataclass
@@ -306,9 +314,18 @@ class EvalConfig:
     #: numbers stay in one feature space.
     clip_model: str = "openai/clip-vit-large-patch14"
     generation_batch_size: int = 4
+    #: "no" | "bf16". Autocast around the UNet forward while sampling; the text
+    #: encoders and the VAE decode stay in the model dtype. "no" enters no autocast
+    #: context at all, so configs that do not set it keep their exact images.
+    generation_autocast: str = "no"
     seed: int = 0
 
     def __post_init__(self) -> None:
+        if self.generation_autocast not in ("no", "bf16"):
+            raise ValueError(
+                f"Unknown eval.generation_autocast {self.generation_autocast!r}; "
+                "expected 'no' or 'bf16'"
+            )
         if self.num_images < 1:
             raise ValueError(f"eval.num_images must be >= 1, got {self.num_images}")
         if not self.weather_conditions:

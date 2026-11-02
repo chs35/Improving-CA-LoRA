@@ -1,0 +1,17 @@
+# sdxl_cityscapes_drift.yaml trained on 10 randomly drawn images instead of the
+# whole split (~1,000 epochs at 10k steps, the regime of the paper's few-shot
+# setting). Every arm trains on the same 10 images, recorded in
+# runs/sdxl_cityscapes_fewshot10/training_subset.json.
+#
+# The subset applies to the training loop only: the drift samples, the generation
+# prompts' class names and the CMMD reference keep reading the full data, and the
+# selections are the existing ones, measured on 256 images of the full split.
+#
+# `name` is its own so nothing lands in runs/sdxl_cityscapes/.
+_base_: sdxl_cityscapes_drift.yaml
+
+name: sdxl_cityscapes_fewshot10
+
+train:
+  subset_size: 10
+  subset_seed: 0

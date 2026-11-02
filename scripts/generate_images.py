@@ -35,6 +35,7 @@ from calora.config import Config  # noqa: E402
 from calora.data import ClassNameSampler  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
 from calora.train.lora import load_lora  # noqa: E402
+from calora.utils.device import module_forward_autocast  # noqa: E402
 from calora.utils.io import dump_json  # noqa: E402
 
 # Saving lives in the package, not here: scripts/evaluate.py exports the CMMD
@@ -219,12 +220,15 @@ def main() -> None:
             # consumes the stream once for the whole batch, so a per-image generator
             # would only be honoured if the batch size were 1.
             generator = derive_generator(cfg.eval.seed, "gen", chunk[0]["index"])
-            images = adapter.generate(
-                [record["prompt"] for record in chunk],
-                num_inference_steps=cfg.eval.num_inference_steps,
-                guidance_scale=cfg.eval.guidance_scale,
-                generator=generator,
-            )
+            with module_forward_autocast(
+                adapter.unet, adapter.device, cfg.eval.generation_autocast
+            ):
+                images = adapter.generate(
+                    [record["prompt"] for record in chunk],
+                    num_inference_steps=cfg.eval.num_inference_steps,
+                    guidance_scale=cfg.eval.guidance_scale,
+                    generator=generator,
+                )
             for record, path, image in zip(chunk, paths, images):
                 writer.submit(image, path)
                 _stamp_output(record, path, cfg.run_dir, chunk[0]["index"])
@@ -251,6 +255,7 @@ def main() -> None:
             "resolution": cfg.model.resolution,
             "seed": cfg.eval.seed,
             "generation_batch_size": cfg.eval.generation_batch_size,
+            "generation_autocast": cfg.eval.generation_autocast,
             "weather_conditions": cfg.eval.weather_conditions,
             "model": adapter.describe(),
         },

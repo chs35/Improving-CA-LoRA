@@ -204,6 +204,14 @@ class CityscapesConceptDataset(Sequence):
             return self._captions[entry.key]
         return self.caption_template.format(city=entry.city.replace("_", " "), key=entry.key)
 
+    def restrict(self, indices: Sequence[int]) -> None:
+        """Keep only these items, re-indexed from 0 (see ``apply_training_subset``)."""
+        self.entries = [self.entries[index] for index in indices]
+
+    def item_keys(self) -> list[str]:
+        """Each item's frame key, read off metadata — no image is decoded."""
+        return [entry.key for entry in self.entries]
+
     def caption_at(self, index: int) -> str:
         """Item ``index``'s caption, read off metadata — no image is decoded."""
         return self.caption_for(self.entries[index])
