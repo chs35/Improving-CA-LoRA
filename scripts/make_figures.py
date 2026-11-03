@@ -288,6 +288,19 @@ TRADEOFF_LABEL_OFFSETS: dict[str, tuple[float, float, str, str]] = {
     "D_t1_viewpoint": (8.0, -7.5, "left", "center"),
     "E_all": (-14.0, -13.5, "left", "top"),
 }
+
+#: Per-experiment overrides of the above, keyed by the run directory's name: the
+#: points move between experiments, so labels that cleared each other in one
+#: collide in another.
+TRADEOFF_RUN_LABEL_OFFSETS: dict[str, dict[str, tuple[float, float, str, str]]] = {
+    "sdxl_cityscapes_fewshot10": {
+        "B_top3_style": (-8.0, 7.0, "right", "center"),
+        "D_t1_style": (8.0, 4.0, "left", "center"),
+        "A_t81_viewpoint": (-8.0, 0.0, "right", "center"),
+        "D_t1_viewpoint": (8.0, -7.5, "left", "center"),
+        "E_all": (-14.0, -13.5, "left", "top"),
+    },
+}
 TRADEOFF_DEFAULT_OFFSET = (8.0, 0.0, "left", "center")
 
 
@@ -299,6 +312,7 @@ def _arm_metrics(results: Path, arm: str) -> tuple[float, float]:
 def plot_tradeoff(results: Path, path: Path) -> Path:
     """One point per trained adapter; no arm wins both metrics."""
     points = {arm: _arm_metrics(results, arm) for arm in TRADEOFF_ARMS}
+    offsets = TRADEOFF_RUN_LABEL_OFFSETS.get(results.name, TRADEOFF_LABEL_OFFSETS)
     figure, panel = plt.subplots(figsize=(7.8, 5.2))
 
     for family, (color, marker, label) in TRADEOFF_FAMILIES.items():
@@ -310,7 +324,7 @@ def plot_tradeoff(results: Path, path: Path) -> Path:
                 cmmd, weather, s=70, color=color, zorder=3,
                 marker=TRADEOFF_RANDOM_MARKER if arm == "E_random" else marker,
             )
-            dx, dy, ha, va = TRADEOFF_LABEL_OFFSETS.get(arm, TRADEOFF_DEFAULT_OFFSET)
+            dx, dy, ha, va = offsets.get(arm, TRADEOFF_DEFAULT_OFFSET)
             panel.annotate(
                 TRADEOFF_ARMS[arm][1],
                 (cmmd, weather),
