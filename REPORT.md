@@ -79,7 +79,7 @@ CA를 쓰지 않는 기준과 비교하면 다음과 같다. 학습하지 않은
 
 ## 참고문헌
 
-- M. Park et al. "Concept-Aware LoRA for Domain-Aligned Segmentation Dataset Generation." CVPR 2025. arXiv:2503.22172. (CA-LoRA)
+- M. Park et al. "Concept-Aware LoRA for Domain-Aligned Segmentation Dataset Generation." CVPR 2026. arXiv:2503.22172. (CA-LoRA)
 - D. Podell et al. "SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis." ICLR 2024. arXiv:2307.01952.
 - M. Cordts et al. "The Cityscapes Dataset for Semantic Urban Scene Understanding." CVPR 2016. arXiv:1604.01685.
 - E. J. Hu et al. "LoRA: Low-Rank Adaptation of Large Language Models." ICLR 2022. arXiv:2106.09685.

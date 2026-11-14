@@ -1,6 +1,6 @@
 # Improving CA-LoRA
 
-A full reimplementation of **CA-LoRA** (Concept-Aware LoRA, CVPR 2025, [arXiv:2503.22172](https://arxiv.org/abs/2503.22172) — no official code) on SDXL + Cityscapes, which replaces the paper's heuristic choice of the CA-measurement timestep (t = 81) with a quantitative gradient-direction criterion, and adds multi-timestep aggregation and a training-time CA drift analysis.
+A full reimplementation of **CA-LoRA** (Concept-Aware LoRA, CVPR 2026, [arXiv:2503.22172](https://arxiv.org/abs/2503.22172) — no official code) on SDXL + Cityscapes, which replaces the paper's heuristic choice of the CA-measurement timestep (t = 81) with a quantitative gradient-direction criterion, and adds multi-timestep aggregation and a training-time CA drift analysis.
 
 ## TL;DR
 
