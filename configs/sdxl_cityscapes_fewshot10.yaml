@@ -4,10 +4,13 @@
 # runs/sdxl_cityscapes_fewshot10/training_subset.json.
 #
 # The subset applies to the training loop only: the drift samples, the generation
-# prompts' class names and the CMMD reference keep reading the full data. The
-# 2026-11-02 campaign used selections measured on 256 real train frames and drift
-# on real frames; since 2026-11-07 both are self-generated (measure.source /
-# measure.drift_source, inherited) -- selections come from runs/ca_selfgen.
+# prompts' class names and the CMMD reference keep reading the full data.
+#
+# This config backs the three baselines of the report that do not depend on CA
+# (E_random, E_all, control_base). They come from the 2026-11-02 campaign, whose
+# drift snapshots still read real frames; since 2026-11-07 the drift x0 is
+# self-generated (measure.drift_source, inherited). The CA-selected arms use
+# sdxl_cityscapes_selfgen_fewshot10.yaml, with selections from runs/ca_selfgen.
 #
 # `name` is its own so nothing lands in runs/sdxl_cityscapes/.
 _base_: sdxl_cityscapes_drift.yaml

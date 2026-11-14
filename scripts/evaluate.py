@@ -1,13 +1,13 @@
 """Score a generated arm: CMMD against real data, CLIP-Score against the prompts.
 
-    python scripts/evaluate.py --config configs/sdxl_cityscapes.yaml --run-name multi_t
+    python scripts/evaluate.py --config configs/sdxl_cityscapes_selfgen_fewshot10.yaml \
+        --run-name C_t201_style
 
 Reads ``generated/manifest.json`` from :mod:`scripts.generate_images`, exports the
 CMMD reference set once, and writes ``eval.json``.
 
-The reproduction claim is a *relative ordering* (style-selected adapters win
-domain fit while viewpoint-selected adapters preserve weather-prompt
-controllability), so the numbers only mean anything if
+The arms are only ever compared with each other (CMMD for domain fit, CLIP-Score
+for weather-prompt controllability), so the numbers only mean anything if
 every arm was scored identically. ``eval.json`` therefore carries the whole
 protocol next to the values, and the reference set is exported once per run
 directory and reused rather than rebuilt per arm.

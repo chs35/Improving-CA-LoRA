@@ -5,13 +5,13 @@
 # SDXL path — 1024px latents, dual text encoders, LoRA injection, accumulator
 # footprint — so it overrides the inherited data.kind with synthetic images and
 # needs no data.root and no download. It says nothing about results; those come
-# from sdxl_cityscapes.yaml once the dataset request is approved.
+# from the Cityscapes configs (ca_selfgen.yaml, sdxl_cityscapes_selfgen_fewshot10.yaml).
 _base_: sdxl_cityscapes.yaml
 
 name: smoke_a100
 
 data:
-  kind: dummy             # <-- the override that makes this runnable today
+  kind: dummy             # <-- the override that makes this runnable without Cityscapes
   num_dummy_items: 16     # DummyConceptDataset synthesises at model.resolution
   max_items: 16
 

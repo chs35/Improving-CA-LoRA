@@ -216,7 +216,7 @@ def main() -> int:
             selection_axis=cfg.select.axis,
         )
 
-    logger.info("=== 4. timestep scoring (Phase 3) ===")
+    logger.info("=== 4. timestep scoring ===")
     scores = rank(results)
     for entry in scores:
         logger.info(
@@ -252,7 +252,7 @@ def main() -> int:
             stats["top_b"],
         )
 
-    logger.info("=== 5. projection selection (Phase 2/4 arms) ===")
+    logger.info("=== 5. projection selection (4 arms) ===")
     arms = {
         "A_single_t81": select_topk(
             axis_scores(results[81], cfg.select.axis),
@@ -313,7 +313,7 @@ def main() -> int:
                 sum(1 for p in plans if p.is_full),
             )
 
-    logger.info("=== 6. LoRA training + CA drift (Phase 5, %s granularity) ===", table.granularity)
+    logger.info("=== 6. LoRA training + CA drift (%s granularity) ===", table.granularity)
     # Trained at select.granularity: head by default, which means the paper's
     # sliced type A/B adapters. The module (peft) path stays reachable by config
     # because it is the granularity ablation's baseline.
@@ -433,7 +433,7 @@ def main() -> int:
         curve = plot_loss_curve(state.history, workdir / "loss_curve.png")
         logger.info("  loss curve: %s", curve or "skipped (matplotlib not installed)")
 
-        logger.info("=== 7. generation (Phase 4) ===")
+        logger.info("=== 7. generation ===")
         # The LoRA is still attached to adapter.unet from step 6, so this samples
         # the trained arm rather than the base model. Prompt composition comes
         # from generate_images.py itself rather than being re-implemented here:

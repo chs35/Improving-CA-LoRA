@@ -1,7 +1,7 @@
 """Does one arm's stage have the artifacts it should? Exit 0 if so, 1 if not.
 
-    python scripts/ops/check_fewshot_arm.py --run-dir runs/sdxl_cityscapes_fewshot10 \
-        --arm A_t81_style --stage train
+    python scripts/ops/check_fewshot_arm.py \
+        --run-dir runs/sdxl_cityscapes_selfgen_fewshot10 --arm A_t81_style --stage train
 
 scripts/ops/run_fewshot10.sh skips a stage that passes and stops if a finished
 stage does not. The network volume corrupts and loses writes, so this reads the

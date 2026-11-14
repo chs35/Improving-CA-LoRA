@@ -16,8 +16,9 @@ Criteria (fixed here before any GPU number exists, not tunable afterwards):
   >= 0.8 against fp32 -- the thresholds of the drift autocast gate.
 * Cross-axis direction (added because ews is a CA-weighted cos_of_means):
   per-unit ``cos_of_means`` Pearson >= 0.99 against fp32, and |ews(t) - ews_fp32(t)| <= 0.01 for the expanded weighted similarity
-  on the cos_of_means source (0.01 is well under the 0.117 rank-3/4 gap that
-  chose arm B; a pair of timesteps closer than it is reported as a tie).
+  on the cos_of_means source (0.01 is meant to sit well under the ews gaps the
+  timestep ranking is decided by; a pair of timesteps closer than it is reported
+  as a tie).
 * Logged, not gated: per-axis ``mean_of_cos`` Pearson and the change of the
   per-axis direction concentration.
 

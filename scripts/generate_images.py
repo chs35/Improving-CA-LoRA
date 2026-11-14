@@ -1,8 +1,8 @@
 """Sample images from a trained arm, for CMMD and CLIP-Score.
 
-    python scripts/generate_images.py --config configs/sdxl_cityscapes.yaml \
-        --lora runs/sdxl_cityscapes/multi_t/lora-final.safetensors \
-        --run-name multi_t --mode both
+    python scripts/generate_images.py --config configs/sdxl_cityscapes_selfgen_fewshot10.yaml \
+        --lora runs/sdxl_cityscapes_selfgen_fewshot10/C_t201_style/lora-final.safetensors \
+        --run-name C_t201_style --mode both
 
 Two prompt families, matching the paper's two measurements:
 

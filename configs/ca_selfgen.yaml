@@ -2,11 +2,11 @@
 #
 # The paper measures CA on images the pretrained model generated itself from c
 # (Sec. 3.2: "x0 = Phi_T2I(c; theta)", Algorithm 1), not on training images.
-# Every earlier measurement here (runs/tsweep_sdxl_head, runs/sdxl_cityscapes)
-# read the first 256 Cityscapes train frames; this run replaces them. One
-# measurement serves:
-#   * Improving-CA-LoRA: the 13-point grid (B_top3 is scored on exactly it --
-#     score_timesteps.py --timesteps ...) and arms A_t81 / C_t41 / D_t1;
+# Every earlier measurement of this project read the first 256 Cityscapes train
+# frames instead; this run replaces them. One measurement serves:
+#   * Improving-CA-LoRA: the 13-point grid the ews ranking is scored on
+#     (score_timesteps.py --timesteps ...) and the selections of arms
+#     A_t81 / B_top3 / C_t201;
 #   * CA-LoRA-TSM: interval representatives 41, 81, 201, 375, 750 and the
 #     20-point Jaccard diagnosis (adds 61, 125, 250, 500, 999);
 #   * Hierarchical-CFG: the t=81 style selection.
@@ -14,8 +14,9 @@
 # Everything else -- 256 samples, 4 c_Aug per axis, batch 1, centre crop, paired
 # draws across t and axes, split halves, direction accumulators (for
 # cos_of_means / ews), head granularity -- is inherited unchanged from
-# sdxl_cityscapes.yaml, so the only differences from tsweep_sdxl_head are x0 and,
-# if scripts/ops/check_measure_precision.py adopts one, measure.precision.
+# sdxl_cityscapes.yaml, so the only differences from the earlier real-frame
+# measurements are x0 and, if scripts/ops/check_measure_precision.py adopts one,
+# measure.precision.
 _base_: sdxl_cityscapes.yaml
 
 name: ca_selfgen

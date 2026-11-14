@@ -42,7 +42,7 @@ results/      보고서 표의 원본 결과
 REPORT.md     연구 보고서
 ```
 
-`results/ca_selfgen/`에는 CA 측정 요약, ews 점수(`timestep_scores.json`), 선택이 있고, `results/sdxl_cityscapes_selfgen_fewshot10/`에는 CA로 고른 어댑터 여섯 개의 결과가 있다. 보고서의 기준 셋(무작위 head, 전체 head, base SDXL)은 CA와 무관하다. 같은 10장으로 학습한 이전 실행의 결과이고 `results/sdxl_cityscapes_fewshot10/`에 있다.
+`results/ca_selfgen/`에는 CA 측정 요약, ews 점수(`timestep_scores.json`), 선택이 있고(`selection_C_t41_*`, `selection_D_t1_*`는 학습에 쓰지 않았고 보고서 Table 1의 t = 41, t = 1 열을 뒷받침하는 선택이다), `results/sdxl_cityscapes_selfgen_fewshot10/`에는 CA로 고른 어댑터 여섯 개의 결과가 있다. 보고서의 기준 셋(무작위 head, 전체 head, base SDXL)은 CA와 무관하다. 같은 10장으로 학습한 이전 실행의 결과이고 `results/sdxl_cityscapes_fewshot10/`에 있다.
 
 ## 관련 레포
 

@@ -1,11 +1,12 @@
 """fp32-vs-bf16 equivalence gate for the CA *drift* measurement.
 
-    python scripts/check_drift_autocast_gate.py --config configs/sdxl_cityscapes.yaml \
-        --run-name t81 --lora runs/sdxl_cityscapes/t81/lora-final.safetensors
+    python scripts/check_drift_autocast_gate.py \
+        --config configs/sdxl_cityscapes_selfgen_fewshot10.yaml --run-name A_t81_style \
+        --lora runs/sdxl_cityscapes_selfgen_fewshot10/A_t81_style/lora-final.safetensors
 
 ``--lora`` is optional. Without it the gate runs on the *base* UNet weights — no
-checkpoint is loaded and no merge round-trip happens — which is how this study
-ran it once up front, before any arm existed. The output then records
+checkpoint is loaded and no merge round-trip happens — which is how to run it
+once up front, before any arm exists. The output then records
 ``"lora": null`` and lands in ``<run_dir>/base/`` unless ``--run-name`` says
 otherwise.
 
@@ -125,7 +126,7 @@ def measure_mode(
     Returns the ``[P]`` fp64 CPU score vector, its top-k selection, and a JSON
     summary. The ``MeasurementResult`` is dropped before returning: on CUDA it
     holds the per-projection accumulators, and both modes' copies must never be
-    alive at once (the tsweep OOM lesson).
+    alive at once.
     """
     result = None  # bound before the measurement so the del below always has a name
     logger.info("Measuring CA at t=%d under drift_autocast=%r", timestep, mode)
@@ -371,7 +372,7 @@ def main() -> None:
         timestep,
         payload["num_samples"],
         payload["seed"],
-        "bf16 may be enabled for arms C onward"
+        "measure.drift_autocast='bf16' may be enabled (for every arm alike)"
         if payload["pass"]
         else "keep measure.drift_autocast='no'",
     )

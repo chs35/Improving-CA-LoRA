@@ -19,7 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # Needed for real Stable Diffusion runs. The CA engine and all unit tests work
-# without these (see calora.models.toy). peft is not used by the released
+# without these (see calora.models.toy). peft is not used by the
 # head-granularity pipeline (the sliced LoRA is a custom module), but the
 # legacy module-granularity code path and its in-code install hint resolve here.
 diffusion = [

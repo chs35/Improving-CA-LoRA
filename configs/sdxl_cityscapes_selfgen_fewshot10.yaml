@@ -5,10 +5,8 @@
 # see configs/ca_selfgen.yaml) instead of 256 real train frames. Its own name so
 # the 2026-11-02 campaign stays untouched.
 #
-# Arms (decided 2026-11-09, arms re-derived by their definitions on the new
-# ranking): A_t81 (paper), B_top3 = ews top-3 aggregate [201, 301, 121], C_t201
-# (best single t), x {style, viewpoint}. D is dropped: with t=81 outside the new
-# top-3 the A+C+D decomposition of B no longer exists.
+# Arms (decided 2026-11-09): A_t81 (paper), B_top3 = ews top-3 aggregate
+# [201, 301, 121], C_t201 (lowest-ews single t), x {style, viewpoint}.
 #
 # No drift snapshots (decided 2026-11-09). The LoRA checkpoints every
 # train.checkpoint_every=2000 steps (inherited) are kept so drift can be measured

@@ -101,8 +101,8 @@ measure:
   paired_across_timesteps: true
   log_every: 16
   # Drift snapshots only (never measure_ca.py). Enabled 2026-07-31 after the
-  # base-model gate passed: spearman 0.9988 / jaccard 0.935, 1.89x faster
-  # (runs/sdxl_cityscapes/base/drift_autocast_gate.json). Same for all 8 runs.
+  # base-model equivalence gate (scripts/check_drift_autocast_gate.py) passed;
+  # applied to every arm alike.
   drift_autocast: bf16
 
 select:

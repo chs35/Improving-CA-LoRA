@@ -42,7 +42,7 @@ results/      raw outputs behind the report's tables
 REPORT.md     research report (Korean)
 ```
 
-`results/ca_selfgen/` has the CA measurement summary, the ews scores (`timestep_scores.json`) and the selections; `results/sdxl_cityscapes_selfgen_fewshot10/` has the six CA-selected adapters. The three baselines in the report (random heads, all heads, base SDXL) do not depend on CA; they come from an earlier run on the same 10 images and are in `results/sdxl_cityscapes_fewshot10/`.
+`results/ca_selfgen/` has the CA measurement summary, the ews scores (`timestep_scores.json`) and the selections (`selection_C_t41_*` and `selection_D_t1_*` were not trained; they back the t = 41 and t = 1 columns of Table 1 in the report); `results/sdxl_cityscapes_selfgen_fewshot10/` has the results of the six CA-selected adapters. The three baselines in the report (random heads, all heads, base SDXL) do not depend on CA; they come from an earlier run on the same 10 images and are in `results/sdxl_cityscapes_fewshot10/`.
 
 ## Related repositories
 

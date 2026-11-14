@@ -10,8 +10,8 @@ Writes runs/<name>_gate/tensor_core_gate.json and prints a verdict. Four parts:
 3. 50 real training steps plus one 64-sample drift snapshot with no gradient
    checkpointing, and the same briefly on E_all, the arm with the most LoRA
    parameters: s/step, snapshot seconds and peak VRAM, in fresh processes.
-4. The fp32-vs-bf16 drift gate on the viewpoint axis, which the original gate
-   did not cover, at its fixed thresholds.
+4. The fp32-vs-bf16 drift gate (scripts/check_drift_autocast_gate.py) on the
+   viewpoint axis, at its fixed thresholds.
 """
 
 from __future__ import annotations
