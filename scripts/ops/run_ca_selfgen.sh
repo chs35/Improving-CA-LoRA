@@ -8,10 +8,20 @@
 # on an OOM, a failed verification or a stage that keeps failing.
 #
 #   nohup bash scripts/ops/run_ca_selfgen.sh > runs/ca_selfgen/nohup.out 2>&1 &
-#   python scripts/ops/campaign_status.py ...   # or: tail runs/ca_selfgen/campaign.log
+#   tail runs/ca_selfgen/campaign.log
 #
 # Env overrides: CONFIG, PY, GATE_SAMPLES (32), FORCE_PRECISION (skip the gate,
 # e.g. fp32), ROOT (repo).
+#
+# This is the run behind results/ca_selfgen/ (2026-11-07 to 11-08), with two
+# differences from what is written here:
+#   * The measurement was restarted with FORCE_PRECISION=bf16 (campaign.log:
+#     "GATE bypassed"); the reason is in results/ca_selfgen/precision_override.json.
+#   * Step 6 makes the fixed-t selections under the arm names of the earlier
+#     experiment (A_t81, C_t41, D_t1). C_t41 and D_t1 were not trained. The
+#     selections of the reported arms B_top3 (aggregate over the ews top-3
+#     [201, 301, 121]) and C_t201 were made afterwards, separately, with
+#     scripts/select_projections.py.
 set -u -o pipefail
 ROOT=${ROOT:-/workspace/Improving-CA-LoRA}
 cd "$ROOT"

@@ -5,6 +5,12 @@
 Read-only: parses campaign.log and the stage logs of scripts/ops/run_fewshot10.sh.
 A stage's duration comes from, in order: its own progress so far, the mean of the
 finished stages of that kind, and the rates measured by the tensor-core gate.
+
+``ARMS`` and the default ``--run-dir`` are those of the earlier few-shot campaign
+(2026-11-02), whose CA-selected arms are not kept in this repository. The reported
+experiment ran in ``runs/sdxl_cityscapes_selfgen_fewshot10`` with arms A_t81 /
+B_top3 / C_t201 x {style, viewpoint}: pass that ``--run-dir``, and note that the
+C_t201 arms are not in ``ARMS``, so the table does not list them.
 """
 
 from __future__ import annotations

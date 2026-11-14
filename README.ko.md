@@ -29,13 +29,13 @@ python scripts/generate_images.py    --config $FT --run-name C_t201_style --mode
 python scripts/evaluate.py           --config $FT --run-name C_t201_style
 ```
 
-Cityscapes는 포함하지 않으며 [cityscapes-dataset.com](https://www.cityscapes-dataset.com/)에서 별도로 받아야 한다. 마지막 네 명령은 어댑터마다 반복한다. 서버에서 실험을 실제로 돌린 스크립트는 `scripts/ops/`에 있다.
+Cityscapes는 포함하지 않으며 [cityscapes-dataset.com](https://www.cityscapes-dataset.com/)에서 별도로 받아야 한다. 마지막 네 명령은 어댑터마다 반복한다. 서버에서 실험을 돌린 스크립트는 `scripts/ops/`에 있다. 기본값은 이전 실험의 것이고, 보고한 실험은 값을 지정해 돌렸다(`scripts/ops/run_fewshot10.sh` 머리말 참고).
 
 ## 폴더 구조
 
 ```
 configs/      실험 설정 (ca_selfgen.yaml: CA 측정, sdxl_cityscapes_selfgen_fewshot10.yaml: 학습)
-scripts/      파이프라인 단계별 스크립트. scripts/ops/ = 최종 실험을 돌린 서버용 실행 스크립트
+scripts/      파이프라인 단계별 스크립트. scripts/ops/ = 서버용 실행 스크립트 (기본값은 이전 실험의 것)
 src/calora/   CA 측정과 head 선택, sliced LoRA, 학습, 평가 (CMMD, CLIP-Score)
 tests/        toy UNet으로 도는 CPU 단위 테스트
 results/      보고서 표의 원본 결과

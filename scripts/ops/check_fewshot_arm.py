@@ -6,6 +6,10 @@
 scripts/ops/run_fewshot10.sh skips a stage that passes and stops if a finished
 stage does not. The network volume corrupts and loses writes, so this reads the
 files back rather than trusting that they exist.
+
+The ``stability.json`` check (20 drift snapshots) applies to runs trained with
+drift snapshots on, as in the earlier few-shot campaign. The reported experiment
+trained with drift off and is checked on its intermediate checkpoints instead.
 """
 
 from __future__ import annotations

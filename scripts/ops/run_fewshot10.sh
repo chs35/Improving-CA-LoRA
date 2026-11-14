@@ -8,12 +8,20 @@ cd /workspace/Improving-CA-LoRA
 export HF_HOME=/workspace/.cache/huggingface
 export OMP_NUM_THREADS=16 MKL_NUM_THREADS=16 PYTHONUNBUFFERED=1
 PY=/workspace/venv-calora/bin/python
-# Overridable for the self-generated-CA rerun (2026-11-07): selections from runs/ca_selfgen,
-# only the CA-dependent arms (E_random / E_all / control_base do not depend on CA; rerun them
-# too only if measure.drift_source changed what their drift measures):
+#
+# The defaults below (CONFIG, RUN, SOURCE, ARMS) are those of the earlier few-shot
+# campaign (2026-11-02), whose CA arms used selections measured on real Cityscapes
+# frames; SOURCE=runs/sdxl_cityscapes is the selection directory of that earlier
+# experiment. Of that campaign only E_random, E_all and control_base are kept
+# (results/sdxl_cityscapes_fewshot10/): they do not depend on CA and were not rerun.
+#
+# The reported experiment (self-generated CA; A_t81 / B_top3 / C_t201 x style,
+# viewpoint; 2026-11-10) ran with the overrides below. They are reconstructed from
+# its campaign.log (arm order, no control stage), its config.yaml and the selection
+# files it copied; the command line itself was not logged.
 #   CONFIG=configs/sdxl_cityscapes_selfgen_fewshot10.yaml RUN=runs/sdxl_cityscapes_selfgen_fewshot10 \
-#   SOURCE=runs/ca_selfgen ARMS="A_t81_style A_t81_viewpoint B_top3_style B_top3_viewpoint \
-#   C_t41_style C_t41_viewpoint D_t1_style D_t1_viewpoint" CONTROL=0 bash scripts/ops/run_fewshot10.sh
+#   SOURCE=runs/ca_selfgen ARMS="B_top3_style B_top3_viewpoint A_t81_style A_t81_viewpoint \
+#   C_t201_style C_t201_viewpoint" CONTROL=0 bash scripts/ops/run_fewshot10.sh
 CONFIG=${CONFIG:-configs/sdxl_cityscapes_fewshot10.yaml}
 RUN=${RUN:-runs/sdxl_cityscapes_fewshot10}
 SOURCE=${SOURCE:-runs/sdxl_cityscapes}

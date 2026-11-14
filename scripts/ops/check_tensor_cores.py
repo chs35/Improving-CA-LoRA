@@ -12,6 +12,11 @@ Writes runs/<name>_gate/tensor_core_gate.json and prints a verdict. Four parts:
    parameters: s/step, snapshot seconds and peak VRAM, in fresh processes.
 4. The fp32-vs-bf16 drift gate (scripts/check_drift_autocast_gate.py) on the
    viewpoint axis, at its fixed thresholds.
+
+This gate belongs to the earlier few-shot campaign (configs/sdxl_cityscapes_fewshot10.yaml,
+drift snapshots on); its output is not kept in this repository. The default
+``--source`` (runs/sdxl_cityscapes) is the selection directory of that earlier
+experiment. The selections of the reported experiment are in runs/ca_selfgen.
 """
 
 from __future__ import annotations

@@ -29,13 +29,13 @@ python scripts/generate_images.py    --config $FT --run-name C_t201_style --mode
 python scripts/evaluate.py           --config $FT --run-name C_t201_style
 ```
 
-Cityscapes is not included and must be downloaded separately from [cityscapes-dataset.com](https://www.cityscapes-dataset.com/). The last four commands are repeated for each adapter; `scripts/ops/` holds the scripts that actually ran the experiment on the server.
+Cityscapes is not included and must be downloaded separately from [cityscapes-dataset.com](https://www.cityscapes-dataset.com/). The last four commands are repeated for each adapter; `scripts/ops/` holds the scripts that ran the experiments on the server. Their defaults are those of an earlier experiment; the reported one was run with explicit overrides (see the header of `scripts/ops/run_fewshot10.sh`).
 
 ## Layout
 
 ```
 configs/      experiment configs (ca_selfgen.yaml: CA measurement, sdxl_cityscapes_selfgen_fewshot10.yaml: training)
-scripts/      one script per pipeline stage; scripts/ops/ = server-side runners of the final experiment
+scripts/      one script per pipeline stage; scripts/ops/ = server-side runners (defaults: an earlier experiment)
 src/calora/   CA measurement and head selection, sliced LoRA, training, evaluation (CMMD, CLIP-Score)
 tests/        CPU unit tests on a toy UNet
 results/      raw outputs behind the report's tables
