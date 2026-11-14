@@ -1,0 +1,82 @@
+{
+  "run": "sdxl_cityscapes_fewshot10",
+  "arm": "A_t81_viewpoint",
+  "embedder": "clip",
+  "reportable": true,
+  "protocol": {
+    "prompt": "photorealistic first-person urban street view",
+    "include_class_names": true,
+    "guidance_scale": 5.0,
+    "num_inference_steps": 25,
+    "scheduler": "EulerDiscreteScheduler",
+    "resolution": 1024,
+    "seed": 0,
+    "generation_batch_size": 4,
+    "generation_autocast": "no",
+    "weather_conditions": [
+      "foggy",
+      "night-time",
+      "rainy",
+      "snowy"
+    ],
+    "model": {
+      "class": "StableDiffusionXLAdapter",
+      "device": "cuda",
+      "dtype": "torch.float32",
+      "num_train_timesteps": 1000,
+      "prediction_type": "epsilon",
+      "scheduler": "EulerDiscreteScheduler",
+      "pipeline": "StableDiffusionXLPipeline",
+      "vae_scale_factor": 8,
+      "latent_channels": 4,
+      "scaling_factor": 0.13025,
+      "resolution": 1024
+    },
+    "clip_model": "openai/clip-vit-large-patch14",
+    "reference_split": "val",
+    "reference_num_images": 500,
+    "cmmd_sigma": 10.0,
+    "cmmd_scale": 1000.0
+  },
+  "num_images": 900,
+  "cmmd": {
+    "cmmd": 1.51726044351852,
+    "num_reference": 500,
+    "num_generated": 500
+  },
+  "clip_score": {
+    "overall": {
+      "clip_score": 25.537553787231445,
+      "clip_score_std": 2.4824893474578857,
+      "num_pairs": 900
+    },
+    "per_condition": {
+      "foggy": {
+        "clip_score": 26.78844451904297,
+        "clip_score_std": 2.7795450687408447,
+        "num_pairs": 100
+      },
+      "in_domain": {
+        "clip_score": 25.154817581176758,
+        "clip_score_std": 1.9507932662963867,
+        "num_pairs": 500
+      },
+      "night-time": {
+        "clip_score": 23.060314178466797,
+        "clip_score_std": 2.2054920196533203,
+        "num_pairs": 100
+      },
+      "rainy": {
+        "clip_score": 26.73113250732422,
+        "clip_score_std": 2.5323374271392822,
+        "num_pairs": 100
+      },
+      "snowy": {
+        "clip_score": 27.484037399291992,
+        "clip_score_std": 1.998274326324463,
+        "num_pairs": 100
+      }
+    },
+    "weather_mean": 26.015982151031494
+  }
+}

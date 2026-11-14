@@ -4,8 +4,10 @@
 # runs/sdxl_cityscapes_fewshot10/training_subset.json.
 #
 # The subset applies to the training loop only: the drift samples, the generation
-# prompts' class names and the CMMD reference keep reading the full data, and the
-# selections are the existing ones, measured on 256 images of the full split.
+# prompts' class names and the CMMD reference keep reading the full data. The
+# 2026-11-02 campaign used selections measured on 256 real train frames and drift
+# on real frames; since 2026-11-07 both are self-generated (measure.source /
+# measure.drift_source, inherited) -- selections come from runs/ca_selfgen.
 #
 # `name` is its own so nothing lands in runs/sdxl_cityscapes/.
 _base_: sdxl_cityscapes_drift.yaml

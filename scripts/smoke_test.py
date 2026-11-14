@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import torch  # noqa: E402
 from PIL import Image  # noqa: E402
 
+from calora.analysis.drift_data import drift_samples as build_drift_samples  # noqa: E402
 from calora.analysis.stability import build_stability_tracker, make_stability_callback  # noqa: E402
 from calora.ca.measure import measure_concept_awareness, prepare_samples  # noqa: E402
 from calora.ca.select import (  # noqa: E402
@@ -39,7 +40,13 @@ from calora.ca.select import (  # noqa: E402
     timestep_rank_agreement,
 )
 from calora.config import load_config  # noqa: E402
-from calora.data import build_dataset, to_pil  # noqa: E402
+from calora.data import build_dataset, build_measurement_dataset, to_pil  # noqa: E402
+from calora.data.selfgen import (  # noqa: E402
+    SelfGeneratedConceptDataset,
+    generate_selfgen_set,
+    selfgen_latents,
+    spec_from_config,
+)
 from calora.eval.embeddings import PixelEmbedder  # noqa: E402
 from calora.eval.metrics import clip_score, cmmd  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
@@ -123,18 +130,39 @@ def main() -> int:
 
     logger.info("=== 2. data ===")
     dataset = build_dataset(cfg.data, resolution=cfg.model.resolution, seed=cfg.measure.seed)
+    # Measurement x0 is the paper's: images the (base) model generates itself
+    # from c, made once and verified on every later read. Generated into a
+    # scratch dir so the smoke run leaves nothing behind; a second pass must find
+    # the set complete and generate nothing.
+    selfgen_root = Path(tempfile.mkdtemp(prefix="calora-smoke-selfgen-"))
+    cfg.measure.selfgen.dir = str(selfgen_root)
+    spec = spec_from_config(cfg, adapter)
+    generate_selfgen_set(
+        adapter, spec, selfgen_root,
+        num_images=cfg.measure.selfgen.num_images, batch_size=cfg.measure.selfgen.batch_size,
+    )
+    calls = []
+    original_generate = adapter.generate
+    adapter.generate = lambda *a, **k: calls.append(1) or original_generate(*a, **k)
+    generate_selfgen_set(
+        adapter, spec, selfgen_root,
+        num_images=cfg.measure.selfgen.num_images, batch_size=cfg.measure.selfgen.batch_size,
+    )
+    adapter.generate = original_generate
+    assert not calls, "a complete self-generated set must not be generated again"
     # Measurement always reads a centre-cropped, un-mirrored view; training reads
     # `dataset` and may flip.
-    measure_dataset = build_dataset(
-        cfg.data,
-        resolution=cfg.model.resolution,
-        seed=cfg.measure.seed,
+    measure_dataset = build_measurement_dataset(
+        cfg,
+        num_items=cfg.measure.num_samples,
         crop="center",
         hflip=False,
         augs_per_sample=cfg.measure.augs_per_sample,
     )
+    assert isinstance(measure_dataset, SelfGeneratedConceptDataset)
+    latents = selfgen_latents(adapter, measure_dataset, cfg.model)
     samples = prepare_samples(
-        adapter, measure_dataset, axes=axes, num_samples=cfg.measure.num_samples
+        adapter, measure_dataset, axes=axes, num_samples=cfg.measure.num_samples, latents=latents
     )
     logger.info(
         "%d samples x %d augmentation(s), latent shape %s",
@@ -337,9 +365,10 @@ def main() -> int:
 
     workdir = Path(tempfile.mkdtemp(prefix="calora-smoke-"))
     try:
-        drift_samples = prepare_samples(
-            adapter, measure_dataset, axes=axes, num_samples=cfg.train.stability_num_samples
-        )
+        # measure.drift_source=selfgen_current: the baseline is the base set, and
+        # every snapshot regenerates x0 from the current (merged) weights.
+        drift_samples, drift_provider, drift_x0 = build_drift_samples(cfg, adapter)
+        assert drift_provider is not None and drift_x0["data_source"] == "selfgen"
         tracker = build_stability_tracker(
             adapter,
             drift_samples,
@@ -361,6 +390,7 @@ def main() -> int:
             selection_axis=cfg.select.axis,
             fraction=cfg.select.fraction,
             budget_basis=budget_basis,
+            sample_provider=drift_provider,
         )
         state = train_lora(
             adapter,
@@ -392,9 +422,12 @@ def main() -> int:
         )
         for snapshot in tracker.snapshots:
             logger.info(
-                "  step %-4d jaccard=%.3f spearman=%.3f",
+                "  step %-4d jaccard=%.3f spearman=%.3f x0=%s (regenerated in %.2fs)",
                 snapshot.step, snapshot.jaccard_vs_baseline, snapshot.spearman_vs_baseline,
+                snapshot.x0_fingerprint, snapshot.generation_seconds,
             )
+        assert tracker.snapshots, "drift tracking recorded no snapshot"
+        assert all(s.generation_seconds > 0 for s in tracker.snapshots)
         assert torch.isfinite(torch.tensor(state.loss)), "training diverged"
         assert (workdir / "lora-final.safetensors").exists()
         curve = plot_loss_curve(state.history, workdir / "loss_curve.png")
@@ -484,6 +517,7 @@ def main() -> int:
         assert torch.isfinite(torch.tensor(payload["cmmd"]["cmmd"])), "CMMD is not finite"
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
+        shutil.rmtree(selfgen_root, ignore_errors=True)
 
     logger.info("=== smoke test passed ===")
     return 0

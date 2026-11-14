@@ -21,12 +21,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from calora import cli  # noqa: E402
+from calora.analysis.drift_data import drift_samples  # noqa: E402
 from calora.analysis.stability import (  # noqa: E402
     MultiAxisStabilityTracker,
     build_multi_axis_stability_tracker,
     make_stability_callback,
 )
-from calora.ca.measure import prepare_samples  # noqa: E402
 from calora.ca.select import Selection  # noqa: E402
 from calora.data import apply_training_subset, build_dataset  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
@@ -124,21 +124,15 @@ def main() -> None:
         # a comparison of CA measured at step 0 against CA measured at step N, so
         # those two measurements have to see the same pixels even when training is
         # reading random crops and random flips out of `dataset`.
-        measure_dataset = build_dataset(
-            cfg.data,
-            resolution=cfg.model.resolution,
-            seed=cfg.measure.seed,
-            crop="center",
-            hflip=False,
-            augs_per_sample=cfg.measure.augs_per_sample,
+        # x0 per measure.drift_source: the base model's self-generated set (the
+        # selection's own protocol) -- fixed, or regenerated from the current
+        # weights before each snapshot -- or real images (crop="center",
+        # hflip=False inside drift_samples, as at every measurement call site).
+        samples, sample_provider, drift_x0 = drift_samples(cfg, adapter)
+        logger.info(
+            "Drift samples: %d, x0 %s (%s)",
+            len(samples), cfg.measure.drift_source, drift_x0,
         )
-        samples = prepare_samples(
-            adapter,
-            measure_dataset,
-            axes=cfg.data.concept_axes,
-            num_samples=cfg.train.stability_num_samples,
-        )
-        logger.info("Drift samples: %d of %d images", len(samples), len(measure_dataset))
         tracker = build_multi_axis_stability_tracker(
             adapter,
             samples,
@@ -177,6 +171,7 @@ def main() -> None:
                 budget_basis=cfg.select.budget_basis,
                 seed=cfg.measure.seed,
                 drift_autocast=cfg.measure.drift_autocast,
+                sample_provider=sample_provider,
                 on_snapshot=lambda s: logger.info(
                     "drift @ step %d [%s]: jaccard=%.3f spearman=%.3f (%.1fs)",
                     s.step, s.axis, s.jaccard_vs_baseline, s.spearman_vs_baseline, s.seconds,
@@ -222,6 +217,7 @@ def main() -> None:
                 "allow_tf32": cfg.model.allow_tf32,
                 "gradient_checkpointing": cfg.model.enable_gradient_checkpointing,
                 "stability_every": cfg.train.stability_every,
+                "drift_source": cfg.measure.drift_source,
                 "crop": cfg.data.crop,
                 "cache_latents": cfg.train.cache_latents,
             },
@@ -233,7 +229,7 @@ def main() -> None:
     if curve is not None:
         logger.info("Loss curve: %s", curve)
     if tracker is not None:
-        dump_json(tracker.to_dict(), output_dir / "stability.json")
+        dump_json({**tracker.to_dict(), "x0": drift_x0}, output_dir / "stability.json")
         logger.info("CA drift summary: %s", tracker.summary())
     logger.info("Done: %s", output_dir)
 

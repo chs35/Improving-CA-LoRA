@@ -117,7 +117,7 @@ def test_training_runs_on_a_subset(augmenter, tmp_path):
     assert state.step == 2
 
 
-def _write_cli_config(repo_root, tmp_path, *, subset_seed: int = 0):
+def _write_cli_config(repo_root, tmp_path, *, subset_seed: int = 0, selfgen_dir=None):
     import yaml
 
     raw = yaml.safe_load((repo_root / "configs" / "tiny_cpu.yaml").read_text(encoding="utf-8"))
@@ -138,6 +138,8 @@ def _write_cli_config(repo_root, tmp_path, *, subset_seed: int = 0):
         stability_num_samples=6,
         latent_cache_dir="",
     )
+    if selfgen_dir is not None:
+        raw.setdefault("measure", {}).setdefault("selfgen", {})["dir"] = str(selfgen_dir)
     path = tmp_path / f"config_{subset_seed}.yaml"
     path.write_text(yaml.safe_dump(raw), encoding="utf-8")
     return path
@@ -184,8 +186,10 @@ def _run_train(repo_root, config_path, selection_path, run_name):
     )
 
 
-def test_train_lora_end_to_end_records_the_subset_and_both_axes(repo_root, tmp_path):
-    config_path = _write_cli_config(repo_root, tmp_path)
+def test_train_lora_end_to_end_records_the_subset_and_both_axes(
+    repo_root, tmp_path, tiny_selfgen_dir
+):
+    config_path = _write_cli_config(repo_root, tmp_path, selfgen_dir=tiny_selfgen_dir)
     run_dir = tmp_path / "runs" / "subset"
 
     viewpoint = _run_train(
@@ -202,8 +206,9 @@ def test_train_lora_end_to_end_records_the_subset_and_both_axes(repo_root, tmp_p
     summary = json.loads((run_dir / "vp" / "train_summary.json").read_text(encoding="utf-8"))
     assert summary["training_subset"] == record
 
-    # 6 drift samples out of 4 training images is only possible on the full data.
-    assert "Drift samples: 6 of 16 images" in viewpoint.stdout + viewpoint.stderr
+    # 6 drift samples out of 4 training images: drift reads its own x0 (the
+    # self-generated set, regenerated per snapshot), never the training subset.
+    assert "Drift samples: 6, x0 selfgen_current" in viewpoint.stdout + viewpoint.stderr
 
     vp = json.loads((run_dir / "vp" / "stability.json").read_text(encoding="utf-8"))
     assert vp["primary_axis"] == "viewpoint"
@@ -211,6 +216,9 @@ def test_train_lora_end_to_end_records_the_subset_and_both_axes(repo_root, tmp_p
     assert drift_view(vp)["axis"] == "viewpoint"
     assert drift_view(vp, "style")["axis"] == "style"
     assert len(drift_view(vp)["snapshots"]) == 1
+    assert vp["x0"]["data_source"] == "selfgen"
+    assert vp["x0"]["drift_source"] == "selfgen_current"
+    assert drift_view(vp)["snapshots"][0]["generation_seconds"] > 0
 
     no_axis = json.loads((run_dir / "control" / "stability.json").read_text(encoding="utf-8"))
     assert no_axis["primary_axis"] is None
@@ -219,12 +227,16 @@ def test_train_lora_end_to_end_records_the_subset_and_both_axes(repo_root, tmp_p
         drift_view(no_axis)
 
 
-def test_a_run_refuses_a_different_subset_than_its_first_arm(repo_root, tmp_path):
-    config_path = _write_cli_config(repo_root, tmp_path)
+def test_a_run_refuses_a_different_subset_than_its_first_arm(
+    repo_root, tmp_path, tiny_selfgen_dir
+):
+    config_path = _write_cli_config(repo_root, tmp_path, selfgen_dir=tiny_selfgen_dir)
     selection = _selection_file(repo_root, config_path, "style")
     assert _run_train(repo_root, config_path, selection, "first").returncode == 0
 
-    other_path = _write_cli_config(repo_root, tmp_path, subset_seed=1)
+    other_path = _write_cli_config(
+        repo_root, tmp_path, subset_seed=1, selfgen_dir=tiny_selfgen_dir
+    )
     other = _run_train(repo_root, other_path, selection, "second")
     assert other.returncode != 0
     assert "Arms of one run must share it" in other.stderr + other.stdout

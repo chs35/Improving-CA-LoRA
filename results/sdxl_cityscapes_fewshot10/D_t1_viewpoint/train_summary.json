@@ -1,0 +1,2127 @@
+{
+  "run": "sdxl_cityscapes_fewshot10",
+  "arm": "D_t1_viewpoint",
+  "selection": {
+    "strategy": "single:single",
+    "granularity": "head",
+    "num_projections": 208,
+    "num_modules": 67,
+    "units_total": 10400,
+    "unit_fraction_achieved": 0.02,
+    "params_selected": 21069824,
+    "params_total": 955187200,
+    "fraction_requested": 0.02,
+    "fraction_achieved": 0.022058319039451116,
+    "budget_basis": "unit_count",
+    "breakdown": {
+      "kind": {
+        "k": 99,
+        "out": 10,
+        "q": 20,
+        "v": 79
+      },
+      "attn": {
+        "attn1": 111,
+        "attn2": 97
+      },
+      "block_id": {
+        "down1": 1,
+        "down2": 201,
+        "mid": 2,
+        "up0": 4,
+        "up1": 0
+      }
+    },
+    "meta": {
+      "timesteps": [
+        1
+      ],
+      "axis": "viewpoint",
+      "normalization": "sum"
+    },
+    "names": [
+      "down_blocks.1.attentions.0.transformer_blocks.0.attn2.to_k@h4",
+      "down_blocks.2.attentions.0.transformer_blocks.3.attn2.to_k@h6",
+      "down_blocks.2.attentions.0.transformer_blocks.5.attn2.to_k@h13",
+      "down_blocks.2.attentions.0.transformer_blocks.5.attn2.to_k@h18",
+      "down_blocks.2.attentions.0.transformer_blocks.6.attn2.to_k@h9",
+      "down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h13",
+      "down_blocks.2.attentions.0.transformer_blocks.7.attn2.to_k@h14",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h2",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h3",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h5",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h7",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h12",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h15",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h16",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h17",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h18",
+      "down_blocks.2.attentions.0.transformer_blocks.8.attn2.to_k@h19",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_q@h13",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h0",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h2",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h6",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h11",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h13",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h16",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_k@h18",
+      "down_blocks.2.attentions.0.transformer_blocks.9.attn2.to_v@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.0.attn1.to_q@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.0.attn1.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.0.attn2.to_q@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_q@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_q@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn1.to_v@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_q@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_q@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_v@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.1.attn2.to_out.0@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_k@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn1.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_q@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_k@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.2.attn2.to_out.0@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_q@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_q@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_k@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn1.to_out.0@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_q@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_k@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_k@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_v@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.3.attn2.to_out.0@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_q@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_v@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_out.0@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn1.to_out.0@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_q@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.4.attn2.to_v@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_q@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_v@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_out.0@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn1.to_out.0@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_q@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h8",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_v@h19",
+      "down_blocks.2.attentions.1.transformer_blocks.5.attn2.to_out.0@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_q@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_k@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_k@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_k@h17",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h1",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h3",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h10",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h15",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn1.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_q@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h5",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h9",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h12",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.6.attn2.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn1.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn1.to_k@h13",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn1.to_k@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn1.to_v@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn1.to_v@h18",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_q@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h0",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h4",
+      "down_blocks.2.attentions.1.transformer_blocks.7.attn2.to_k@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.8.attn1.to_k@h7",
+      "down_blocks.2.attentions.1.transformer_blocks.8.attn1.to_k@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.8.attn1.to_v@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.8.attn2.to_k@h16",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h2",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h6",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h11",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h14",
+      "down_blocks.2.attentions.1.transformer_blocks.9.attn2.to_k@h15",
+      "up_blocks.0.attentions.1.transformer_blocks.1.attn2.to_k@h16",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_q@h15",
+      "up_blocks.0.attentions.1.transformer_blocks.2.attn2.to_k@h15",
+      "up_blocks.0.attentions.1.transformer_blocks.5.attn2.to_k@h16",
+      "mid_block.attentions.0.transformer_blocks.0.attn1.to_q@h3",
+      "mid_block.attentions.0.transformer_blocks.0.attn1.to_k@h3"
+    ],
+    "scores": [
+      0.14175134897232056,
+      0.1362656205892563,
+      0.14225830137729645,
+      0.16149558126926422,
+      0.1832972764968872,
+      0.1511349231004715,
+      0.19198361039161682,
+      0.1419648826122284,
+      0.16560080647468567,
+      0.16831590235233307,
+      0.15405118465423584,
+      0.14820121228694916,
+      0.1886596530675888,
+      0.14266717433929443,
+      0.1459505259990692,
+      0.16341814398765564,
+      0.15752995014190674,
+      0.1404806226491928,
+      0.17186826467514038,
+      0.15060317516326904,
+      0.21454013884067535,
+      0.1391971856355667,
+      0.20740261673927307,
+      0.1464274823665619,
+      0.19338062405586243,
+      0.13878044486045837,
+      0.14315691590309143,
+      0.14568844437599182,
+      0.14057905972003937,
+      0.13699060678482056,
+      0.14450663328170776,
+      0.1423940360546112,
+      0.13793762028217316,
+      0.13757577538490295,
+      0.13696636259555817,
+      0.13890863955020905,
+      0.13606515526771545,
+      0.13774774968624115,
+      0.17477653920650482,
+      0.13816624879837036,
+      0.21380074322223663,
+      0.15085113048553467,
+      0.14679718017578125,
+      0.140884131193161,
+      0.1360420137643814,
+      0.14958098530769348,
+      0.1416333019733429,
+      0.13734976947307587,
+      0.13705772161483765,
+      0.14630591869354248,
+      0.13861815631389618,
+      0.1358751654624939,
+      0.14150555431842804,
+      0.14277176558971405,
+      0.17861799895763397,
+      0.13604459166526794,
+      0.14002805948257446,
+      0.13904958963394165,
+      0.1366206854581833,
+      0.13800229132175446,
+      0.14225925505161285,
+      0.1578810065984726,
+      0.14095771312713623,
+      0.14128893613815308,
+      0.1386670172214508,
+      0.13857118785381317,
+      0.14415420591831207,
+      0.13707701861858368,
+      0.13552480936050415,
+      0.14590877294540405,
+      0.14404940605163574,
+      0.14622817933559418,
+      0.1358104944229126,
+      0.13740971684455872,
+      0.13781948387622833,
+      0.1401808112859726,
+      0.13830304145812988,
+      0.14581306278705597,
+      0.13692599534988403,
+      0.13984651863574982,
+      0.1468380093574524,
+      0.139187291264534,
+      0.1425010859966278,
+      0.13666509091854095,
+      0.1598997861146927,
+      0.1437797248363495,
+      0.1438913643360138,
+      0.14452160894870758,
+      0.14066369831562042,
+      0.14428578317165375,
+      0.14440566301345825,
+      0.13874827325344086,
+      0.13747002184391022,
+      0.1428380012512207,
+      0.1405993103981018,
+      0.13692045211791992,
+      0.1356728971004486,
+      0.13670985400676727,
+      0.13643516600131989,
+      0.14737197756767273,
+      0.15691882371902466,
+      0.15356680750846863,
+      0.15421590209007263,
+      0.13784277439117432,
+      0.14432939887046814,
+      0.13633406162261963,
+      0.1359391212463379,
+      0.13680821657180786,
+      0.14445969462394714,
+      0.15594570338726044,
+      0.13535815477371216,
+      0.14169861376285553,
+      0.13866481184959412,
+      0.13810095191001892,
+      0.14499658346176147,
+      0.14404623210430145,
+      0.14208576083183289,
+      0.14158855378627777,
+      0.13885951042175293,
+      0.16371355950832367,
+      0.14893433451652527,
+      0.15385450422763824,
+      0.15580753982067108,
+      0.15771900117397308,
+      0.14183853566646576,
+      0.1492794007062912,
+      0.15056811273097992,
+      0.1449034959077835,
+      0.1422824114561081,
+      0.14799895882606506,
+      0.14776603877544403,
+      0.1446530818939209,
+      0.15225118398666382,
+      0.14227910339832306,
+      0.14159409701824188,
+      0.15705901384353638,
+      0.15175941586494446,
+      0.1371735781431198,
+      0.14020563662052155,
+      0.13571079075336456,
+      0.143112450838089,
+      0.14261546730995178,
+      0.15084803104400635,
+      0.13608422875404358,
+      0.14653028547763824,
+      0.13650891184806824,
+      0.1627950668334961,
+      0.15914924442768097,
+      0.13623349368572235,
+      0.14263974130153656,
+      0.14358821511268616,
+      0.13828492164611816,
+      0.13855288922786713,
+      0.14031323790550232,
+      0.14576387405395508,
+      0.1450490951538086,
+      0.14570455253124237,
+      0.1480283886194229,
+      0.13857993483543396,
+      0.13684284687042236,
+      0.1490393429994583,
+      0.1652083843946457,
+      0.14593496918678284,
+      0.1373136341571808,
+      0.13838526606559753,
+      0.1420905441045761,
+      0.13611151278018951,
+      0.1506493091583252,
+      0.14487691223621368,
+      0.13921712338924408,
+      0.13634048402309418,
+      0.1384429633617401,
+      0.1383504867553711,
+      0.13850164413452148,
+      0.13861264288425446,
+      0.15579062700271606,
+      0.13691255450248718,
+      0.14088444411754608,
+      0.13568641245365143,
+      0.14155800640583038,
+      0.16997157037258148,
+      0.13782906532287598,
+      0.1381625086069107,
+      0.14805057644844055,
+      0.14451032876968384,
+      0.13655169308185577,
+      0.13812845945358276,
+      0.15109865367412567,
+      0.14403775334358215,
+      0.1395942121744156,
+      0.14774689078330994,
+      0.14019791781902313,
+      0.13928323984146118,
+      0.14392276108264923,
+      0.1464480608701706,
+      0.14421480894088745,
+      0.135514497756958,
+      0.1490108072757721,
+      0.15689332783222198,
+      0.15045693516731262,
+      0.14946776628494263,
+      0.19361570477485657,
+      0.1427033692598343,
+      0.14688442647457123,
+      0.16724254190921783,
+      0.15927110612392426,
+      0.1364276260137558,
+      0.14133483171463013
+    ]
+  },
+  "training_subset": {
+    "size": 10,
+    "seed": 0,
+    "source_size": 2975,
+    "indices": [
+      117,
+      725,
+      997,
+      1114,
+      1116,
+      1407,
+      1590,
+      1702,
+      2858,
+      2878
+    ],
+    "keys": [
+      "aachen_000117_000019",
+      "cologne_000139_000019",
+      "dusseldorf_000172_000019",
+      "erfurt_000068_000019",
+      "erfurt_000070_000019",
+      "hanover_000000_001620",
+      "hanover_000000_055937",
+      "jena_000103_000019",
+      "zurich_000005_000019",
+      "zurich_000025_000019"
+    ],
+    "image_paths": [
+      "/workspace/data/cityscapes/leftImg8bit/train/aachen/aachen_000117_000019_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/cologne/cologne_000139_000019_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/dusseldorf/dusseldorf_000172_000019_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/erfurt/erfurt_000068_000019_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/erfurt/erfurt_000070_000019_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/hanover/hanover_000000_001620_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/hanover/hanover_000000_055937_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/jena/jena_000103_000019_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/zurich/zurich_000005_000019_leftImg8bit.png",
+      "/workspace/data/cityscapes/leftImg8bit/train/zurich/zurich_000025_000019_leftImg8bit.png"
+    ]
+  },
+  "final": {
+    "step": 10000,
+    "loss": 0.0787746012210846,
+    "learning_rate": 0.0001,
+    "elapsed": 8964.85963105713,
+    "train_elapsed": 2345.613003245089,
+    "callback_elapsed": 6619.246627812041
+  },
+  "timing": {
+    "train_seconds": 2345.613003245089,
+    "train_seconds_per_step": 0.23456130032450892,
+    "callback_seconds": 6619.246627812041,
+    "drift_baseline_seconds": 352.8436916060746,
+    "loop_seconds": 8964.85963105713,
+    "mixed_precision": "bf16",
+    "allow_tf32": true,
+    "gradient_checkpointing": false,
+    "stability_every": 500,
+    "crop": "random",
+    "cache_latents": true
+  },
+  "history": [
+    {
+      "step": 50,
+      "loss": 0.07503748685121536,
+      "learning_rate": 0.0001,
+      "elapsed": 11.765771740116179,
+      "train_elapsed": 11.764907978475094,
+      "callback_elapsed": 0.0008637616410851479
+    },
+    {
+      "step": 100,
+      "loss": 0.058631621301174164,
+      "learning_rate": 0.0001,
+      "elapsed": 22.914339812938124,
+      "train_elapsed": 22.912587221944705,
+      "callback_elapsed": 0.0017525909934192896
+    },
+    {
+      "step": 150,
+      "loss": 0.168513223528862,
+      "learning_rate": 0.0001,
+      "elapsed": 34.03598009306006,
+      "train_elapsed": 34.03335479623638,
+      "callback_elapsed": 0.002625296823680401
+    },
+    {
+      "step": 200,
+      "loss": 0.017099667340517044,
+      "learning_rate": 0.0001,
+      "elapsed": 45.155064868042246,
+      "train_elapsed": 45.15155337494798,
+      "callback_elapsed": 0.003511493094265461
+    },
+    {
+      "step": 250,
+      "loss": 0.3669486343860626,
+      "learning_rate": 0.0001,
+      "elapsed": 57.58511077798903,
+      "train_elapsed": 57.580667675007135,
+      "callback_elapsed": 0.004443102981895208
+    },
+    {
+      "step": 300,
+      "loss": 0.4401543140411377,
+      "learning_rate": 0.0001,
+      "elapsed": 70.25752688711509,
+      "train_elapsed": 70.25216631102376,
+      "callback_elapsed": 0.005360576091334224
+    },
+    {
+      "step": 350,
+      "loss": 0.003228456247597933,
+      "learning_rate": 0.0001,
+      "elapsed": 82.9194597271271,
+      "train_elapsed": 82.91316858306527,
+      "callback_elapsed": 0.00629114406183362
+    },
+    {
+      "step": 400,
+      "loss": 0.32637983560562134,
+      "learning_rate": 0.0001,
+      "elapsed": 95.49411825905554,
+      "train_elapsed": 95.48689455678686,
+      "callback_elapsed": 0.00722370226867497
+    },
+    {
+      "step": 450,
+      "loss": 0.08680368959903717,
+      "learning_rate": 0.0001,
+      "elapsed": 108.15054989699274,
+      "train_elapsed": 108.14239209028892,
+      "callback_elapsed": 0.008157806703820825
+    },
+    {
+      "step": 500,
+      "loss": 0.005130676552653313,
+      "learning_rate": 0.0001,
+      "elapsed": 120.79979555192403,
+      "train_elapsed": 120.79068590165116,
+      "callback_elapsed": 0.009109650272876024
+    },
+    {
+      "step": 550,
+      "loss": 0.044152356684207916,
+      "learning_rate": 0.0001,
+      "elapsed": 464.57280491502024,
+      "train_elapsed": 132.51733070379123,
+      "callback_elapsed": 332.055474211229
+    },
+    {
+      "step": 600,
+      "loss": 0.02056685835123062,
+      "learning_rate": 0.0001,
+      "elapsed": 476.2424718779512,
+      "train_elapsed": 144.18613408575766,
+      "callback_elapsed": 332.0563377921935
+    },
+    {
+      "step": 650,
+      "loss": 0.268683522939682,
+      "learning_rate": 0.0001,
+      "elapsed": 488.0212694220245,
+      "train_elapsed": 155.9640889109578,
+      "callback_elapsed": 332.0571805110667
+    },
+    {
+      "step": 700,
+      "loss": 0.03566967323422432,
+      "learning_rate": 0.0001,
+      "elapsed": 499.78160590003245,
+      "train_elapsed": 167.72356796031818,
+      "callback_elapsed": 332.05803793971427
+    },
+    {
+      "step": 750,
+      "loss": 0.1999250054359436,
+      "learning_rate": 0.0001,
+      "elapsed": 511.67001072107814,
+      "train_elapsed": 179.6111208924558,
+      "callback_elapsed": 332.05888982862234
+    },
+    {
+      "step": 800,
+      "loss": 0.05952584743499756,
+      "learning_rate": 0.0001,
+      "elapsed": 523.6414202849846,
+      "train_elapsed": 191.58168382709846,
+      "callback_elapsed": 332.0597364578862
+    },
+    {
+      "step": 850,
+      "loss": 0.1571168303489685,
+      "learning_rate": 0.0001,
+      "elapsed": 535.5259188141208,
+      "train_elapsed": 203.46533663687296,
+      "callback_elapsed": 332.06058217724785
+    },
+    {
+      "step": 900,
+      "loss": 0.006915196310728788,
+      "learning_rate": 0.0001,
+      "elapsed": 547.4123779379297,
+      "train_elapsed": 215.35092970216647,
+      "callback_elapsed": 332.06144823576324
+    },
+    {
+      "step": 950,
+      "loss": 0.17705278098583221,
+      "learning_rate": 0.0001,
+      "elapsed": 559.2186508530285,
+      "train_elapsed": 227.156343215378,
+      "callback_elapsed": 332.0623076376505
+    },
+    {
+      "step": 1000,
+      "loss": 0.03668290376663208,
+      "learning_rate": 0.0001,
+      "elapsed": 571.0147324849386,
+      "train_elapsed": 238.95158687629737,
+      "callback_elapsed": 332.0631456086412
+    },
+    {
+      "step": 1050,
+      "loss": 0.278972327709198,
+      "learning_rate": 0.0001,
+      "elapsed": 912.8176789490972,
+      "train_elapsed": 250.97618705942295,
+      "callback_elapsed": 661.8414918896742
+    },
+    {
+      "step": 1100,
+      "loss": 0.1807812750339508,
+      "learning_rate": 0.0001,
+      "elapsed": 924.4571042140014,
+      "train_elapsed": 262.61476127104834,
+      "callback_elapsed": 661.8423429429531
+    },
+    {
+      "step": 1150,
+      "loss": 0.08763899654150009,
+      "learning_rate": 0.0001,
+      "elapsed": 936.0732025499456,
+      "train_elapsed": 274.2300122776069,
+      "callback_elapsed": 661.8431902723387
+    },
+    {
+      "step": 1200,
+      "loss": 0.304501473903656,
+      "learning_rate": 0.0001,
+      "elapsed": 947.6837763581425,
+      "train_elapsed": 285.8396985086147,
+      "callback_elapsed": 661.8440778495278
+    },
+    {
+      "step": 1250,
+      "loss": 0.09708495438098907,
+      "learning_rate": 0.0001,
+      "elapsed": 959.3303664659616,
+      "train_elapsed": 297.48543527233414,
+      "callback_elapsed": 661.8449311936274
+    },
+    {
+      "step": 1300,
+      "loss": 0.0016502597136422992,
+      "learning_rate": 0.0001,
+      "elapsed": 971.0057549290359,
+      "train_elapsed": 309.1599493706599,
+      "callback_elapsed": 661.845805558376
+    },
+    {
+      "step": 1350,
+      "loss": 0.02087169513106346,
+      "learning_rate": 0.0001,
+      "elapsed": 982.7630223759916,
+      "train_elapsed": 320.91637086030096,
+      "callback_elapsed": 661.8466515156906
+    },
+    {
+      "step": 1400,
+      "loss": 0.009982272982597351,
+      "learning_rate": 0.0001,
+      "elapsed": 994.5067214651499,
+      "train_elapsed": 332.6592263679486,
+      "callback_elapsed": 661.8474950972013
+    },
+    {
+      "step": 1450,
+      "loss": 0.025306163355708122,
+      "learning_rate": 0.0001,
+      "elapsed": 1006.2378378680442,
+      "train_elapsed": 344.38948435452767,
+      "callback_elapsed": 661.8483535135165
+    },
+    {
+      "step": 1500,
+      "loss": 0.0032295705750584602,
+      "learning_rate": 0.0001,
+      "elapsed": 1018.1079379611183,
+      "train_elapsed": 356.2587474558968,
+      "callback_elapsed": 661.8491905052215
+    },
+    {
+      "step": 1550,
+      "loss": 0.24684928357601166,
+      "learning_rate": 0.0001,
+      "elapsed": 1360.8608108439948,
+      "train_elapsed": 367.86253837659024,
+      "callback_elapsed": 992.9982724674046
+    },
+    {
+      "step": 1600,
+      "loss": 0.04613114893436432,
+      "learning_rate": 0.0001,
+      "elapsed": 1372.4772201981395,
+      "train_elapsed": 379.47804217762314,
+      "callback_elapsed": 992.9991780205164
+    },
+    {
+      "step": 1650,
+      "loss": 0.02374837175011635,
+      "learning_rate": 0.0001,
+      "elapsed": 1384.2083429971244,
+      "train_elapsed": 391.208275195444,
+      "callback_elapsed": 993.0000678016804
+    },
+    {
+      "step": 1700,
+      "loss": 0.009047801606357098,
+      "learning_rate": 0.0001,
+      "elapsed": 1395.9542053791229,
+      "train_elapsed": 402.9532709508203,
+      "callback_elapsed": 993.0009344283026
+    },
+    {
+      "step": 1750,
+      "loss": 0.07980041205883026,
+      "learning_rate": 0.0001,
+      "elapsed": 1407.607845949009,
+      "train_elapsed": 414.6060349768959,
+      "callback_elapsed": 993.0018109721132
+    },
+    {
+      "step": 1800,
+      "loss": 0.02802693285048008,
+      "learning_rate": 0.0001,
+      "elapsed": 1419.1820025360212,
+      "train_elapsed": 426.17932504438795,
+      "callback_elapsed": 993.0026774916332
+    },
+    {
+      "step": 1850,
+      "loss": 0.23556220531463623,
+      "learning_rate": 0.0001,
+      "elapsed": 1430.8293652290013,
+      "train_elapsed": 437.8258245047182,
+      "callback_elapsed": 993.0035407242831
+    },
+    {
+      "step": 1900,
+      "loss": 0.006752244662493467,
+      "learning_rate": 0.0001,
+      "elapsed": 1442.6084116180427,
+      "train_elapsed": 449.6040009234566,
+      "callback_elapsed": 993.0044106945861
+    },
+    {
+      "step": 1950,
+      "loss": 0.013451100327074528,
+      "learning_rate": 0.0001,
+      "elapsed": 1454.3626435620245,
+      "train_elapsed": 461.35736410762183,
+      "callback_elapsed": 993.0052794544026
+    },
+    {
+      "step": 2000,
+      "loss": 0.16984744369983673,
+      "learning_rate": 0.0001,
+      "elapsed": 1466.080046813935,
+      "train_elapsed": 473.0739253589418,
+      "callback_elapsed": 993.0061214549933
+    },
+    {
+      "step": 2050,
+      "loss": 0.16590437293052673,
+      "learning_rate": 0.0001,
+      "elapsed": 1809.0093812630512,
+      "train_elapsed": 485.1048950476106,
+      "callback_elapsed": 1323.9044862154406
+    },
+    {
+      "step": 2100,
+      "loss": 0.04611866548657417,
+      "learning_rate": 0.0001,
+      "elapsed": 1820.5469964051154,
+      "train_elapsed": 496.6416824576445,
+      "callback_elapsed": 1323.9053139474709
+    },
+    {
+      "step": 2150,
+      "loss": 0.004750009626150131,
+      "learning_rate": 0.0001,
+      "elapsed": 1832.1005504201166,
+      "train_elapsed": 508.1943872757256,
+      "callback_elapsed": 1323.906163144391
+    },
+    {
+      "step": 2200,
+      "loss": 0.16320037841796875,
+      "learning_rate": 0.0001,
+      "elapsed": 1843.6442209971137,
+      "train_elapsed": 519.7372067323886,
+      "callback_elapsed": 1323.9070142647251
+    },
+    {
+      "step": 2250,
+      "loss": 0.007621443830430508,
+      "learning_rate": 0.0001,
+      "elapsed": 1855.1994107889477,
+      "train_elapsed": 531.2915475801565,
+      "callback_elapsed": 1323.9078632087912
+    },
+    {
+      "step": 2300,
+      "loss": 0.014351379126310349,
+      "learning_rate": 0.0001,
+      "elapsed": 1866.766458200058,
+      "train_elapsed": 542.8577517597005,
+      "callback_elapsed": 1323.9087064403575
+    },
+    {
+      "step": 2350,
+      "loss": 0.10945630073547363,
+      "learning_rate": 0.0001,
+      "elapsed": 1878.3072975780815,
+      "train_elapsed": 554.397721927613,
+      "callback_elapsed": 1323.9095756504685
+    },
+    {
+      "step": 2400,
+      "loss": 0.007723832968622446,
+      "learning_rate": 0.0001,
+      "elapsed": 1889.8341474770568,
+      "train_elapsed": 565.9237274769694,
+      "callback_elapsed": 1323.9104200000875
+    },
+    {
+      "step": 2450,
+      "loss": 0.002364817541092634,
+      "learning_rate": 0.0001,
+      "elapsed": 1901.3601370421238,
+      "train_elapsed": 577.4488755308557,
+      "callback_elapsed": 1323.911261511268
+    },
+    {
+      "step": 2500,
+      "loss": 0.28528472781181335,
+      "learning_rate": 0.0001,
+      "elapsed": 1913.0719205781352,
+      "train_elapsed": 589.1598268779926,
+      "callback_elapsed": 1323.9120937001426
+    },
+    {
+      "step": 2550,
+      "loss": 0.04009873420000076,
+      "learning_rate": 0.0001,
+      "elapsed": 2254.859458703082,
+      "train_elapsed": 600.7013297954109,
+      "callback_elapsed": 1654.1581289076712
+    },
+    {
+      "step": 2600,
+      "loss": 0.005028084851801395,
+      "learning_rate": 0.0001,
+      "elapsed": 2266.306847873144,
+      "train_elapsed": 612.1478554641362,
+      "callback_elapsed": 1654.1589924090076
+    },
+    {
+      "step": 2650,
+      "loss": 0.025633063167333603,
+      "learning_rate": 0.0001,
+      "elapsed": 2277.963986021932,
+      "train_elapsed": 623.8041147671174,
+      "callback_elapsed": 1654.1598712548148
+    },
+    {
+      "step": 2700,
+      "loss": 0.007231900468468666,
+      "learning_rate": 0.0001,
+      "elapsed": 2289.9568160111085,
+      "train_elapsed": 635.7960774702951,
+      "callback_elapsed": 1654.1607385408133
+    },
+    {
+      "step": 2750,
+      "loss": 0.0332021564245224,
+      "learning_rate": 0.0001,
+      "elapsed": 2301.759066178929,
+      "train_elapsed": 647.5974766456056,
+      "callback_elapsed": 1654.1615895333234
+    },
+    {
+      "step": 2800,
+      "loss": 0.022057216614484787,
+      "learning_rate": 0.0001,
+      "elapsed": 2313.460170136066,
+      "train_elapsed": 659.2977072030772,
+      "callback_elapsed": 1654.162462932989
+    },
+    {
+      "step": 2850,
+      "loss": 0.07503253221511841,
+      "learning_rate": 0.0001,
+      "elapsed": 2325.1571598360315,
+      "train_elapsed": 670.9938392266631,
+      "callback_elapsed": 1654.1633206093684
+    },
+    {
+      "step": 2900,
+      "loss": 0.13160951435565948,
+      "learning_rate": 0.0001,
+      "elapsed": 2336.838729460025,
+      "train_elapsed": 682.6745650367811,
+      "callback_elapsed": 1654.164164423244
+    },
+    {
+      "step": 2950,
+      "loss": 0.0056809596717357635,
+      "learning_rate": 0.0001,
+      "elapsed": 2348.5391019969247,
+      "train_elapsed": 694.3740824556444,
+      "callback_elapsed": 1654.1650195412803
+    },
+    {
+      "step": 3000,
+      "loss": 0.3167690932750702,
+      "learning_rate": 0.0001,
+      "elapsed": 2360.199206991121,
+      "train_elapsed": 706.0333474867512,
+      "callback_elapsed": 1654.16585950437
+    },
+    {
+      "step": 3050,
+      "loss": 0.2908310294151306,
+      "learning_rate": 0.0001,
+      "elapsed": 2704.4219372640364,
+      "train_elapsed": 718.1827975399792,
+      "callback_elapsed": 1986.2391397240572
+    },
+    {
+      "step": 3100,
+      "loss": 0.324282169342041,
+      "learning_rate": 0.0001,
+      "elapsed": 2716.1599312359467,
+      "train_elapsed": 729.9199387782719,
+      "callback_elapsed": 1986.2399924576748
+    },
+    {
+      "step": 3150,
+      "loss": 0.008095068857073784,
+      "learning_rate": 0.0001,
+      "elapsed": 2727.876070566941,
+      "train_elapsed": 741.635220490396,
+      "callback_elapsed": 1986.240850076545
+    },
+    {
+      "step": 3200,
+      "loss": 0.2793756127357483,
+      "learning_rate": 0.0001,
+      "elapsed": 2739.6099212670233,
+      "train_elapsed": 753.3682072567753,
+      "callback_elapsed": 1986.241714010248
+    },
+    {
+      "step": 3250,
+      "loss": 0.026564903557300568,
+      "learning_rate": 0.0001,
+      "elapsed": 2751.361699547153,
+      "train_elapsed": 765.1191015504301,
+      "callback_elapsed": 1986.242597996723
+    },
+    {
+      "step": 3300,
+      "loss": 0.005740352440625429,
+      "learning_rate": 0.0001,
+      "elapsed": 2763.098493258003,
+      "train_elapsed": 776.855053338455,
+      "callback_elapsed": 1986.243439919548
+    },
+    {
+      "step": 3350,
+      "loss": 0.0244518481194973,
+      "learning_rate": 0.0001,
+      "elapsed": 2774.8054089059588,
+      "train_elapsed": 788.5610948696267,
+      "callback_elapsed": 1986.244314036332
+    },
+    {
+      "step": 3400,
+      "loss": 0.01395624503493309,
+      "learning_rate": 0.0001,
+      "elapsed": 2786.4413980750833,
+      "train_elapsed": 800.1962135182694,
+      "callback_elapsed": 1986.245184556814
+    },
+    {
+      "step": 3450,
+      "loss": 0.21180571615695953,
+      "learning_rate": 0.0001,
+      "elapsed": 2798.0622097591404,
+      "train_elapsed": 811.8161679639015,
+      "callback_elapsed": 1986.2460417952389
+    },
+    {
+      "step": 3500,
+      "loss": 0.0338788703083992,
+      "learning_rate": 0.0001,
+      "elapsed": 2809.7512230561115,
+      "train_elapsed": 823.5043415369,
+      "callback_elapsed": 1986.2468815192115
+    },
+    {
+      "step": 3550,
+      "loss": 0.32430317997932434,
+      "learning_rate": 0.0001,
+      "elapsed": 3152.4973913710564,
+      "train_elapsed": 835.5407237862237,
+      "callback_elapsed": 2316.9566675848328
+    },
+    {
+      "step": 3600,
+      "loss": 0.2800869345664978,
+      "learning_rate": 0.0001,
+      "elapsed": 3164.043312005,
+      "train_elapsed": 847.0857902360149,
+      "callback_elapsed": 2316.9575217689853
+    },
+    {
+      "step": 3650,
+      "loss": 0.03993210196495056,
+      "learning_rate": 0.0001,
+      "elapsed": 3175.7291208419483,
+      "train_elapsed": 858.7707488168962,
+      "callback_elapsed": 2316.958372025052
+    },
+    {
+      "step": 3700,
+      "loss": 0.0017283376073464751,
+      "learning_rate": 0.0001,
+      "elapsed": 3187.4629659219645,
+      "train_elapsed": 870.5037438943982,
+      "callback_elapsed": 2316.9592220275663
+    },
+    {
+      "step": 3750,
+      "loss": 0.18117424845695496,
+      "learning_rate": 0.0001,
+      "elapsed": 3199.2451150119305,
+      "train_elapsed": 882.2849822791759,
+      "callback_elapsed": 2316.9601327327546
+    },
+    {
+      "step": 3800,
+      "loss": 0.2736838757991791,
+      "learning_rate": 0.0001,
+      "elapsed": 3210.7843379399274,
+      "train_elapsed": 893.8233634105418,
+      "callback_elapsed": 2316.9609745293856
+    },
+    {
+      "step": 3850,
+      "loss": 0.29884785413742065,
+      "learning_rate": 0.0001,
+      "elapsed": 3222.3068338399753,
+      "train_elapsed": 905.3450200874358,
+      "callback_elapsed": 2316.9618137525395
+    },
+    {
+      "step": 3900,
+      "loss": 0.0020912603940814734,
+      "learning_rate": 0.0001,
+      "elapsed": 3233.8828402759973,
+      "train_elapsed": 916.9201560975052,
+      "callback_elapsed": 2316.962684178492
+    },
+    {
+      "step": 3950,
+      "loss": 0.07428935170173645,
+      "learning_rate": 0.0001,
+      "elapsed": 3245.4746371370275,
+      "train_elapsed": 928.5110994169954,
+      "callback_elapsed": 2316.963537720032
+    },
+    {
+      "step": 4000,
+      "loss": 0.06250586360692978,
+      "learning_rate": 0.0001,
+      "elapsed": 3257.095607770141,
+      "train_elapsed": 940.131232875865,
+      "callback_elapsed": 2316.9643748942763
+    },
+    {
+      "step": 4050,
+      "loss": 0.26194971799850464,
+      "learning_rate": 0.0001,
+      "elapsed": 3601.6157401460223,
+      "train_elapsed": 952.3420035291929,
+      "callback_elapsed": 2649.2737366168294
+    },
+    {
+      "step": 4100,
+      "loss": 0.002429881365969777,
+      "learning_rate": 0.0001,
+      "elapsed": 3613.3479816950858,
+      "train_elapsed": 964.0733878535684,
+      "callback_elapsed": 2649.2745938415173
+    },
+    {
+      "step": 4150,
+      "loss": 0.02062389999628067,
+      "learning_rate": 0.0001,
+      "elapsed": 3625.076976017095,
+      "train_elapsed": 975.8015370029025,
+      "callback_elapsed": 2649.2754390141927
+    },
+    {
+      "step": 4200,
+      "loss": 0.34386876225471497,
+      "learning_rate": 0.0001,
+      "elapsed": 3636.7466518080328,
+      "train_elapsed": 987.470355815487,
+      "callback_elapsed": 2649.276295992546
+    },
+    {
+      "step": 4250,
+      "loss": 0.025005511939525604,
+      "learning_rate": 0.0001,
+      "elapsed": 3648.3636683989316,
+      "train_elapsed": 999.0865080645308,
+      "callback_elapsed": 2649.277160334401
+    },
+    {
+      "step": 4300,
+      "loss": 0.009704368188977242,
+      "learning_rate": 0.0001,
+      "elapsed": 3660.035731736105,
+      "train_elapsed": 1010.7577041639015,
+      "callback_elapsed": 2649.2780275722034
+    },
+    {
+      "step": 4350,
+      "loss": 0.31769198179244995,
+      "learning_rate": 0.0001,
+      "elapsed": 3671.7477397171315,
+      "train_elapsed": 1022.4688539023045,
+      "callback_elapsed": 2649.278885814827
+    },
+    {
+      "step": 4400,
+      "loss": 0.02035152167081833,
+      "learning_rate": 0.0001,
+      "elapsed": 3683.474032737082,
+      "train_elapsed": 1034.1942873888183,
+      "callback_elapsed": 2649.2797453482635
+    },
+    {
+      "step": 4450,
+      "loss": 0.2373942732810974,
+      "learning_rate": 0.0001,
+      "elapsed": 3695.1982757220976,
+      "train_elapsed": 1045.9176752052736,
+      "callback_elapsed": 2649.280600516824
+    },
+    {
+      "step": 4500,
+      "loss": 0.3360896706581116,
+      "learning_rate": 0.0001,
+      "elapsed": 3706.940251393942,
+      "train_elapsed": 1057.6587989591062,
+      "callback_elapsed": 2649.281452434836
+    },
+    {
+      "step": 4550,
+      "loss": 0.07007336616516113,
+      "learning_rate": 0.0001,
+      "elapsed": 4049.2543226850685,
+      "train_elapsed": 1069.4000501569826,
+      "callback_elapsed": 2979.854272528086
+    },
+    {
+      "step": 4600,
+      "loss": 0.15694832801818848,
+      "learning_rate": 0.0001,
+      "elapsed": 4060.9145348081365,
+      "train_elapsed": 1081.0593878203072,
+      "callback_elapsed": 2979.8551469878294
+    },
+    {
+      "step": 4650,
+      "loss": 0.18390104174613953,
+      "learning_rate": 0.0001,
+      "elapsed": 4072.5679736430757,
+      "train_elapsed": 1092.7119787130505,
+      "callback_elapsed": 2979.855994930025
+    },
+    {
+      "step": 4700,
+      "loss": 0.018047083169221878,
+      "learning_rate": 0.0001,
+      "elapsed": 4083.8598187000025,
+      "train_elapsed": 1104.002966769971,
+      "callback_elapsed": 2979.8568519300316
+    },
+    {
+      "step": 4750,
+      "loss": 0.07463274896144867,
+      "learning_rate": 0.0001,
+      "elapsed": 4095.125346580986,
+      "train_elapsed": 1115.2676248876378,
+      "callback_elapsed": 2979.857721693348
+    },
+    {
+      "step": 4800,
+      "loss": 0.007311128079891205,
+      "learning_rate": 0.0001,
+      "elapsed": 4106.385763912927,
+      "train_elapsed": 1126.5271838793997,
+      "callback_elapsed": 2979.8585800335277
+    },
+    {
+      "step": 4850,
+      "loss": 0.23178651928901672,
+      "learning_rate": 0.0001,
+      "elapsed": 4117.6689974400215,
+      "train_elapsed": 1137.8095494511072,
+      "callback_elapsed": 2979.8594479889143
+    },
+    {
+      "step": 4900,
+      "loss": 0.03529233857989311,
+      "learning_rate": 0.0001,
+      "elapsed": 4128.939162570983,
+      "train_elapsed": 1149.0788526947144,
+      "callback_elapsed": 2979.8603098762687
+    },
+    {
+      "step": 4950,
+      "loss": 0.1574150025844574,
+      "learning_rate": 0.0001,
+      "elapsed": 4140.223890939029,
+      "train_elapsed": 1160.362701053964,
+      "callback_elapsed": 2979.861189885065
+    },
+    {
+      "step": 5000,
+      "loss": 0.307605117559433,
+      "learning_rate": 0.0001,
+      "elapsed": 4151.65590257803,
+      "train_elapsed": 1171.7938529404346,
+      "callback_elapsed": 2979.862049637595
+    },
+    {
+      "step": 5050,
+      "loss": 0.3059617877006531,
+      "learning_rate": 0.0001,
+      "elapsed": 4493.310582418926,
+      "train_elapsed": 1183.8221014516894,
+      "callback_elapsed": 3309.4884809672367
+    },
+    {
+      "step": 5100,
+      "loss": 0.31430280208587646,
+      "learning_rate": 0.0001,
+      "elapsed": 4505.094076364068,
+      "train_elapsed": 1195.6047462509014,
+      "callback_elapsed": 3309.489330113167
+    },
+    {
+      "step": 5150,
+      "loss": 0.17616254091262817,
+      "learning_rate": 0.0001,
+      "elapsed": 4516.870576034067,
+      "train_elapsed": 1207.3803891520947,
+      "callback_elapsed": 3309.4901868819725
+    },
+    {
+      "step": 5200,
+      "loss": 0.29751378297805786,
+      "learning_rate": 0.0001,
+      "elapsed": 4528.655490376987,
+      "train_elapsed": 1219.1644543409348,
+      "callback_elapsed": 3309.491036036052
+    },
+    {
+      "step": 5250,
+      "loss": 0.05160963535308838,
+      "learning_rate": 0.0001,
+      "elapsed": 4540.40563807101,
+      "train_elapsed": 1230.9137396176811,
+      "callback_elapsed": 3309.4918984533288
+    },
+    {
+      "step": 5300,
+      "loss": 0.19031068682670593,
+      "learning_rate": 0.0001,
+      "elapsed": 4552.188400918152,
+      "train_elapsed": 1242.6956613445655,
+      "callback_elapsed": 3309.4927395735867
+    },
+    {
+      "step": 5350,
+      "loss": 0.22659896314144135,
+      "learning_rate": 0.0001,
+      "elapsed": 4563.960801151115,
+      "train_elapsed": 1254.467204604065,
+      "callback_elapsed": 3309.4935965470504
+    },
+    {
+      "step": 5400,
+      "loss": 0.018358450382947922,
+      "learning_rate": 0.0001,
+      "elapsed": 4575.762203953927,
+      "train_elapsed": 1266.2677554537077,
+      "callback_elapsed": 3309.4944485002197
+    },
+    {
+      "step": 5450,
+      "loss": 0.04645942896604538,
+      "learning_rate": 0.0001,
+      "elapsed": 4587.54796296102,
+      "train_elapsed": 1278.0526511394419,
+      "callback_elapsed": 3309.495311821578
+    },
+    {
+      "step": 5500,
+      "loss": 0.0017236110288649797,
+      "learning_rate": 0.0001,
+      "elapsed": 4599.377207980026,
+      "train_elapsed": 1289.8810435393825,
+      "callback_elapsed": 3309.496164440643
+    },
+    {
+      "step": 5550,
+      "loss": 0.3339730501174927,
+      "learning_rate": 0.0001,
+      "elapsed": 4941.376483778004,
+      "train_elapsed": 1301.6724259906914,
+      "callback_elapsed": 3639.704057787312
+    },
+    {
+      "step": 5600,
+      "loss": 0.016279511153697968,
+      "learning_rate": 0.0001,
+      "elapsed": 4952.934560606955,
+      "train_elapsed": 1313.2296451069415,
+      "callback_elapsed": 3639.704915500013
+    },
+    {
+      "step": 5650,
+      "loss": 0.009985298849642277,
+      "learning_rate": 0.0001,
+      "elapsed": 4964.493222021963,
+      "train_elapsed": 1324.7874670224264,
+      "callback_elapsed": 3639.705754999537
+    },
+    {
+      "step": 5700,
+      "loss": 0.03262126445770264,
+      "learning_rate": 0.0001,
+      "elapsed": 4976.043124095071,
+      "train_elapsed": 1336.3365249529015,
+      "callback_elapsed": 3639.7065991421696
+    },
+    {
+      "step": 5750,
+      "loss": 0.03439415618777275,
+      "learning_rate": 0.0001,
+      "elapsed": 4987.5872471490875,
+      "train_elapsed": 1347.8797878720798,
+      "callback_elapsed": 3639.7074592770077
+    },
+    {
+      "step": 5800,
+      "loss": 0.0024531246162950993,
+      "learning_rate": 0.0001,
+      "elapsed": 4999.143516398966,
+      "train_elapsed": 1359.4352048039436,
+      "callback_elapsed": 3639.7083115950227
+    },
+    {
+      "step": 5850,
+      "loss": 0.22179612517356873,
+      "learning_rate": 0.0001,
+      "elapsed": 5010.692905697972,
+      "train_elapsed": 1370.9837527920026,
+      "callback_elapsed": 3639.709152905969
+    },
+    {
+      "step": 5900,
+      "loss": 0.06527921557426453,
+      "learning_rate": 0.0001,
+      "elapsed": 5022.239712621085,
+      "train_elapsed": 1382.5297061318997,
+      "callback_elapsed": 3639.7100064891856
+    },
+    {
+      "step": 5950,
+      "loss": 0.006502106320112944,
+      "learning_rate": 0.0001,
+      "elapsed": 5033.793314673938,
+      "train_elapsed": 1394.0824657720514,
+      "callback_elapsed": 3639.7108489018865
+    },
+    {
+      "step": 6000,
+      "loss": 0.03125626593828201,
+      "learning_rate": 0.0001,
+      "elapsed": 5045.342751573073,
+      "train_elapsed": 1405.6310606994666,
+      "callback_elapsed": 3639.711690873606
+    },
+    {
+      "step": 6050,
+      "loss": 0.021898195147514343,
+      "learning_rate": 0.0001,
+      "elapsed": 5388.352772948099,
+      "train_elapsed": 1417.843954421347,
+      "callback_elapsed": 3970.5088185267523
+    },
+    {
+      "step": 6100,
+      "loss": 0.3077995181083679,
+      "learning_rate": 0.0001,
+      "elapsed": 5400.14164667693,
+      "train_elapsed": 1429.6319704458583,
+      "callback_elapsed": 3970.5096762310714
+    },
+    {
+      "step": 6150,
+      "loss": 0.034991391003131866,
+      "learning_rate": 0.0001,
+      "elapsed": 5411.899748103926,
+      "train_elapsed": 1441.3892185820732,
+      "callback_elapsed": 3970.5105295218527
+    },
+    {
+      "step": 6200,
+      "loss": 0.11832699924707413,
+      "learning_rate": 0.0001,
+      "elapsed": 5423.6199823920615,
+      "train_elapsed": 1453.1086090018507,
+      "callback_elapsed": 3970.511373390211
+    },
+    {
+      "step": 6250,
+      "loss": 0.32581013441085815,
+      "learning_rate": 0.0001,
+      "elapsed": 5435.35221339995,
+      "train_elapsed": 1464.8399972019251,
+      "callback_elapsed": 3970.5122161980253
+    },
+    {
+      "step": 6300,
+      "loss": 0.12568339705467224,
+      "learning_rate": 0.0001,
+      "elapsed": 5447.073016510112,
+      "train_elapsed": 1476.5599437896162,
+      "callback_elapsed": 3970.513072720496
+    },
+    {
+      "step": 6350,
+      "loss": 0.029866596683859825,
+      "learning_rate": 0.0001,
+      "elapsed": 5458.79933941504,
+      "train_elapsed": 1488.285405232804,
+      "callback_elapsed": 3970.513934182236
+    },
+    {
+      "step": 6400,
+      "loss": 0.16257165372371674,
+      "learning_rate": 0.0001,
+      "elapsed": 5470.515246161027,
+      "train_elapsed": 1500.000469777733,
+      "callback_elapsed": 3970.514776383294
+    },
+    {
+      "step": 6450,
+      "loss": 0.1090923398733139,
+      "learning_rate": 0.0001,
+      "elapsed": 5482.236243799096,
+      "train_elapsed": 1511.7206074704882,
+      "callback_elapsed": 3970.515636328608
+    },
+    {
+      "step": 6500,
+      "loss": 0.350771963596344,
+      "learning_rate": 0.0001,
+      "elapsed": 5494.145792164141,
+      "train_elapsed": 1523.6293191320729,
+      "callback_elapsed": 3970.5164730320685
+    },
+    {
+      "step": 6550,
+      "loss": 0.13642364740371704,
+      "learning_rate": 0.0001,
+      "elapsed": 5837.746506538009,
+      "train_elapsed": 1535.5806779975537,
+      "callback_elapsed": 4302.165828540456
+    },
+    {
+      "step": 6600,
+      "loss": 0.26041749119758606,
+      "learning_rate": 0.0001,
+      "elapsed": 5849.510684248991,
+      "train_elapsed": 1547.3440006128512,
+      "callback_elapsed": 4302.16668363614
+    },
+    {
+      "step": 6650,
+      "loss": 0.07498812675476074,
+      "learning_rate": 0.0001,
+      "elapsed": 5861.275828205049,
+      "train_elapsed": 1559.1083039809018,
+      "callback_elapsed": 4302.167524224147
+    },
+    {
+      "step": 6700,
+      "loss": 0.014146372675895691,
+      "learning_rate": 0.0001,
+      "elapsed": 5873.04475804395,
+      "train_elapsed": 1570.8763947617263,
+      "callback_elapsed": 4302.168363282224
+    },
+    {
+      "step": 6750,
+      "loss": 0.0033216257579624653,
+      "learning_rate": 0.0001,
+      "elapsed": 5884.77672037296,
+      "train_elapsed": 1582.6075108055957,
+      "callback_elapsed": 4302.169209567364
+    },
+    {
+      "step": 6800,
+      "loss": 0.0015498956199735403,
+      "learning_rate": 0.0001,
+      "elapsed": 5896.442632440012,
+      "train_elapsed": 1594.2725780983455,
+      "callback_elapsed": 4302.170054341666
+    },
+    {
+      "step": 6850,
+      "loss": 0.04752229154109955,
+      "learning_rate": 0.0001,
+      "elapsed": 5908.068362077931,
+      "train_elapsed": 1605.8974703021813,
+      "callback_elapsed": 4302.17089177575
+    },
+    {
+      "step": 6900,
+      "loss": 0.274784117937088,
+      "learning_rate": 0.0001,
+      "elapsed": 5919.679631164065,
+      "train_elapsed": 1617.507899816148,
+      "callback_elapsed": 4302.171731347917
+    },
+    {
+      "step": 6950,
+      "loss": 0.26289474964141846,
+      "learning_rate": 0.0001,
+      "elapsed": 5931.287198649021,
+      "train_elapsed": 1629.1146343494765,
+      "callback_elapsed": 4302.172564299544
+    },
+    {
+      "step": 7000,
+      "loss": 0.15595780313014984,
+      "learning_rate": 0.0001,
+      "elapsed": 5942.918051320128,
+      "train_elapsed": 1640.7446317870636,
+      "callback_elapsed": 4302.173419533065
+    },
+    {
+      "step": 7050,
+      "loss": 0.33856335282325745,
+      "learning_rate": 0.0001,
+      "elapsed": 6284.9914364351425,
+      "train_elapsed": 1652.6425101279747,
+      "callback_elapsed": 4632.348926307168
+    },
+    {
+      "step": 7100,
+      "loss": 0.3189525604248047,
+      "learning_rate": 0.0001,
+      "elapsed": 6296.753514016047,
+      "train_elapsed": 1664.4037232880946,
+      "callback_elapsed": 4632.3497907279525
+    },
+    {
+      "step": 7150,
+      "loss": 0.13482226431369781,
+      "learning_rate": 0.0001,
+      "elapsed": 6309.004715060117,
+      "train_elapsed": 1676.654044181807,
+      "callback_elapsed": 4632.35067087831
+    },
+    {
+      "step": 7200,
+      "loss": 0.02554955892264843,
+      "learning_rate": 0.0001,
+      "elapsed": 6321.04404055397,
+      "train_elapsed": 1688.6924976701848,
+      "callback_elapsed": 4632.351542883785
+    },
+    {
+      "step": 7250,
+      "loss": 0.09145791828632355,
+      "learning_rate": 0.0001,
+      "elapsed": 6333.016774351941,
+      "train_elapsed": 1700.6643531057052,
+      "callback_elapsed": 4632.352421246236
+    },
+    {
+      "step": 7300,
+      "loss": 0.001993302721530199,
+      "learning_rate": 0.0001,
+      "elapsed": 6344.935880901059,
+      "train_elapsed": 1712.582598120207,
+      "callback_elapsed": 4632.353282780852
+    },
+    {
+      "step": 7350,
+      "loss": 0.04584333300590515,
+      "learning_rate": 0.0001,
+      "elapsed": 6356.754184378078,
+      "train_elapsed": 1724.4000232326798,
+      "callback_elapsed": 4632.354161145398
+    },
+    {
+      "step": 7400,
+      "loss": 0.10351280868053436,
+      "learning_rate": 0.0001,
+      "elapsed": 6368.515000187093,
+      "train_elapsed": 1736.1599850081839,
+      "callback_elapsed": 4632.3550151789095
+    },
+    {
+      "step": 7450,
+      "loss": 0.2981497645378113,
+      "learning_rate": 0.0001,
+      "elapsed": 6380.2510546310805,
+      "train_elapsed": 1747.8951681738254,
+      "callback_elapsed": 4632.355886457255
+    },
+    {
+      "step": 7500,
+      "loss": 0.3320313096046448,
+      "learning_rate": 0.0001,
+      "elapsed": 6391.99336359906,
+      "train_elapsed": 1759.6365775864106,
+      "callback_elapsed": 4632.3567860126495
+    },
+    {
+      "step": 7550,
+      "loss": 0.03273225948214531,
+      "learning_rate": 0.0001,
+      "elapsed": 6735.404778711963,
+      "train_elapsed": 1771.3662662061397,
+      "callback_elapsed": 4964.038512505824
+    },
+    {
+      "step": 7600,
+      "loss": 0.20231729745864868,
+      "learning_rate": 0.0001,
+      "elapsed": 6747.020236670971,
+      "train_elapsed": 1782.9808572300244,
+      "callback_elapsed": 4964.0393794409465
+    },
+    {
+      "step": 7650,
+      "loss": 0.3309786915779114,
+      "learning_rate": 0.0001,
+      "elapsed": 6758.632324037142,
+      "train_elapsed": 1794.5921020170208,
+      "callback_elapsed": 4964.040222020121
+    },
+    {
+      "step": 7700,
+      "loss": 0.18085375428199768,
+      "learning_rate": 0.0001,
+      "elapsed": 6770.22973841615,
+      "train_elapsed": 1806.1886430154555,
+      "callback_elapsed": 4964.041095400695
+    },
+    {
+      "step": 7750,
+      "loss": 0.02436787635087967,
+      "learning_rate": 0.0001,
+      "elapsed": 6781.997005329933,
+      "train_elapsed": 1817.9550507848617,
+      "callback_elapsed": 4964.041954545071
+    },
+    {
+      "step": 7800,
+      "loss": 0.025409918278455734,
+      "learning_rate": 0.0001,
+      "elapsed": 6793.770166452974,
+      "train_elapsed": 1829.7273691571318,
+      "callback_elapsed": 4964.042797295842
+    },
+    {
+      "step": 7850,
+      "loss": 0.1334972381591797,
+      "learning_rate": 0.0001,
+      "elapsed": 6805.531910564983,
+      "train_elapsed": 1841.4882813664153,
+      "callback_elapsed": 4964.043629198568
+    },
+    {
+      "step": 7900,
+      "loss": 0.11342586576938629,
+      "learning_rate": 0.0001,
+      "elapsed": 6817.2893578941,
+      "train_elapsed": 1853.244884133339,
+      "callback_elapsed": 4964.044473760761
+    },
+    {
+      "step": 7950,
+      "loss": 0.032476358115673065,
+      "learning_rate": 0.0001,
+      "elapsed": 6829.048603018979,
+      "train_elapsed": 1865.0032864657696,
+      "callback_elapsed": 4964.045316553209
+    },
+    {
+      "step": 8000,
+      "loss": 0.05324362963438034,
+      "learning_rate": 0.0001,
+      "elapsed": 6840.8011806760915,
+      "train_elapsed": 1876.7550111466553,
+      "callback_elapsed": 4964.046169529436
+    },
+    {
+      "step": 8050,
+      "loss": 0.33486950397491455,
+      "learning_rate": 0.0001,
+      "elapsed": 7184.779834191082,
+      "train_elapsed": 1889.0968035610858,
+      "callback_elapsed": 5295.683030629996
+    },
+    {
+      "step": 8100,
+      "loss": 0.2954883575439453,
+      "learning_rate": 0.0001,
+      "elapsed": 7196.520129282959,
+      "train_elapsed": 1900.836249110289,
+      "callback_elapsed": 5295.68388017267
+    },
+    {
+      "step": 8150,
+      "loss": 0.23884937167167664,
+      "learning_rate": 0.0001,
+      "elapsed": 7208.216283062939,
+      "train_elapsed": 1912.5315612230916,
+      "callback_elapsed": 5295.684721839847
+    },
+    {
+      "step": 8200,
+      "loss": 0.29234087467193604,
+      "learning_rate": 0.0001,
+      "elapsed": 7219.816631946014,
+      "train_elapsed": 1924.131053248886,
+      "callback_elapsed": 5295.685578697128
+    },
+    {
+      "step": 8250,
+      "loss": 0.008421100676059723,
+      "learning_rate": 0.0001,
+      "elapsed": 7231.4212962989695,
+      "train_elapsed": 1935.734850382898,
+      "callback_elapsed": 5295.6864459160715
+    },
+    {
+      "step": 8300,
+      "loss": 0.32573622465133667,
+      "learning_rate": 0.0001,
+      "elapsed": 7243.002141800011,
+      "train_elapsed": 1947.3148464569822,
+      "callback_elapsed": 5295.687295343028
+    },
+    {
+      "step": 8350,
+      "loss": 0.0022141397930681705,
+      "learning_rate": 0.0001,
+      "elapsed": 7254.559409425128,
+      "train_elapsed": 1958.8712517875247,
+      "callback_elapsed": 5295.688157637604
+    },
+    {
+      "step": 8400,
+      "loss": 0.30149686336517334,
+      "learning_rate": 0.0001,
+      "elapsed": 7266.162893024972,
+      "train_elapsed": 1970.473884469131,
+      "callback_elapsed": 5295.689008555841
+    },
+    {
+      "step": 8450,
+      "loss": 0.20978520810604095,
+      "learning_rate": 0.0001,
+      "elapsed": 7277.727710443083,
+      "train_elapsed": 1982.037860845914,
+      "callback_elapsed": 5295.689849597169
+    },
+    {
+      "step": 8500,
+      "loss": 0.0206769909709692,
+      "learning_rate": 0.0001,
+      "elapsed": 7289.332047594944,
+      "train_elapsed": 1993.6413479424082,
+      "callback_elapsed": 5295.690699652536
+    },
+    {
+      "step": 8550,
+      "loss": 0.056227244436740875,
+      "learning_rate": 0.0001,
+      "elapsed": 7632.651990002021,
+      "train_elapsed": 2005.5970293448772,
+      "callback_elapsed": 5627.054960657144
+    },
+    {
+      "step": 8600,
+      "loss": 0.0016999337822198868,
+      "learning_rate": 0.0001,
+      "elapsed": 7644.385739630088,
+      "train_elapsed": 2017.3299279387575,
+      "callback_elapsed": 5627.055811691331
+    },
+    {
+      "step": 8650,
+      "loss": 0.0037707784213125706,
+      "learning_rate": 0.0001,
+      "elapsed": 7656.098494671984,
+      "train_elapsed": 2029.0417933359277,
+      "callback_elapsed": 5627.056701336056
+    },
+    {
+      "step": 8700,
+      "loss": 0.037483975291252136,
+      "learning_rate": 0.0001,
+      "elapsed": 7667.764366372023,
+      "train_elapsed": 2040.7068068359513,
+      "callback_elapsed": 5627.0575595360715
+    },
+    {
+      "step": 8750,
+      "loss": 0.310254842042923,
+      "learning_rate": 0.0001,
+      "elapsed": 7679.45797941694,
+      "train_elapsed": 2052.399547785055,
+      "callback_elapsed": 5627.0584316318855
+    },
+    {
+      "step": 8800,
+      "loss": 0.002980510238558054,
+      "learning_rate": 0.0001,
+      "elapsed": 7691.083188154036,
+      "train_elapsed": 2064.0239093434066,
+      "callback_elapsed": 5627.05927881063
+    },
+    {
+      "step": 8850,
+      "loss": 0.2937048375606537,
+      "learning_rate": 0.0001,
+      "elapsed": 7702.716240192065,
+      "train_elapsed": 2075.65611319826,
+      "callback_elapsed": 5627.060126993805
+    },
+    {
+      "step": 8900,
+      "loss": 0.043927088379859924,
+      "learning_rate": 0.0001,
+      "elapsed": 7714.335103533929,
+      "train_elapsed": 2087.2741260640323,
+      "callback_elapsed": 5627.060977469897
+    },
+    {
+      "step": 8950,
+      "loss": 0.3318730592727661,
+      "learning_rate": 0.0001,
+      "elapsed": 7725.949701651931,
+      "train_elapsed": 2098.887855873676,
+      "callback_elapsed": 5627.061845778255
+    },
+    {
+      "step": 9000,
+      "loss": 0.11406511068344116,
+      "learning_rate": 0.0001,
+      "elapsed": 7737.754374885,
+      "train_elapsed": 2110.691648911452,
+      "callback_elapsed": 5627.062725973548
+    },
+    {
+      "step": 9050,
+      "loss": 0.2662188708782196,
+      "learning_rate": 0.0001,
+      "elapsed": 8083.07649621903,
+      "train_elapsed": 2122.8000154101755,
+      "callback_elapsed": 5960.276480808854
+    },
+    {
+      "step": 9100,
+      "loss": 0.13378675282001495,
+      "learning_rate": 0.0001,
+      "elapsed": 8094.8618421431165,
+      "train_elapsed": 2134.5845158032607,
+      "callback_elapsed": 5960.277326339856
+    },
+    {
+      "step": 9150,
+      "loss": 0.05004183202981949,
+      "learning_rate": 0.0001,
+      "elapsed": 8106.531241565943,
+      "train_elapsed": 2146.2530364056583,
+      "callback_elapsed": 5960.278205160284
+    },
+    {
+      "step": 9200,
+      "loss": 0.0027902587316930294,
+      "learning_rate": 0.0001,
+      "elapsed": 8118.150133311981,
+      "train_elapsed": 2157.8710787382443,
+      "callback_elapsed": 5960.279054573737
+    },
+    {
+      "step": 9250,
+      "loss": 0.00186250323895365,
+      "learning_rate": 0.0001,
+      "elapsed": 8129.881868412951,
+      "train_elapsed": 2169.601973367622,
+      "callback_elapsed": 5960.279895045329
+    },
+    {
+      "step": 9300,
+      "loss": 0.0015373948263004422,
+      "learning_rate": 0.0001,
+      "elapsed": 8141.603257788112,
+      "train_elapsed": 2181.322524383897,
+      "callback_elapsed": 5960.280733404215
+    },
+    {
+      "step": 9350,
+      "loss": 0.24263770878314972,
+      "learning_rate": 0.0001,
+      "elapsed": 8153.304445164045,
+      "train_elapsed": 2193.0228638693225,
+      "callback_elapsed": 5960.281581294723
+    },
+    {
+      "step": 9400,
+      "loss": 0.23584213852882385,
+      "learning_rate": 0.0001,
+      "elapsed": 8164.996978417039,
+      "train_elapsed": 2204.7145524336956,
+      "callback_elapsed": 5960.282425983343
+    },
+    {
+      "step": 9450,
+      "loss": 0.042892634868621826,
+      "learning_rate": 0.0001,
+      "elapsed": 8176.68587970105,
+      "train_elapsed": 2216.4026113923173,
+      "callback_elapsed": 5960.283268308733
+    },
+    {
+      "step": 9500,
+      "loss": 0.28405457735061646,
+      "learning_rate": 0.0001,
+      "elapsed": 8188.177309648134,
+      "train_elapsed": 2227.893196425168,
+      "callback_elapsed": 5960.284113222966
+    },
+    {
+      "step": 9550,
+      "loss": 0.05071228742599487,
+      "learning_rate": 0.0001,
+      "elapsed": 8529.140759499976,
+      "train_elapsed": 2239.8092913010623,
+      "callback_elapsed": 6289.331468198914
+    },
+    {
+      "step": 9600,
+      "loss": 0.18911203742027283,
+      "learning_rate": 0.0001,
+      "elapsed": 8540.750956994947,
+      "train_elapsed": 2251.4186409222893,
+      "callback_elapsed": 6289.332316072658
+    },
+    {
+      "step": 9650,
+      "loss": 0.08847792446613312,
+      "learning_rate": 0.0001,
+      "elapsed": 8552.32753092912,
+      "train_elapsed": 2262.9943604641594,
+      "callback_elapsed": 6289.333170464961
+    },
+    {
+      "step": 9700,
+      "loss": 0.0077705709263682365,
+      "learning_rate": 0.0001,
+      "elapsed": 8563.887224134058,
+      "train_elapsed": 2274.5532039806712,
+      "callback_elapsed": 6289.3340201533865
+    },
+    {
+      "step": 9750,
+      "loss": 0.31587737798690796,
+      "learning_rate": 0.0001,
+      "elapsed": 8575.429352618987,
+      "train_elapsed": 2286.094487300841,
+      "callback_elapsed": 6289.334865318146
+    },
+    {
+      "step": 9800,
+      "loss": 0.1574835628271103,
+      "learning_rate": 0.0001,
+      "elapsed": 8587.355652396102,
+      "train_elapsed": 2298.019930853974,
+      "callback_elapsed": 6289.335721542127
+    },
+    {
+      "step": 9850,
+      "loss": 0.321633905172348,
+      "learning_rate": 0.0001,
+      "elapsed": 8599.300275765127,
+      "train_elapsed": 2309.9636808179785,
+      "callback_elapsed": 6289.336594947148
+    },
+    {
+      "step": 9900,
+      "loss": 0.341805100440979,
+      "learning_rate": 0.0001,
+      "elapsed": 8611.168145965086,
+      "train_elapsed": 2321.8307006543037,
+      "callback_elapsed": 6289.337445310783
+    },
+    {
+      "step": 9950,
+      "loss": 0.2277272641658783,
+      "learning_rate": 0.0001,
+      "elapsed": 8622.990394352004,
+      "train_elapsed": 2333.6520850057714,
+      "callback_elapsed": 6289.338309346233
+    },
+    {
+      "step": 10000,
+      "loss": 0.0787746012210846,
+      "learning_rate": 0.0001,
+      "elapsed": 8634.951174335089,
+      "train_elapsed": 2345.612020869041,
+      "callback_elapsed": 6289.339153466048
+    }
+  ]
+}

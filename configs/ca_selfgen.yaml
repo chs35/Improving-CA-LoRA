@@ -1,0 +1,40 @@
+# The CA re-measurement on self-generated data (2026-11-07), shared by three projects.
+#
+# The paper measures CA on images the pretrained model generated itself from c
+# (Sec. 3.2: "x0 = Phi_T2I(c; theta)", Algorithm 1), not on training images.
+# Every earlier measurement here (runs/tsweep_sdxl_head, runs/sdxl_cityscapes)
+# read the first 256 Cityscapes train frames; this run replaces them. One
+# measurement serves:
+#   * Improving-CA-LoRA: the 13-point grid (B_top3 is scored on exactly it --
+#     score_timesteps.py --timesteps ...) and arms A_t81 / C_t41 / D_t1;
+#   * CA-LoRA-TSM: interval representatives 41, 81, 201, 375, 750 and the
+#     20-point Jaccard diagnosis (adds 61, 125, 250, 500, 999);
+#   * Hierarchial-CFG: the t=81 style selection.
+#
+# Everything else -- 256 samples, 4 c_Aug per axis, batch 1, centre crop, paired
+# draws across t and axes, split halves, direction accumulators (for
+# cos_of_means / ews), head granularity -- is inherited unchanged from
+# sdxl_cityscapes.yaml, so the only differences from tsweep_sdxl_head are x0 and,
+# if scripts/ops/check_measure_precision.py adopts one, measure.precision.
+_base_: sdxl_cityscapes.yaml
+
+name: ca_selfgen
+
+measure:
+  timesteps: [1, 41, 61, 81, 121, 125, 201, 250, 301, 375, 401, 481, 500, 601, 701, 750,
+              801, 901, 981, 999]
+  num_samples: 256
+  source: selfgen
+  selfgen:
+    dir: runs/ca_selfgen_images
+    num_images: 256          # one distinct generated image per measurement sample
+    num_inference_steps: 25  # Table 12, = eval.num_inference_steps
+    guidance_scale: 5.0      # Table 12, = eval.guidance_scale
+    seed: 0
+    batch_size: 4            # = eval.generation_batch_size; part of the set's spec
+  # Pre-registered regime. Overridden only by the gate's verdict
+  # (runs/ca_selfgen/precision_gate.json), and then for all 20 timesteps alike:
+  # run_ca_selfgen.sh passes measure.precision / measure.gradient_checkpointing
+  # read off that file.
+  precision: fp32
+  gradient_checkpointing: true

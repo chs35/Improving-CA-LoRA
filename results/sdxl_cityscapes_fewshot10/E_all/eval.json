@@ -1,0 +1,82 @@
+{
+  "run": "sdxl_cityscapes_fewshot10",
+  "arm": "E_all",
+  "embedder": "clip",
+  "reportable": true,
+  "protocol": {
+    "prompt": "photorealistic first-person urban street view",
+    "include_class_names": true,
+    "guidance_scale": 5.0,
+    "num_inference_steps": 25,
+    "scheduler": "EulerDiscreteScheduler",
+    "resolution": 1024,
+    "seed": 0,
+    "generation_batch_size": 4,
+    "generation_autocast": "no",
+    "weather_conditions": [
+      "foggy",
+      "night-time",
+      "rainy",
+      "snowy"
+    ],
+    "model": {
+      "class": "StableDiffusionXLAdapter",
+      "device": "cuda",
+      "dtype": "torch.float32",
+      "num_train_timesteps": 1000,
+      "prediction_type": "epsilon",
+      "scheduler": "EulerDiscreteScheduler",
+      "pipeline": "StableDiffusionXLPipeline",
+      "vae_scale_factor": 8,
+      "latent_channels": 4,
+      "scaling_factor": 0.13025,
+      "resolution": 1024
+    },
+    "clip_model": "openai/clip-vit-large-patch14",
+    "reference_split": "val",
+    "reference_num_images": 500,
+    "cmmd_sigma": 10.0,
+    "cmmd_scale": 1000.0
+  },
+  "num_images": 900,
+  "cmmd": {
+    "cmmd": 1.4374889186545836,
+    "num_reference": 500,
+    "num_generated": 500
+  },
+  "clip_score": {
+    "overall": {
+      "clip_score": 17.76554298400879,
+      "clip_score_std": 2.4276022911071777,
+      "num_pairs": 900
+    },
+    "per_condition": {
+      "foggy": {
+        "clip_score": 18.614648818969727,
+        "clip_score_std": 2.090644359588623,
+        "num_pairs": 100
+      },
+      "in_domain": {
+        "clip_score": 18.692026138305664,
+        "clip_score_std": 1.70923912525177,
+        "num_pairs": 500
+      },
+      "night-time": {
+        "clip_score": 15.095226287841797,
+        "clip_score_std": 2.1213929653167725,
+        "num_pairs": 100
+      },
+      "rainy": {
+        "clip_score": 18.0031795501709,
+        "clip_score_std": 1.8885550498962402,
+        "num_pairs": 100
+      },
+      "snowy": {
+        "clip_score": 14.716696739196777,
+        "clip_score_std": 2.154007911682129,
+        "num_pairs": 100
+      }
+    },
+    "weather_mean": 16.6074378490448
+  }
+}

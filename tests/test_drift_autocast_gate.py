@@ -261,7 +261,9 @@ def test_the_verdict_needs_both_thresholds(gate, monkeypatch):
 # -- the script as the operator runs it --------------------------------------------------
 
 
-def test_main_writes_the_gate_json_next_to_the_checkpoint(gate, repo_root, tmp_path, monkeypatch):
+def test_main_writes_the_gate_json_next_to_the_checkpoint(
+    gate, repo_root, tmp_path, monkeypatch, tiny_selfgen_dir
+):
     """End to end under tiny_cpu.yaml: a saved arm in, one JSON verdict out."""
     from calora.models.loader import load_adapter
 
@@ -290,6 +292,7 @@ def test_main_writes_the_gate_json_next_to_the_checkpoint(gate, repo_root, tmp_p
             # The checkpoint above is a module-granularity arm, and load_lora
             # refuses to load one under a head-granularity config.
             "--set", f"output_dir={tmp_path}", "select.granularity=module",
+            f"measure.selfgen.dir={tiny_selfgen_dir}",
         ],
     )
     gate.main()
@@ -312,7 +315,9 @@ def test_main_writes_the_gate_json_next_to_the_checkpoint(gate, repo_root, tmp_p
     assert payload["thresholds"]["jaccard"] == gate.JACCARD_THRESHOLD
 
 
-def test_main_gates_the_base_model_when_no_lora_is_given(gate, repo_root, tmp_path, monkeypatch):
+def test_main_gates_the_base_model_when_no_lora_is_given(
+    gate, repo_root, tmp_path, monkeypatch, tiny_selfgen_dir
+):
     """The gate is run once *before* any arm exists, so ``--lora`` is optional.
 
     With no checkpoint the base weights are what both modes measure: no ``load_lora``
@@ -335,7 +340,7 @@ def test_main_gates_the_base_model_when_no_lora_is_given(gate, repo_root, tmp_pa
         [
             "check_drift_autocast_gate.py",
             "--config", str(repo_root / "configs" / "tiny_cpu.yaml"),
-            "--set", f"output_dir={tmp_path}",
+            "--set", f"output_dir={tmp_path}", f"measure.selfgen.dir={tiny_selfgen_dir}",
         ],
     )
     gate.main()

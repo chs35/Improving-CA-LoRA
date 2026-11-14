@@ -440,12 +440,15 @@ def test_the_drift_config_differs_only_in_the_drift_cadence(repo_root):
 
 
 def test_measurement_scripts_pin_their_own_precision_regime(repo_root):
-    """measure_ca.py must stay full fp32 with checkpointing whatever the training
-    settings of the config it is given say; the drift gate's reference must stay
-    fp32. Static, like the crop/hflip call-site check: a missing line here would
-    produce plausible numbers in a different regime."""
+    """measure_ca.py must run in measure.precision with measure.gradient_checkpointing
+    whatever the training settings (model.allow_tf32, model.enable_gradient_checkpointing)
+    of the config it is given say; the drift gate's reference must stay fp32. Static,
+    like the crop/hflip call-site check: a missing line here would produce plausible
+    numbers in a different regime."""
     measure = (repo_root / "scripts" / "measure_ca.py").read_text(encoding="utf-8")
-    assert "set_matmul_tf32(False)" in measure
+    assert "with measurement_precision(adapter.device, precision):" in measure
+    assert "precision = cfg.measure.precision" in measure
+    assert "if cfg.measure.gradient_checkpointing:" in measure
     assert "adapter.enable_gradient_checkpointing()" in measure
     gate = (repo_root / "scripts" / "check_drift_autocast_gate.py").read_text(encoding="utf-8")
     assert "set_matmul_tf32(False)" in gate

@@ -52,7 +52,7 @@ def load_all(cfg) -> dict:
     paths = [p for p in sorted(directory.glob("t*.safetensors")) if not cli.is_half_measurement(p)]
     if not paths:
         raise FileNotFoundError(f"No measurements in {directory}. Run measure_ca.py first.")
-    from calora.ca.stats import load_measurement
+    from calora.ca.stats import common_provenance, load_measurement
 
     results = {}
     for path in paths:
@@ -60,6 +60,8 @@ def load_all(cfg) -> dict:
         # differ only in what an entry means; loading is where that gets caught.
         result = load_measurement(path, expect_granularity=cfg.select.granularity)
         results[result.timestep] = result
+    # Same rule as granularity, for the x0 source and precision: refuse to pool.
+    common_provenance(results)
     return results
 
 
@@ -121,6 +123,7 @@ def main() -> None:
                 "timesteps": timesteps,
                 "axis": cfg.select.axis,
                 "normalization": cfg.select.normalization,
+                **_provenance_meta({t: results[t] for t in timesteps}),
             },
         )
 
@@ -140,6 +143,24 @@ def main() -> None:
         selection.breakdown["kind"],
     )
     logger.info("Wrote %s", path)
+
+
+def _provenance_meta(results) -> dict:
+    """What the scores were measured on, carried into the selection JSON.
+
+    Downstream consumers (CA-LoRA-TSM, Hierarchial-CFG) refuse a selection whose
+    ``data_source`` is not ``selfgen``, and read ``selfgen_manifest_sha256`` to
+    tell which generated set it came from.
+    """
+    from calora.ca.stats import common_provenance
+
+    provenance = common_provenance(results)
+    return {
+        "data_source": provenance.get("data_source"),
+        "selfgen_manifest_sha256": provenance.get("selfgen_manifest_sha256"),
+        "precision": provenance.get("precision"),
+        "provenance": provenance,
+    }
 
 
 def _resolve_timesteps(args, cfg, results) -> list[int]:

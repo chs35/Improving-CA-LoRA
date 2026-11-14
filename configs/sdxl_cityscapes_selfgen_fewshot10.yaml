@@ -1,0 +1,21 @@
+# The few-shot (10-image) campaign rerun on CA measured the paper's way (2026-11-07).
+#
+# Identical to sdxl_cityscapes_fewshot10.yaml except the run name and drift: the
+# selections come from runs/ca_selfgen (CA on 256 base-SDXL self-generated images,
+# see configs/ca_selfgen.yaml) instead of 256 real train frames. Its own name so
+# the 2026-11-02 campaign stays untouched.
+#
+# Arms (user decision 2026-11-09, arms re-derived by their definitions on the new
+# ranking): A_t81 (paper), B_top3 = ews top-3 aggregate [201, 301, 121], C_t201
+# (best single t), x {style, viewpoint}. D is dropped: with t=81 outside the new
+# top-3 the A+C+D decomposition of B no longer exists.
+#
+# No drift snapshots (user decision 2026-11-09). The LoRA checkpoints every
+# train.checkpoint_every=2000 steps (inherited) are kept so drift can be measured
+# on them afterwards (measure.drift_source applies then).
+_base_: sdxl_cityscapes_fewshot10.yaml
+
+name: sdxl_cityscapes_selfgen_fewshot10
+
+train:
+  stability_every: 0

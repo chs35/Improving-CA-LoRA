@@ -5,6 +5,8 @@ build/
 dist/
 .venv/
 venv/
+.claude
+.ruff_cache
 
 # pytest tmp_path base (see pyproject addopts)
 .pytest_tmp/

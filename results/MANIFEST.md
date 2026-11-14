@@ -232,6 +232,34 @@ aggregation that preceded the disclosed change to top-3.
 3 files, 546,310 bytes (533.5 KiB).
 
 
+### `results/sdxl_cityscapes_fewshot10/` -- few-shot (10-image) experiment -- the source of Tables 3-5
+
+Added 2026-11-04. Every file is a verbatim copy (`cp -p`) of the parent project's
+`runs/sdxl_cityscapes_fewshot10/` (stage logs from its `logs/` directory, renamed to `train.log`,
+`generate.log` and `eval.log` per arm; `generated/manifest.json` renamed to
+`generation_manifest.json`) and of `runs/sdxl_cityscapes_fewshot10_gate/` for `tensor_core_gate/`.
+The `selection_*.json` files are byte-identical to those in `results/sdxl_cityscapes/`: this
+experiment re-used the earlier selections. Full-length hashes are in
+[`sha256sums.txt`](sha256sums.txt) under the `sdxl_cityscapes_fewshot10/` prefix.
+
+| Directory | Files | Size (bytes) | Contents |
+| --- | ---: | ---: | --- |
+| `results/sdxl_cityscapes_fewshot10/` | 13 | 1,001,758 | `campaign.log`, `config.yaml`, `selection_A_t81_style.json`, `selection_A_t81_viewpoint.json`, `selection_B_top3_style.json`, `selection_B_top3_viewpoint.json`, `selection_C_t41_style.json`, `selection_C_t41_viewpoint.json`, `selection_D_t1_style.json`, `selection_D_t1_viewpoint.json`, `selection_E_all.json`, `selection_E_random.json`, `training_subset.json` |
+| `results/sdxl_cityscapes_fewshot10/A_t81_style/` | 8 | 2,434,595 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/A_t81_viewpoint/` | 8 | 2,353,110 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/B_top3_style/` | 8 | 2,357,459 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/B_top3_viewpoint/` | 8 | 2,370,623 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/C_t41_style/` | 8 | 2,396,867 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/C_t41_viewpoint/` | 8 | 2,420,658 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/D_t1_style/` | 8 | 2,371,264 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/D_t1_viewpoint/` | 8 | 2,368,301 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/E_all/` | 8 | 5,160,842 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/E_random/` | 8 | 2,409,503 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json`, `loss_curve.png`, `stability.json`, `train.log`, `train_summary.json` |
+| `results/sdxl_cityscapes_fewshot10/control_base/` | 4 | 907,709 | `eval.json`, `eval.log`, `generate.log`, `generation_manifest.json` |
+| `results/sdxl_cityscapes_fewshot10/tensor_core_gate/` | 3 | 57,337 | `drift_autocast_gate_viewpoint.json`, `gate.log`, `tensor_core_gate.json` |
+
+100 files, 28,610,026 bytes (27.3 MiB).
+
 ## Large artifacts (Hugging Face)
 
 The following artifacts back the same results but are far too large for git. They are published on
@@ -242,10 +270,10 @@ the Hugging Face Hub, in two public repositories:
 
 | Artifact | What it is | Files | Size | Location |
 | --- | --- | ---: | ---: | --- |
-| LoRA checkpoints | All 10 trained arms: the final step-10000 adapter used to generate the images scored in Table 3, plus the intermediate checkpoints at steps 2000/4000/6000/8000 (50 `.safetensors` files in total) | 50 | 3,357,944,280 B (3.36 GB / 3.13 GiB) | [model repo](https://huggingface.co/chs35/improving-ca-lora-checkpoints), `<arm>/lora-{step002000,step004000,step006000,step008000,final}.safetensors` |
+| LoRA checkpoints | All 10 trained arms of the **few-shot experiment** (`results/sdxl_cityscapes_fewshot10/`; replaced 2026-11-04, the earlier full-data adapters remain at Hub revision `db005e2c124b6666c27b8a788cd5a1f6c1f3f080`): the final step-10000 adapter used to generate the images scored in Table 3, plus the intermediate checkpoints at steps 2000/4000/6000/8000 (50 `.safetensors` files in total) | 50 | 3,357,944,280 B (3.36 GB / 3.13 GiB) | [model repo](https://huggingface.co/chs35/improving-ca-lora-checkpoints), `<arm>/lora-{step002000,step004000,step006000,step008000,final}.safetensors` |
 | Module-granularity pilot checkpoints | An undocumented earlier pilot of arm `A_t81` at *module* granularity, retained only as a granularity-ablation data point. No number in the report comes from it | 5 | 35,077,048 B (35.1 MB / 33.5 MiB) | [model repo](https://huggingface.co/chs35/improving-ca-lora-checkpoints), `pilot_module_granularity/A_t81/` |
 | Head CA measurement tensors | The raw head-granularity CA measurements for the 13-timestep sweep, 13 timesteps x {full, half0, half1} = 39 `.safetensors` files. The `half0`/`half1` splits are what the split-half agreement in Table 2 is computed from | 39 | 190,967,712 B (191 MB / 182 MiB) | [dataset repo](https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts), `measurements/tsweep_sdxl_head/` |
-| Generated images | 11 arms x 900 PNG at 1024x1024 (500 in-domain + 4 weather conditions x 100), the exact images scored for CMMD and CLIPScore in Table 3, plus each arm's `manifest.json` | 9,911 (9,900 PNG + 11 `manifest.json`) | 12,037,555,772 B (12.04 GB / 11.21 GiB) | [dataset repo](https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts), `generated/<arm>/` |
+| Generated images | From the **earlier full-data experiment** (`results/sdxl_cityscapes/`), not from the current adapters: 11 arms x 900 PNG at 1024x1024 (500 in-domain + 4 weather conditions x 100), the exact images scored for CMMD and CLIPScore in Table 3, plus each arm's `manifest.json` | 9,911 (9,900 PNG + 11 `manifest.json`) | 12,037,555,772 B (12.04 GB / 11.21 GiB) | [dataset repo](https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts), `generated/<arm>/` |
 
 **15,621,544,812 bytes (15.62 GB / 14.55 GiB) across 10,005 files** on the Hub. Every file was
 verified after upload against the manifests below: the Hub's own `lfs.sha256` for the 9,994 LFS
@@ -300,6 +328,6 @@ actually trained.
 
 ## Total released size
 
-**92 files, 16,805,053 bytes (16.03 MiB) tracked in git.**
+**192 files, 45,415,079 bytes (43.31 MiB) tracked in git** (92 files from the earlier experiment, 100 from the few-shot experiment added 2026-11-04).
 Excluding the 15.62 GB of checkpoints, measurement tensors and generated images that are distributed
 via Hugging Face rather than git.

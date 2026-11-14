@@ -27,6 +27,20 @@ data:
 measure:
   timesteps: [1, 81, 201, 481]
   num_samples: 8
+  # The paper's x0: images the toy model generates from data.caption_template
+  # (scripts/generate_selfgen.py). Its own directory: a set's spec includes the
+  # model, so the SDXL set and this one can never share one.
+  source: selfgen
+  selfgen:
+    dir: runs/tiny_cpu_selfgen
+    num_images: 8
+    num_inference_steps: 4
+    guidance_scale: 5.0
+    seed: 0
+    batch_size: 3          # deliberately not a divisor of num_images
+  precision: fp32
+  gradient_checkpointing: true
+  drift_source: selfgen_current
   batch_size: 1
   augs_per_sample: 2      # >1 so the smoke test actually exercises the multi-aug path
   split_half: true

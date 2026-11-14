@@ -49,9 +49,9 @@ from calora.analysis.stability import (  # noqa: E402
     merged_lora,
     spearman,
 )
-from calora.ca.measure import measure_concept_awareness, prepare_samples  # noqa: E402
+from calora.ca.measure import measure_concept_awareness  # noqa: E402
 from calora.ca.select import Selection, axis_scores, select_topk  # noqa: E402
-from calora.data import build_dataset  # noqa: E402
+from calora.analysis.drift_data import drift_samples  # noqa: E402
 from calora.models.loader import load_adapter  # noqa: E402
 from calora.models.projections import ProjectionTable  # noqa: E402
 from calora.train.lora import load_lora  # noqa: E402
@@ -302,24 +302,13 @@ def main() -> None:
     # granularity the drift callback will.
     table = ProjectionTable.from_model(adapter.unet, granularity=cfg.select.granularity)
 
-    # The drift callback's samples, built the same way scripts/train_lora.py builds
-    # them: crop="center" and hflip=False regardless of data.* (a shifted or
-    # mirrored x0 is a different x0, and the whole gate is a paired comparison),
-    # measure.seed, and train.stability_num_samples of them.
-    measure_dataset = build_dataset(
-        cfg.data,
-        resolution=cfg.model.resolution,
-        seed=cfg.measure.seed,
-        crop="center",
-        hflip=False,
-        augs_per_sample=cfg.measure.augs_per_sample,
-    )
-    samples = prepare_samples(
-        adapter,
-        measure_dataset,
-        axes=cfg.data.concept_axes,
-        num_samples=cfg.train.stability_num_samples,
-    )
+    # The drift callback's baseline samples, built by the very function
+    # scripts/train_lora.py uses (calora.analysis.drift_data.drift_samples):
+    # measure.drift_source decides the x0 (the self-generated base set, or real
+    # images with crop="center" and hflip=False), measure.seed, and
+    # train.stability_num_samples of them. The gate bounds the precision error of
+    # one measurement, so it is run on the base set even for selfgen_current.
+    samples, _provider, _x0 = drift_samples(cfg, adapter)
     logger.info(
         "Prepared %d drift samples (%d aug(s) each)", len(samples), cfg.measure.augs_per_sample
     )

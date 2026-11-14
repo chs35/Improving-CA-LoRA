@@ -42,3 +42,33 @@ def adapter() -> ToyAdapter:
 @pytest.fixture
 def table(adapter: ToyAdapter) -> ProjectionTable:
     return ProjectionTable.from_model(adapter.unet)
+
+
+def make_selfgen_set(cfg, directory: Path) -> Path:
+    """Generate the toy self-generated CA set ``cfg`` asks for into ``directory``.
+
+    Points ``cfg.measure.selfgen.dir`` at it, so the caller can hand ``cfg`` (or a
+    ``--set measure.selfgen.dir=...`` override) to any measurement entry point.
+    """
+    from calora.data.selfgen import generate_selfgen_set, spec_from_config
+    from calora.models.loader import load_adapter
+
+    adapter = load_adapter(cfg.model)
+    generate_selfgen_set(
+        adapter,
+        spec_from_config(cfg, adapter),
+        directory,
+        num_images=cfg.measure.selfgen.num_images,
+        batch_size=cfg.measure.selfgen.batch_size,
+    )
+    cfg.measure.selfgen.dir = str(directory)
+    return directory
+
+
+@pytest.fixture(scope="session")
+def tiny_selfgen_dir(repo_root: Path, tmp_path_factory) -> Path:
+    """The tiny_cpu.yaml self-generated set, made once per test session."""
+    from calora.config import load_config
+
+    cfg = load_config(repo_root / "configs" / "tiny_cpu.yaml")
+    return make_selfgen_set(cfg, tmp_path_factory.mktemp("tiny_selfgen"))

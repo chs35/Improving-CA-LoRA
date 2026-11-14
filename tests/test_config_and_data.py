@@ -429,17 +429,19 @@ def test_measurement_scripts_pass_hflip_false(repo_root):
     override is present at each; a missing one produces plausible numbers.
     """
     call_sites = [
-        "measure_ca.py",
-        "train_lora.py",
-        "smoke_test.py",
-        # The fp32-vs-bf16 drift gate re-measures the training callback's samples,
-        # so it is a fourth measurement call site and carries the same override.
-        "check_drift_autocast_gate.py",
+        "scripts/measure_ca.py",
+        "scripts/smoke_test.py",
+        # train_lora.py and the fp32-vs-bf16 drift gate both build the drift
+        # samples through drift_samples(), which carries the override for them.
+        "src/calora/analysis/drift_data.py",
     ]
     for name in call_sites:
-        source = (repo_root / "scripts" / name).read_text(encoding="utf-8")
+        source = (repo_root / name).read_text(encoding="utf-8")
         assert 'crop="center"' in source, name
         assert "hflip=False" in source, name
+    for name in ("scripts/train_lora.py", "scripts/check_drift_autocast_gate.py"):
+        source = (repo_root / name).read_text(encoding="utf-8")
+        assert "drift_samples(cfg, adapter)" in source, name
 
 
 def test_hflip_transform_mirrors_pixels():

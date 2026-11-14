@@ -1,8 +1,14 @@
 """Rank measured timesteps by concept-discriminativeness.
 
     python scripts/score_timesteps.py --config configs/tiny_cpu.yaml
+    python scripts/score_timesteps.py --config configs/ca_selfgen.yaml \
+        --timesteps 1 41 81 121 201 301 401 481 601 701 801 901 981
 
-Reads every ``<run_dir>/measurements/t*.safetensors`` and writes
+Reads every ``<run_dir>/measurements/t*.safetensors`` (or only ``--timesteps`` of
+them -- the ranking pools similarity quantiles across the scored timesteps, so
+the set scored is part of the result: arm B's top-3 is defined on the
+pre-registered 13-point grid, even where more timesteps were measured for other
+projects) and writes
 ``<run_dir>/timestep_scores.json``. One run reports, per timestep:
 
 * ``expanded_weighted_similarity`` - CA-weighted mean similarity over the top-n·k
@@ -39,7 +45,7 @@ from calora.ca.select import (  # noqa: E402
     sort_timestep_scores,
     timestep_rank_agreement,
 )
-from calora.ca.stats import load_measurement  # noqa: E402
+from calora.ca.stats import common_provenance, load_measurement  # noqa: E402
 from calora.utils.io import dump_json  # noqa: E402
 from calora.utils.logging import get_logger  # noqa: E402
 
@@ -49,8 +55,11 @@ logger = get_logger("score_timesteps")
 RANK_MODES = ("expanded_weighted_similarity", "conflict_count", "score")
 
 
-def load_all(cfg, half: int | None = None) -> dict:
-    """Every full measurement, or every measurement of one split half."""
+def load_all(cfg, half: int | None = None, timesteps=None) -> dict:
+    """Every full measurement, or every measurement of one split half.
+
+    ``timesteps`` restricts to those timesteps and requires every one of them.
+    """
     directory = cli.measurement_dir(cfg)
     if half is None:
         paths = [
@@ -67,7 +76,18 @@ def load_all(cfg, half: int | None = None) -> dict:
         # Rejects a stray measurement from the other granularity: the two are
         # indistinguishable by shape and would pool into a meaningless ranking.
         result = load_measurement(path, expect_granularity=cfg.select.granularity)
+        if timesteps is not None and result.timestep not in timesteps:
+            continue
         results[result.timestep] = result
+    if timesteps is not None and results:
+        missing = sorted(set(timesteps) - set(results))
+        if missing:
+            raise FileNotFoundError(
+                f"--timesteps {sorted(timesteps)}: no measurement for {missing} in {directory}"
+            )
+    # Self-generated and real-image measurements (or two precisions) have the
+    # same shapes and names; pooling them into one ranking must fail here.
+    common_provenance(results)
     if half is None:
         logger.info(
             "Loaded %d %s-granularity measurements: %s",
@@ -102,10 +122,15 @@ def main() -> None:
         choices=tuple(RANK_KEYS),
         help="Which metric picks the headline top_timesteps",
     )
+    parser.add_argument(
+        "--timesteps", type=int, nargs="*", default=None,
+        help="Score only these measured timesteps (default: every one in measurements/)",
+    )
     args = parser.parse_args()
     cfg = cli.resolve(args)
 
-    results = load_all(cfg)
+    wanted = set(args.timesteps) if args.timesteps else None
+    results = load_all(cfg, timesteps=wanted)
     axes = cfg.data.concept_axes
     if len(axes) < 2:
         raise ValueError("Timestep scoring needs at least two concept axes")
@@ -127,7 +152,7 @@ def main() -> None:
         : cfg.select.top_timesteps
     ]
 
-    halves = [load_all(cfg, half=h) for h in (0, 1)]
+    halves = [load_all(cfg, half=h, timesteps=wanted) for h in (0, 1)]
     agreement: dict[str, dict[str, dict]] | None = None
     if all(halves):
         agreement = {}
@@ -151,6 +176,8 @@ def main() -> None:
         "conflict_primary_quantile": cfg.select.conflict_primary_quantile,
         "tscore_selection_multiplier": cfg.select.tscore_selection_multiplier,
         "top_timesteps": top,
+        "timesteps_scored": sorted(results),
+        "provenance": common_provenance(results),
         "sources": {
             source: {
                 "scores": [s.to_dict() for s in scores],
