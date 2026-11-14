@@ -1,0 +1,155 @@
+{
+  "config": "configs/ca_selfgen.yaml",
+  "timestep": 81,
+  "num_samples": 32,
+  "selfgen_manifest_sha256": "2739e66f0eea48f66b856b09e673c64570a0c91ecfa21b2bbccfb90538803a78",
+  "device": "NVIDIA A100-SXM4-80GB",
+  "thresholds": {
+    "spearman": 0.99,
+    "jaccard": 0.8,
+    "cos_of_means_pearson": 0.99,
+    "ews_abs_delta": 0.01
+  },
+  "reference": {
+    "precision": "fp32",
+    "gradient_checkpointing": true,
+    "seconds": 563.3596520428546,
+    "seconds_per_sample": 17.604989126339206,
+    "peak_gib": 56.714820861816406,
+    "oom": false,
+    "ews": 0.26085440020589706
+  },
+  "runs": {
+    "fp32/gc": {
+      "precision": "fp32",
+      "gradient_checkpointing": true,
+      "seconds": 563.3596520428546,
+      "seconds_per_sample": 17.604989126339206,
+      "peak_gib": 56.714820861816406,
+      "oom": false
+    },
+    "bf16/gc": {
+      "precision": "bf16",
+      "gradient_checkpointing": true,
+      "seconds": 371.7496429220773,
+      "seconds_per_sample": 11.617176341314916,
+      "peak_gib": 56.73627471923828,
+      "oom": false
+    },
+    "tf32/gc": {
+      "precision": "tf32",
+      "gradient_checkpointing": true,
+      "seconds": 391.8434002029244,
+      "seconds_per_sample": 12.245106256341387,
+      "peak_gib": 56.713539123535156,
+      "oom": false
+    },
+    "bf16/no_gc": {
+      "precision": "bf16",
+      "gradient_checkpointing": false,
+      "seconds": 320.64241193584166,
+      "seconds_per_sample": 10.020075372995052,
+      "peak_gib": 64.73108625411987,
+      "oom": false
+    }
+  },
+  "verdicts": {
+    "bf16": {
+      "per_axis": {
+        "style": {
+          "spearman": 0.9998160012748927,
+          "jaccard": 0.9809523809523809,
+          "concentration_delta": -0.001333078554661693
+        },
+        "viewpoint": {
+          "spearman": 0.9993766485312843,
+          "jaccard": 0.9622641509433962,
+          "concentration_delta": -0.004353192504323422
+        }
+      },
+      "cos_of_means_pearson": 0.9957889409845085,
+      "ews": 0.25407992103237076,
+      "ews_delta": -0.006774479173526304,
+      "mean_of_cos_pearson": {
+        "style|viewpoint": 0.9948290922955924
+      },
+      "checks": {
+        "spearman/style": true,
+        "spearman/viewpoint": true,
+        "jaccard/style": true,
+        "jaccard/viewpoint": true,
+        "cos_of_means_pearson": true,
+        "ews_abs_delta": true
+      },
+      "pass": true
+    },
+    "tf32": {
+      "per_axis": {
+        "style": {
+          "spearman": 0.9999994231329246,
+          "jaccard": 1.0,
+          "concentration_delta": 5.8563403974365436e-05
+        },
+        "viewpoint": {
+          "spearman": 0.9999991690648748,
+          "jaccard": 1.0,
+          "concentration_delta": 7.104570999449944e-06
+        }
+      },
+      "cos_of_means_pearson": 0.9999958303065938,
+      "ews": 0.2607376426193203,
+      "ews_delta": -0.0001167575865767545,
+      "mean_of_cos_pearson": {
+        "style|viewpoint": 0.9999927526994821
+      },
+      "checks": {
+        "spearman/style": true,
+        "spearman/viewpoint": true,
+        "jaccard/style": true,
+        "jaccard/viewpoint": true,
+        "cos_of_means_pearson": true,
+        "ews_abs_delta": true
+      },
+      "pass": true
+    }
+  },
+  "no_gc_verdict": {
+    "per_axis": {
+      "style": {
+        "spearman": 0.9998132557216288,
+        "jaccard": 0.9809523809523809,
+        "concentration_delta": -0.0013492245601112174
+      },
+      "viewpoint": {
+        "spearman": 0.9993761796719351,
+        "jaccard": 0.9622641509433962,
+        "concentration_delta": -0.004357233347223599
+      }
+    },
+    "cos_of_means_pearson": 0.9957786474789109,
+    "ews": 0.2540250308850601,
+    "ews_delta": -0.006829369320836942,
+    "mean_of_cos_pearson": {
+      "style|viewpoint": 0.9948207166580338
+    },
+    "checks": {
+      "spearman/style": true,
+      "spearman/viewpoint": true,
+      "jaccard/style": true,
+      "jaccard/viewpoint": true,
+      "cos_of_means_pearson": true,
+      "ews_abs_delta": true
+    },
+    "pass": true
+  },
+  "adopted": {
+    "precision": "bf16",
+    "gradient_checkpointing": false
+  },
+  "eta": {
+    "seconds_per_sample": 10.020075372995052,
+    "num_samples": 256,
+    "timesteps": 20,
+    "hours": 14.250773863815185
+  }
+}

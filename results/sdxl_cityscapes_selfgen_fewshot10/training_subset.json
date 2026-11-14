@@ -1,0 +1,41 @@
+{
+  "size": 10,
+  "seed": 0,
+  "source_size": 2975,
+  "indices": [
+    117,
+    725,
+    997,
+    1114,
+    1116,
+    1407,
+    1590,
+    1702,
+    2858,
+    2878
+  ],
+  "keys": [
+    "aachen_000117_000019",
+    "cologne_000139_000019",
+    "dusseldorf_000172_000019",
+    "erfurt_000068_000019",
+    "erfurt_000070_000019",
+    "hanover_000000_001620",
+    "hanover_000000_055937",
+    "jena_000103_000019",
+    "zurich_000005_000019",
+    "zurich_000025_000019"
+  ],
+  "image_paths": [
+    "/workspace/data/cityscapes/leftImg8bit/train/aachen/aachen_000117_000019_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/cologne/cologne_000139_000019_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/dusseldorf/dusseldorf_000172_000019_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/erfurt/erfurt_000068_000019_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/erfurt/erfurt_000070_000019_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/hanover/hanover_000000_001620_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/hanover/hanover_000000_055937_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/jena/jena_000103_000019_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/zurich/zurich_000005_000019_leftImg8bit.png",
+    "/workspace/data/cityscapes/leftImg8bit/train/zurich/zurich_000025_000019_leftImg8bit.png"
+  ]
+}

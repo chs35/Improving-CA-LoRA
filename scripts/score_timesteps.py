@@ -7,7 +7,7 @@
 Reads every ``<run_dir>/measurements/t*.safetensors`` (or only ``--timesteps`` of
 them -- the ranking pools similarity quantiles across the scored timesteps, so
 the set scored is part of the result: arm B's top-3 is defined on the
-pre-registered 13-point grid, even where more timesteps were measured for other
+fixed 13-point grid, even where more timesteps were measured for other
 projects) and writes
 ``<run_dir>/timestep_scores.json``. One run reports, per timestep:
 

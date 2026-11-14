@@ -1,0 +1,8 @@
+{
+  "dir": "runs/ca_selfgen_images",
+  "num_images": 256,
+  "manifest_sha256": "2739e66f0eea48f66b856b09e673c64570a0c91ecfa21b2bbccfb90538803a78",
+  "prompt": "photorealistic first-person urban street view",
+  "generation_seconds": 0.7105758269317448,
+  "encode_seconds": 0.7873807491268963
+}

@@ -1,0 +1,82 @@
+{
+  "run": "sdxl_cityscapes_selfgen_fewshot10",
+  "arm": "A_t81_viewpoint",
+  "embedder": "clip",
+  "reportable": true,
+  "protocol": {
+    "prompt": "photorealistic first-person urban street view",
+    "include_class_names": true,
+    "guidance_scale": 5.0,
+    "num_inference_steps": 25,
+    "scheduler": "EulerDiscreteScheduler",
+    "resolution": 1024,
+    "seed": 0,
+    "generation_batch_size": 4,
+    "generation_autocast": "no",
+    "weather_conditions": [
+      "foggy",
+      "night-time",
+      "rainy",
+      "snowy"
+    ],
+    "model": {
+      "class": "StableDiffusionXLAdapter",
+      "device": "cuda",
+      "dtype": "torch.float32",
+      "num_train_timesteps": 1000,
+      "prediction_type": "epsilon",
+      "scheduler": "EulerDiscreteScheduler",
+      "pipeline": "StableDiffusionXLPipeline",
+      "vae_scale_factor": 8,
+      "latent_channels": 4,
+      "scaling_factor": 0.13025,
+      "resolution": 1024
+    },
+    "clip_model": "openai/clip-vit-large-patch14",
+    "reference_split": "val",
+    "reference_num_images": 500,
+    "cmmd_sigma": 10.0,
+    "cmmd_scale": 1000.0
+  },
+  "num_images": 900,
+  "cmmd": {
+    "cmmd": 1.4394263300228083,
+    "num_reference": 500,
+    "num_generated": 500
+  },
+  "clip_score": {
+    "overall": {
+      "clip_score": 24.10749626159668,
+      "clip_score_std": 2.7013232707977295,
+      "num_pairs": 900
+    },
+    "per_condition": {
+      "foggy": {
+        "clip_score": 26.708141326904297,
+        "clip_score_std": 2.444352626800537,
+        "num_pairs": 100
+      },
+      "in_domain": {
+        "clip_score": 23.430822372436523,
+        "clip_score_std": 2.1125524044036865,
+        "num_pairs": 500
+      },
+      "night-time": {
+        "clip_score": 21.873546600341797,
+        "clip_score_std": 3.1596121788024902,
+        "num_pairs": 100
+      },
+      "rainy": {
+        "clip_score": 25.173986434936523,
+        "clip_score_std": 2.192542791366577,
+        "num_pairs": 100
+      },
+      "snowy": {
+        "clip_score": 26.057666778564453,
+        "clip_score_std": 1.9566307067871094,
+        "num_pairs": 100
+      }
+    },
+    "weather_mean": 24.953335285186768
+  }
+}

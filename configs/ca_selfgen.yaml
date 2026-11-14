@@ -9,7 +9,7 @@
 #     score_timesteps.py --timesteps ...) and arms A_t81 / C_t41 / D_t1;
 #   * CA-LoRA-TSM: interval representatives 41, 81, 201, 375, 750 and the
 #     20-point Jaccard diagnosis (adds 61, 125, 250, 500, 999);
-#   * Hierarchial-CFG: the t=81 style selection.
+#   * Hierarchical-CFG: the t=81 style selection.
 #
 # Everything else -- 256 samples, 4 c_Aug per axis, batch 1, centre crop, paired
 # draws across t and axes, split halves, direction accumulators (for
@@ -32,7 +32,7 @@ measure:
     guidance_scale: 5.0      # Table 12, = eval.guidance_scale
     seed: 0
     batch_size: 4            # = eval.generation_batch_size; part of the set's spec
-  # Pre-registered regime. Overridden only by the gate's verdict
+  # Default regime. Overridden only by the gate's verdict
   # (runs/ca_selfgen/precision_gate.json), and then for all 20 timesteps alike:
   # run_ca_selfgen.sh passes measure.precision / measure.gradient_checkpointing
   # read off that file.

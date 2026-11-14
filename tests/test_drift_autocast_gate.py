@@ -4,8 +4,8 @@ The gate's verdict on the real arm is an empirical question about SDXL that no C
 test can answer. What is tested here is the machinery around it: that the timestep
 is taken from the arm's own artefacts, that both autocast modes are measured on the
 same merged weights with the same samples and seed, that the verdict is exactly the
-conjunction of the two pre-registered thresholds, and that the JSON lands on disk
-with the fields the plan says it must carry.
+conjunction of the two fixed thresholds, and that the JSON lands on disk
+with the fields it must carry.
 """
 
 from __future__ import annotations
@@ -101,7 +101,7 @@ def test_run_gate_reports_both_modes_and_a_thresholded_verdict(gate, adapter, ta
 
     Whether bf16 agrees with fp32 on a 5-layer toy UNet says nothing about SDXL, so
     nothing is asserted about the *values* beyond their being well-formed. What is
-    asserted is that ``pass`` is the conjunction of the two pre-registered
+    asserted is that ``pass`` is the conjunction of the two fixed
     thresholds and nothing else.
     """
     from calora.analysis.stability import merged_lora

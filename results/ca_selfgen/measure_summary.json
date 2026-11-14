@@ -1,0 +1,885 @@
+{
+  "run": "ca_selfgen",
+  "timesteps": [
+    1,
+    41,
+    61,
+    81,
+    121,
+    125,
+    201,
+    250,
+    301,
+    375,
+    401,
+    481,
+    500,
+    601,
+    701,
+    750,
+    801,
+    901,
+    981,
+    999
+  ],
+  "axes": [
+    "style",
+    "viewpoint"
+  ],
+  "granularity": "head",
+  "provenance": {
+    "data_source": "selfgen",
+    "selfgen_manifest_sha256": "2739e66f0eea48f66b856b09e673c64570a0c91ecfa21b2bbccfb90538803a78",
+    "selfgen_prompt": "photorealistic first-person urban street view",
+    "selfgen_num_inference_steps": "25",
+    "selfgen_guidance_scale": "5.0",
+    "selfgen_seed": "0",
+    "selfgen_model": "{\"dtype\": \"float32\", \"model_kind\": \"sdxl\", \"model_name\": \"stabilityai/stable-diffusion-xl-base-1.0\", \"resolution\": \"1024\", \"revision\": \"None\", \"vae_dtype\": \"float32\", \"variant\": \"None\"}",
+    "precision": "bf16"
+  },
+  "projections": {
+    "granularity": "head",
+    "num_projections": 10400,
+    "total_params": 955187200,
+    "by_kind": {
+      "k": 2600,
+      "out": 2600,
+      "q": 2600,
+      "v": 2600
+    },
+    "by_block": {
+      "down1": 320,
+      "down2": 3200,
+      "mid": 1600,
+      "up0": 4800,
+      "up1": 480
+    },
+    "num_modules": 560,
+    "heads_per_module": {
+      "10": 80,
+      "20": 480
+    }
+  },
+  "summaries": {
+    "1": {
+      "timestep": 1,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.1584138423204422,
+        "std": 0.07776682078838348,
+        "min": 0.03664810210466385,
+        "max": 1.300209879875183,
+        "mean_sem": 0.0025628316216170788
+      },
+      "ca/viewpoint": {
+        "mean": 0.05128616467118263,
+        "std": 0.014625837095081806,
+        "min": 0.017251858487725258,
+        "max": 0.15439985692501068,
+        "mean_sem": 0.0005591709050349891
+      },
+      "direction_concentration_mean": {
+        "style": 0.69815826940297,
+        "viewpoint": 0.47610402196852664
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.3198838531970978,
+        "min": -0.9844875335693359,
+        "max": 0.9971414804458618
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.21730518341064453,
+        "min": -0.8089388608932495,
+        "max": 0.9031790494918823
+      }
+    },
+    "41": {
+      "timestep": 41,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.15375560522079468,
+        "std": 0.07250818610191345,
+        "min": 0.037176765501499176,
+        "max": 1.1463106870651245,
+        "mean_sem": 0.002264506183564663
+      },
+      "ca/viewpoint": {
+        "mean": 0.06998998671770096,
+        "std": 0.022434405982494354,
+        "min": 0.023462574928998947,
+        "max": 0.23224802315235138,
+        "mean_sem": 0.0009635191527195275
+      },
+      "direction_concentration_mean": {
+        "style": 0.6283001361577484,
+        "viewpoint": 0.44727787328808866
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.23965057730674744,
+        "min": -0.9936819076538086,
+        "max": 0.9982090592384338
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.20704366266727448,
+        "min": -0.7673711776733398,
+        "max": 0.9394485950469971
+      }
+    },
+    "61": {
+      "timestep": 61,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.15754330158233643,
+        "std": 0.07244762778282166,
+        "min": 0.03643541783094406,
+        "max": 1.1683937311172485,
+        "mean_sem": 0.0023282691836357117
+      },
+      "ca/viewpoint": {
+        "mean": 0.07386136054992676,
+        "std": 0.02336150035262108,
+        "min": 0.023176806047558784,
+        "max": 0.23600614070892334,
+        "mean_sem": 0.0008248074445873499
+      },
+      "direction_concentration_mean": {
+        "style": 0.6063006480952076,
+        "viewpoint": 0.4480261306381169
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.19886629283428192,
+        "min": -0.9942284822463989,
+        "max": 0.9982027411460876
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.19201026856899261,
+        "min": -0.7676493525505066,
+        "max": 0.8844722509384155
+      }
+    },
+    "81": {
+      "timestep": 81,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.16323070228099823,
+        "std": 0.07324226945638657,
+        "min": 0.03799724951386452,
+        "max": 1.1694984436035156,
+        "mean_sem": 0.0025034488644450903
+      },
+      "ca/viewpoint": {
+        "mean": 0.07784724235534668,
+        "std": 0.024600863456726074,
+        "min": 0.023395244032144547,
+        "max": 0.24224086105823517,
+        "mean_sem": 0.0008808777783997357
+      },
+      "direction_concentration_mean": {
+        "style": 0.5924124372148295,
+        "viewpoint": 0.44021814318874863
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.19644221663475037,
+        "min": -0.9955120086669922,
+        "max": 0.9979766607284546
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.1889474242925644,
+        "min": -0.7799710631370544,
+        "max": 0.8346897959709167
+      }
+    },
+    "121": {
+      "timestep": 121,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.17432431876659393,
+        "std": 0.07396350055932999,
+        "min": 0.04280328378081322,
+        "max": 1.258538842201233,
+        "mean_sem": 0.0027392359916120768
+      },
+      "ca/viewpoint": {
+        "mean": 0.08857152611017227,
+        "std": 0.028243830427527428,
+        "min": 0.0259459987282753,
+        "max": 0.27415892481803894,
+        "mean_sem": 0.0011713241692632437
+      },
+      "direction_concentration_mean": {
+        "style": 0.5593989051423293,
+        "viewpoint": 0.4172177971317524
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.17737963795661926,
+        "min": -0.9945611953735352,
+        "max": 0.9971616268157959
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.18429912626743317,
+        "min": -0.7786738872528076,
+        "max": 0.7802156209945679
+      }
+    },
+    "125": {
+      "timestep": 125,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.17686006426811218,
+        "std": 0.07474081218242645,
+        "min": 0.043104592710733414,
+        "max": 1.275695562362671,
+        "mean_sem": 0.002910579787567258
+      },
+      "ca/viewpoint": {
+        "mean": 0.08988667279481888,
+        "std": 0.029029233381152153,
+        "min": 0.025890877470374107,
+        "max": 0.27385976910591125,
+        "mean_sem": 0.0013279566774144769
+      },
+      "direction_concentration_mean": {
+        "style": 0.5542358450301473,
+        "viewpoint": 0.41231932484106576
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.1768137365579605,
+        "min": -0.9933235049247742,
+        "max": 0.9971623420715332
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.18007203936576843,
+        "min": -0.7696151733398438,
+        "max": 0.7825300097465515
+      }
+    },
+    "201": {
+      "timestep": 201,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.1940058469772339,
+        "std": 0.0719001367688179,
+        "min": 0.052869077771902084,
+        "max": 1.3741135597229004,
+        "mean_sem": 0.002975059673190117
+      },
+      "ca/viewpoint": {
+        "mean": 0.10986705124378204,
+        "std": 0.03353148326277733,
+        "min": 0.03128715232014656,
+        "max": 0.3483371138572693,
+        "mean_sem": 0.0014722433406859636
+      },
+      "direction_concentration_mean": {
+        "style": 0.5116388783380167,
+        "viewpoint": 0.3783067867262021
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.14662982523441315,
+        "min": -0.9907072186470032,
+        "max": 0.9927654266357422
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.17133904993534088,
+        "min": -0.7410706877708435,
+        "max": 0.7088141441345215
+      }
+    },
+    "250": {
+      "timestep": 250,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.21385040879249573,
+        "std": 0.07177820801734924,
+        "min": 0.0608043447136879,
+        "max": 1.3772480487823486,
+        "mean_sem": 0.0033730051945894957
+      },
+      "ca/viewpoint": {
+        "mean": 0.12481138855218887,
+        "std": 0.03766672685742378,
+        "min": 0.03462004289031029,
+        "max": 0.38427698612213135,
+        "mean_sem": 0.001935304724611342
+      },
+      "direction_concentration_mean": {
+        "style": 0.48213937588963607,
+        "viewpoint": 0.3575292114543071
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.1909695416688919,
+        "min": -0.9925523996353149,
+        "max": 0.9931257963180542
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.17911510169506073,
+        "min": -0.6662362217903137,
+        "max": 0.7566673159599304
+      }
+    },
+    "301": {
+      "timestep": 301,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.2261543869972229,
+        "std": 0.06780368834733963,
+        "min": 0.07214806973934174,
+        "max": 1.3261815309524536,
+        "mean_sem": 0.0035150388721376657
+      },
+      "ca/viewpoint": {
+        "mean": 0.13164032995700836,
+        "std": 0.03707559406757355,
+        "min": 0.03982824459671974,
+        "max": 0.4137265086174011,
+        "mean_sem": 0.0017881406238302588
+      },
+      "direction_concentration_mean": {
+        "style": 0.4608870605085147,
+        "viewpoint": 0.35895720522288
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.19511200487613678,
+        "min": -0.9934328198432922,
+        "max": 0.9938544631004333
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.18192900717258453,
+        "min": -0.5902589559555054,
+        "max": 0.7835713028907776
+      }
+    },
+    "375": {
+      "timestep": 375,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.24742093682289124,
+        "std": 0.05931442975997925,
+        "min": 0.0911613255739212,
+        "max": 1.1062346696853638,
+        "mean_sem": 0.004021312575787306
+      },
+      "ca/viewpoint": {
+        "mean": 0.15458577871322632,
+        "std": 0.03997644782066345,
+        "min": 0.05091143026947975,
+        "max": 0.415404349565506,
+        "mean_sem": 0.00230277213267982
+      },
+      "direction_concentration_mean": {
+        "style": 0.4137004406981609,
+        "viewpoint": 0.3417007554229013
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.24486757814884186,
+        "min": -0.9919992685317993,
+        "max": 0.993923544883728
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.1841641515493393,
+        "min": -0.4508077800273895,
+        "max": 0.8018637299537659
+      }
+    },
+    "401": {
+      "timestep": 401,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.25499507784843445,
+        "std": 0.0568799152970314,
+        "min": 0.09949877113103867,
+        "max": 1.0444566011428833,
+        "mean_sem": 0.0040792436338961124
+      },
+      "ca/viewpoint": {
+        "mean": 0.16613656282424927,
+        "std": 0.0415317676961422,
+        "min": 0.0559021420776844,
+        "max": 0.40487101674079895,
+        "mean_sem": 0.002475217916071415
+      },
+      "direction_concentration_mean": {
+        "style": 0.402995742420642,
+        "viewpoint": 0.33347850846802585
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.2742912769317627,
+        "min": -0.9922974109649658,
+        "max": 0.994536817073822
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.20123250782489777,
+        "min": -0.40231412649154663,
+        "max": 0.8014740943908691
+      }
+    },
+    "481": {
+      "timestep": 481,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.28311124444007874,
+        "std": 0.04718567430973053,
+        "min": 0.13071730732917786,
+        "max": 1.0226638317108154,
+        "mean_sem": 0.005571309011429548
+      },
+      "ca/viewpoint": {
+        "mean": 0.19773143529891968,
+        "std": 0.04897419363260269,
+        "min": 0.07085642218589783,
+        "max": 0.4116882085800171,
+        "mean_sem": 0.003756282152608037
+      },
+      "direction_concentration_mean": {
+        "style": 0.35581125422203286,
+        "viewpoint": 0.318563996404024
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.3248509168624878,
+        "min": -0.9814707040786743,
+        "max": 0.9962191581726074
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.20364807546138763,
+        "min": -0.2915093004703522,
+        "max": 0.6925751566886902
+      }
+    },
+    "500": {
+      "timestep": 500,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.28597313165664673,
+        "std": 0.04361879453063011,
+        "min": 0.13762198388576508,
+        "max": 0.9736221432685852,
+        "mean_sem": 0.004990763496607542
+      },
+      "ca/viewpoint": {
+        "mean": 0.20378300547599792,
+        "std": 0.04842202737927437,
+        "min": 0.07263950258493423,
+        "max": 0.42031002044677734,
+        "mean_sem": 0.003612117376178503
+      },
+      "direction_concentration_mean": {
+        "style": 0.3462654073640243,
+        "viewpoint": 0.3194641535433984
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.33804139494895935,
+        "min": -0.9806272983551025,
+        "max": 0.9968037605285645
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.20526684820652008,
+        "min": -0.28922560811042786,
+        "max": 0.6863146424293518
+      }
+    },
+    "601": {
+      "timestep": 601,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.3188140392303467,
+        "std": 0.04233734309673309,
+        "min": 0.10234082490205765,
+        "max": 0.9101235866546631,
+        "mean_sem": 0.0054458328522741795
+      },
+      "ca/viewpoint": {
+        "mean": 0.24571330845355988,
+        "std": 0.06355250626802444,
+        "min": 0.04840834438800812,
+        "max": 0.4678688645362854,
+        "mean_sem": 0.004717938601970673
+      },
+      "direction_concentration_mean": {
+        "style": 0.32379873492997563,
+        "viewpoint": 0.2995505602681598
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.366341233253479,
+        "min": -0.9901611804962158,
+        "max": 0.9924771189689636
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.23609723150730133,
+        "min": -0.20601831376552582,
+        "max": 0.5551699995994568
+      }
+    },
+    "701": {
+      "timestep": 701,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.33334511518478394,
+        "std": 0.05538703873753548,
+        "min": 0.10592308640480042,
+        "max": 0.7171377539634705,
+        "mean_sem": 0.006275184918195009
+      },
+      "ca/viewpoint": {
+        "mean": 0.27691754698753357,
+        "std": 0.08380724489688873,
+        "min": 0.05321427807211876,
+        "max": 0.5423969030380249,
+        "mean_sem": 0.00668639549985528
+      },
+      "direction_concentration_mean": {
+        "style": 0.3218649763588519,
+        "viewpoint": 0.29030230084679726
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.38877731561660767,
+        "min": -0.9823126792907715,
+        "max": 0.9971420764923096
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.20466163754463196,
+        "min": -0.24372129142284393,
+        "max": 0.6083453297615051
+      }
+    },
+    "750": {
+      "timestep": 750,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.34402111172676086,
+        "std": 0.05231694132089615,
+        "min": 0.1387079358100891,
+        "max": 0.7267101407051086,
+        "mean_sem": 0.006074017845094204
+      },
+      "ca/viewpoint": {
+        "mean": 0.28352344036102295,
+        "std": 0.08442314714193344,
+        "min": 0.06052105873823166,
+        "max": 0.567983865737915,
+        "mean_sem": 0.006690894719213247
+      },
+      "direction_concentration_mean": {
+        "style": 0.3547028739906574,
+        "viewpoint": 0.2999743293969844
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.5175844430923462,
+        "min": -0.9476853013038635,
+        "max": 0.9983025789260864
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.23588228225708008,
+        "min": -0.09580489248037338,
+        "max": 0.7100256681442261
+      }
+    },
+    "801": {
+      "timestep": 801,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.4033176302909851,
+        "std": 0.05768612027168274,
+        "min": 0.19182854890823364,
+        "max": 1.038438081741333,
+        "mean_sem": 0.006507722195237875
+      },
+      "ca/viewpoint": {
+        "mean": 0.2886687219142914,
+        "std": 0.08227312564849854,
+        "min": 0.05748846009373665,
+        "max": 0.6339259743690491,
+        "mean_sem": 0.006872447207570076
+      },
+      "direction_concentration_mean": {
+        "style": 0.41497709230320895,
+        "viewpoint": 0.3097274876738337
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.6287433505058289,
+        "min": -0.8884987831115723,
+        "max": 0.999380350112915
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.27657532691955566,
+        "min": -0.031299591064453125,
+        "max": 0.685820460319519
+      }
+    },
+    "901": {
+      "timestep": 901,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 0.7229160666465759,
+        "std": 0.1669849306344986,
+        "min": 0.29868894815444946,
+        "max": 3.265778064727783,
+        "mean_sem": 0.011727354489266872
+      },
+      "ca/viewpoint": {
+        "mean": 0.34409841895103455,
+        "std": 0.07485593110322952,
+        "min": 0.0655098631978035,
+        "max": 0.8627358078956604,
+        "mean_sem": 0.008465596474707127
+      },
+      "direction_concentration_mean": {
+        "style": 0.5963579753723935,
+        "viewpoint": 0.3569123755474443
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.6614660620689392,
+        "min": -0.9034883975982666,
+        "max": 0.998277485370636
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.358418345451355,
+        "min": 0.013796060346066952,
+        "max": 0.846197247505188
+      }
+    },
+    "981": {
+      "timestep": 981,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 1.2671514749526978,
+        "std": 0.38115331530570984,
+        "min": 0.2249615341424942,
+        "max": 6.891104221343994,
+        "mean_sem": 0.024430789053440094
+      },
+      "ca/viewpoint": {
+        "mean": 0.4506124258041382,
+        "std": 0.08266229182481766,
+        "min": 0.101494200527668,
+        "max": 1.2318230867385864,
+        "mean_sem": 0.011984767392277718
+      },
+      "direction_concentration_mean": {
+        "style": 0.7135673574566074,
+        "viewpoint": 0.45102445484750964
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.7313153147697449,
+        "min": -0.8431493043899536,
+        "max": 0.9986047744750977
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.4137333333492279,
+        "min": -0.033661048859357834,
+        "max": 0.8528978824615479
+      }
+    },
+    "999": {
+      "timestep": 999,
+      "num_samples": 1024,
+      "num_items": 256,
+      "augs_per_sample": 4,
+      "num_projections": 10400,
+      "granularity": "matrix",
+      "unit_granularity": "head",
+      "axes": [
+        "style",
+        "viewpoint"
+      ],
+      "ca/style": {
+        "mean": 1.410973310470581,
+        "std": 0.4308305084705353,
+        "min": 0.2402152121067047,
+        "max": 7.6770243644714355,
+        "mean_sem": 0.028321562334895134
+      },
+      "ca/viewpoint": {
+        "mean": 0.47094303369522095,
+        "std": 0.08931466937065125,
+        "min": 0.093693807721138,
+        "max": 1.3027114868164062,
+        "mean_sem": 0.012423977255821228
+      },
+      "direction_concentration_mean": {
+        "style": 0.7358860029879187,
+        "viewpoint": 0.49410195527508116
+      },
+      "cos_of_means/style|viewpoint": {
+        "mean": 0.7614116072654724,
+        "min": -0.7881720066070557,
+        "max": 0.9990663528442383
+      },
+      "mean_of_cos/style|viewpoint": {
+        "mean": 0.4439697265625,
+        "min": -0.07643953710794449,
+        "max": 0.8807417750358582
+      }
+    }
+  }
+}

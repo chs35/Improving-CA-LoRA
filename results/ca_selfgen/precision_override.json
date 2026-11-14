@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-07T09:50Z",
+  "gate_adopted": {"precision": "bf16", "gradient_checkpointing": false},
+  "used": {"precision": "bf16", "gradient_checkpointing": true},
+  "reason": "With split_half=true the real measurement holds two accumulators (log: ~49.8 GiB on cuda); the gate ran split_half=false. Observed peak 80,807 MiB of 81,920 MiB with checkpointing off at t=1, above the gate's own 72 GiB headroom rule (check_measure_precision.py keep_gc). Restarted with checkpointing on; precision unchanged (bf16 passed the numeric criteria with checkpointing on: precision_gate.json verdicts.bf16). No measurement file had been written.",
+  "evidence": {"peak_used_mib_no_gc": 80807, "seconds_per_sample_no_gc_observed": 9.8}
+}

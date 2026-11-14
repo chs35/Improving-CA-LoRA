@@ -1,0 +1,1528 @@
+{
+  "run": "ca_selfgen",
+  "granularity": "head",
+  "budget_basis": "unit_count",
+  "axis_pair": [
+    "style",
+    "viewpoint"
+  ],
+  "primary_similarity_source": "cos_of_means",
+  "ranked_by": "expanded_weighted_similarity",
+  "conflict_sim_quantiles": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "conflict_primary_quantile": 0.3,
+  "tscore_selection_multiplier": 5,
+  "top_timesteps": [
+    201,
+    301,
+    121,
+    81,
+    401
+  ],
+  "timesteps_scored": [
+    1,
+    41,
+    81,
+    121,
+    201,
+    301,
+    401,
+    481,
+    601,
+    701,
+    801,
+    901,
+    981
+  ],
+  "provenance": {
+    "data_source": "selfgen",
+    "precision": "bf16",
+    "selfgen_guidance_scale": "5.0",
+    "selfgen_manifest_sha256": "2739e66f0eea48f66b856b09e673c64570a0c91ecfa21b2bbccfb90538803a78",
+    "selfgen_model": "{\"dtype\": \"float32\", \"model_kind\": \"sdxl\", \"model_name\": \"stabilityai/stable-diffusion-xl-base-1.0\", \"resolution\": \"1024\", \"revision\": \"None\", \"vae_dtype\": \"float32\", \"variant\": \"None\"}",
+    "selfgen_num_inference_steps": "25",
+    "selfgen_prompt": "photorealistic first-person urban street view",
+    "selfgen_seed": "0"
+  },
+  "sources": {
+    "cos_of_means": {
+      "scores": [
+        {
+          "timestep": 201,
+          "score": 0.8583876831033876,
+          "selected_mean_similarity": 0.19763877312652767,
+          "expanded_mean_similarity": 0.16519550517774545,
+          "expanded_weighted_similarity": 0.17810063234987336,
+          "conflict_count": 131,
+          "conflict_fraction": 0.6298076923076923,
+          "mean_similarity": 0.1466298242985403,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.1940058469772339,
+            "viewpoint": 0.10986705124378204
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 32,
+            "0.2": 91,
+            "0.3": 131,
+            "0.4": 144,
+            "0.5": 151
+          },
+          "conflict_fractions": {
+            "0.1": 0.15384615384615385,
+            "0.2": 0.4375,
+            "0.3": 0.6298076923076923,
+            "0.4": 0.6923076923076923,
+            "0.5": 0.7259615384615384
+          }
+        },
+        {
+          "timestep": 301,
+          "score": 0.8124329940298844,
+          "selected_mean_similarity": 0.20594596236836737,
+          "expanded_mean_similarity": 0.2077728577743983,
+          "expanded_weighted_similarity": 0.215071028929637,
+          "conflict_count": 128,
+          "conflict_fraction": 0.6153846153846154,
+          "mean_similarity": 0.19511200529329542,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.2261543869972229,
+            "viewpoint": 0.13164032995700836
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 39,
+            "0.2": 97,
+            "0.3": 128,
+            "0.4": 136,
+            "0.5": 148
+          },
+          "conflict_fractions": {
+            "0.1": 0.1875,
+            "0.2": 0.46634615384615385,
+            "0.3": 0.6153846153846154,
+            "0.4": 0.6538461538461539,
+            "0.5": 0.7115384615384616
+          }
+        },
+        {
+          "timestep": 121,
+          "score": 0.8259366319406363,
+          "selected_mean_similarity": 0.2475851018053408,
+          "expanded_mean_similarity": 0.2187590523963221,
+          "expanded_weighted_similarity": 0.23302714115444625,
+          "conflict_count": 92,
+          "conflict_fraction": 0.4423076923076923,
+          "mean_similarity": 0.17737965610753936,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.17432431876659393,
+            "viewpoint": 0.08857152611017227
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 26,
+            "0.2": 39,
+            "0.3": 92,
+            "0.4": 128,
+            "0.5": 145
+          },
+          "conflict_fractions": {
+            "0.1": 0.125,
+            "0.2": 0.1875,
+            "0.3": 0.4423076923076923,
+            "0.4": 0.6153846153846154,
+            "0.5": 0.6971153846153846
+          }
+        },
+        {
+          "timestep": 81,
+          "score": 0.8037909042361195,
+          "selected_mean_similarity": 0.2691624974339412,
+          "expanded_mean_similarity": 0.24500060325775008,
+          "expanded_weighted_similarity": 0.2577992742385616,
+          "conflict_count": 70,
+          "conflict_fraction": 0.33653846153846156,
+          "mean_similarity": 0.19644222184177265,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.16323070228099823,
+            "viewpoint": 0.07784724235534668
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 25,
+            "0.2": 35,
+            "0.3": 70,
+            "0.4": 119,
+            "0.5": 137
+          },
+          "conflict_fractions": {
+            "0.1": 0.1201923076923077,
+            "0.2": 0.16826923076923078,
+            "0.3": 0.33653846153846156,
+            "0.4": 0.5721153846153846,
+            "0.5": 0.6586538461538461
+          }
+        },
+        {
+          "timestep": 401,
+          "score": 0.7324198871507257,
+          "selected_mean_similarity": 0.287715471309359,
+          "expanded_mean_similarity": 0.2815193724505102,
+          "expanded_weighted_similarity": 0.28482519219216385,
+          "conflict_count": 107,
+          "conflict_fraction": 0.5144230769230769,
+          "mean_similarity": 0.27429132550148866,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.25499507784843445,
+            "viewpoint": 0.16613656282424927
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 36,
+            "0.2": 68,
+            "0.3": 107,
+            "0.4": 117,
+            "0.5": 131
+          },
+          "conflict_fractions": {
+            "0.1": 0.17307692307692307,
+            "0.2": 0.3269230769230769,
+            "0.3": 0.5144230769230769,
+            "0.4": 0.5625,
+            "0.5": 0.6298076923076923
+          }
+        },
+        {
+          "timestep": 481,
+          "score": 0.682092373513953,
+          "selected_mean_similarity": 0.32686170741306764,
+          "expanded_mean_similarity": 0.2836152558394063,
+          "expanded_weighted_similarity": 0.28743885836338817,
+          "conflict_count": 77,
+          "conflict_fraction": 0.3701923076923077,
+          "mean_similarity": 0.3248509053148938,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.28311124444007874,
+            "viewpoint": 0.19773143529891968
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 53,
+            "0.2": 69,
+            "0.3": 77,
+            "0.4": 82,
+            "0.5": 97
+          },
+          "conflict_fractions": {
+            "0.1": 0.2548076923076923,
+            "0.2": 0.3317307692307692,
+            "0.3": 0.3701923076923077,
+            "0.4": 0.3942307692307692,
+            "0.5": 0.46634615384615385
+          }
+        },
+        {
+          "timestep": 41,
+          "score": 0.7594020679446529,
+          "selected_mean_similarity": 0.3198278484901843,
+          "expanded_mean_similarity": 0.28398774447716557,
+          "expanded_weighted_similarity": 0.2962949927673444,
+          "conflict_count": 40,
+          "conflict_fraction": 0.19230769230769232,
+          "mean_similarity": 0.2396505683220312,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.15375560522079468,
+            "viewpoint": 0.06998998671770096
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 20,
+            "0.2": 28,
+            "0.3": 40,
+            "0.4": 81,
+            "0.5": 125
+          },
+          "conflict_fractions": {
+            "0.1": 0.09615384615384616,
+            "0.2": 0.1346153846153846,
+            "0.3": 0.19230769230769232,
+            "0.4": 0.3894230769230769,
+            "0.5": 0.6009615384615384
+          }
+        },
+        {
+          "timestep": 601,
+          "score": 0.6316066126092745,
+          "selected_mean_similarity": 0.3801876926848378,
+          "expanded_mean_similarity": 0.383634935448376,
+          "expanded_weighted_similarity": 0.38523217077229593,
+          "conflict_count": 63,
+          "conflict_fraction": 0.30288461538461536,
+          "mean_similarity": 0.3663412598166122,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.3188140392303467,
+            "viewpoint": 0.24571330845355988
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 48,
+            "0.2": 58,
+            "0.3": 63,
+            "0.4": 67,
+            "0.5": 76
+          },
+          "conflict_fractions": {
+            "0.1": 0.23076923076923078,
+            "0.2": 0.27884615384615385,
+            "0.3": 0.30288461538461536,
+            "0.4": 0.32211538461538464,
+            "0.5": 0.36538461538461536
+          }
+        },
+        {
+          "timestep": 701,
+          "score": 0.609920789289169,
+          "selected_mean_similarity": 0.45679761938159713,
+          "expanded_mean_similarity": 0.4367752055843504,
+          "expanded_weighted_similarity": 0.4383713205779264,
+          "conflict_count": 53,
+          "conflict_fraction": 0.2548076923076923,
+          "mean_similarity": 0.3887773413846858,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.33334511518478394,
+            "viewpoint": 0.27691754698753357
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 39,
+            "0.2": 47,
+            "0.3": 53,
+            "0.4": 60,
+            "0.5": 65
+          },
+          "conflict_fractions": {
+            "0.1": 0.1875,
+            "0.2": 0.22596153846153846,
+            "0.3": 0.2548076923076923,
+            "0.4": 0.28846153846153844,
+            "0.5": 0.3125
+          }
+        },
+        {
+          "timestep": 1,
+          "score": 0.628305161869338,
+          "selected_mean_similarity": 0.6971207035821863,
+          "expanded_mean_similarity": 0.609800010397493,
+          "expanded_weighted_similarity": 0.6205128345775088,
+          "conflict_count": 12,
+          "conflict_fraction": 0.057692307692307696,
+          "mean_similarity": 0.3198838254555449,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.1584138423204422,
+            "viewpoint": 0.05128616467118263
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 9,
+            "0.2": 12,
+            "0.3": 12,
+            "0.4": 14,
+            "0.5": 16
+          },
+          "conflict_fractions": {
+            "0.1": 0.04326923076923077,
+            "0.2": 0.057692307692307696,
+            "0.3": 0.057692307692307696,
+            "0.4": 0.0673076923076923,
+            "0.5": 0.07692307692307693
+          }
+        },
+        {
+          "timestep": 801,
+          "score": 0.371569145836599,
+          "selected_mean_similarity": 0.8131009348166677,
+          "expanded_mean_similarity": 0.6838889462219623,
+          "expanded_weighted_similarity": 0.6930476114585549,
+          "conflict_count": 11,
+          "conflict_fraction": 0.052884615384615384,
+          "mean_similarity": 0.6287433199317625,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.4033176302909851,
+            "viewpoint": 0.2886687219142914
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 9,
+            "0.2": 9,
+            "0.3": 11,
+            "0.4": 12,
+            "0.5": 14
+          },
+          "conflict_fractions": {
+            "0.1": 0.04326923076923077,
+            "0.2": 0.04326923076923077,
+            "0.3": 0.052884615384615384,
+            "0.4": 0.057692307692307696,
+            "0.5": 0.0673076923076923
+          }
+        },
+        {
+          "timestep": 901,
+          "score": 0.32851977136313215,
+          "selected_mean_similarity": 0.9023486866364971,
+          "expanded_mean_similarity": 0.8050874609876281,
+          "expanded_weighted_similarity": 0.8170195881984098,
+          "conflict_count": 3,
+          "conflict_fraction": 0.014423076923076924,
+          "mean_similarity": 0.6614660881041513,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.7229160666465759,
+            "viewpoint": 0.34409841895103455
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 1,
+            "0.2": 1,
+            "0.3": 3,
+            "0.4": 3,
+            "0.5": 4
+          },
+          "conflict_fractions": {
+            "0.1": 0.004807692307692308,
+            "0.2": 0.004807692307692308,
+            "0.3": 0.014423076923076924,
+            "0.4": 0.014423076923076924,
+            "0.5": 0.019230769230769232
+          }
+        },
+        {
+          "timestep": 981,
+          "score": 0.25005406893830323,
+          "selected_mean_similarity": 0.9276660259526509,
+          "expanded_mean_similarity": 0.8601008634656094,
+          "expanded_weighted_similarity": 0.8697302233700309,
+          "conflict_count": 1,
+          "conflict_fraction": 0.004807692307692308,
+          "mean_similarity": 0.7313152794251129,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 1.2671514749526978,
+            "viewpoint": 0.4506124258041382
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "cos_of_means",
+          "sim_threshold": 0.20203565210103988,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": -0.009325074590742563,
+            "0.2": 0.12234374135732651,
+            "0.3": 0.20203565210103988,
+            "0.4": 0.26901836991310135,
+            "0.5": 0.3461563289165497
+          },
+          "conflict_counts": {
+            "0.1": 1,
+            "0.2": 1,
+            "0.3": 1,
+            "0.4": 3,
+            "0.5": 3
+          },
+          "conflict_fractions": {
+            "0.1": 0.004807692307692308,
+            "0.2": 0.004807692307692308,
+            "0.3": 0.004807692307692308,
+            "0.4": 0.014423076923076924,
+            "0.5": 0.014423076923076924
+          }
+        }
+      ],
+      "rankings": {
+        "expanded_weighted_similarity": [
+          201,
+          301,
+          121,
+          81,
+          401,
+          481,
+          41,
+          601,
+          701,
+          1,
+          801,
+          901,
+          981
+        ],
+        "conflict_count": [
+          201,
+          301,
+          401,
+          121,
+          481,
+          81,
+          601,
+          701,
+          41,
+          1,
+          801,
+          901,
+          981
+        ],
+        "score": [
+          201,
+          121,
+          301,
+          81,
+          41,
+          401,
+          481,
+          601,
+          1,
+          701,
+          801,
+          901,
+          981
+        ]
+      }
+    },
+    "mean_of_cos": {
+      "scores": [
+        {
+          "timestep": 201,
+          "score": 0.8298496352095681,
+          "selected_mean_similarity": 0.16901359241161956,
+          "expanded_mean_similarity": 0.1584931449668567,
+          "expanded_weighted_similarity": 0.16285552440044976,
+          "conflict_count": 144,
+          "conflict_fraction": 0.6923076923076923,
+          "mean_similarity": 0.17133904866365426,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.1940058469772339,
+            "viewpoint": 0.10986705124378204
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 104,
+            "0.2": 136,
+            "0.3": 144,
+            "0.4": 148,
+            "0.5": 149
+          },
+          "conflict_fractions": {
+            "0.1": 0.5,
+            "0.2": 0.6538461538461539,
+            "0.3": 0.6923076923076923,
+            "0.4": 0.7115384615384616,
+            "0.5": 0.7163461538461539
+          }
+        },
+        {
+          "timestep": 301,
+          "score": 0.8179461356016768,
+          "selected_mean_similarity": 0.18151987270147613,
+          "expanded_mean_similarity": 0.18273700613289504,
+          "expanded_weighted_similarity": 0.18501071156523893,
+          "conflict_count": 136,
+          "conflict_fraction": 0.6538461538461539,
+          "mean_similarity": 0.1819289977479163,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.2261543869972229,
+            "viewpoint": 0.13164032995700836
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 94,
+            "0.2": 128,
+            "0.3": 136,
+            "0.4": 143,
+            "0.5": 145
+          },
+          "conflict_fractions": {
+            "0.1": 0.4519230769230769,
+            "0.2": 0.6153846153846154,
+            "0.3": 0.6538461538461539,
+            "0.4": 0.6875,
+            "0.5": 0.6971153846153846
+          }
+        },
+        {
+          "timestep": 121,
+          "score": 0.8155886870632147,
+          "selected_mean_similarity": 0.1936668227874459,
+          "expanded_mean_similarity": 0.18695810907724641,
+          "expanded_weighted_similarity": 0.19256982094616765,
+          "conflict_count": 122,
+          "conflict_fraction": 0.5865384615384616,
+          "mean_similarity": 0.18429914848456275,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.17432431876659393,
+            "viewpoint": 0.08857152611017227
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 46,
+            "0.2": 94,
+            "0.3": 122,
+            "0.4": 132,
+            "0.5": 139
+          },
+          "conflict_fractions": {
+            "0.1": 0.22115384615384615,
+            "0.2": 0.4519230769230769,
+            "0.3": 0.5865384615384616,
+            "0.4": 0.6346153846153846,
+            "0.5": 0.6682692307692307
+          }
+        },
+        {
+          "timestep": 81,
+          "score": 0.8105921105774374,
+          "selected_mean_similarity": 0.19893219687331182,
+          "expanded_mean_similarity": 0.19639513590703314,
+          "expanded_weighted_similarity": 0.20169637238703775,
+          "conflict_count": 100,
+          "conflict_fraction": 0.4807692307692308,
+          "mean_similarity": 0.18894743967113053,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.16323070228099823,
+            "viewpoint": 0.07784724235534668
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 43,
+            "0.2": 75,
+            "0.3": 100,
+            "0.4": 127,
+            "0.5": 135
+          },
+          "conflict_fractions": {
+            "0.1": 0.20673076923076922,
+            "0.2": 0.3605769230769231,
+            "0.3": 0.4807692307692308,
+            "0.4": 0.6105769230769231,
+            "0.5": 0.6490384615384616
+          }
+        },
+        {
+          "timestep": 481,
+          "score": 0.7966394399220179,
+          "selected_mean_similarity": 0.21653275902141245,
+          "expanded_mean_similarity": 0.2061758263712713,
+          "expanded_weighted_similarity": 0.20761146056334734,
+          "conflict_count": 91,
+          "conflict_fraction": 0.4375,
+          "mean_similarity": 0.20364806547165454,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.28311124444007874,
+            "viewpoint": 0.19773143529891968
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 60,
+            "0.2": 78,
+            "0.3": 91,
+            "0.4": 100,
+            "0.5": 108
+          },
+          "conflict_fractions": {
+            "0.1": 0.28846153846153844,
+            "0.2": 0.375,
+            "0.3": 0.4375,
+            "0.4": 0.4807692307692308,
+            "0.5": 0.5192307692307693
+          }
+        },
+        {
+          "timestep": 701,
+          "score": 0.7948305868632287,
+          "selected_mean_similarity": 0.20386761217336102,
+          "expanded_mean_similarity": 0.21103521995592017,
+          "expanded_weighted_similarity": 0.21092595650149276,
+          "conflict_count": 78,
+          "conflict_fraction": 0.375,
+          "mean_similarity": 0.20466164098732267,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.33334511518478394,
+            "viewpoint": 0.27691754698753357
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 40,
+            "0.2": 65,
+            "0.3": 78,
+            "0.4": 92,
+            "0.5": 117
+          },
+          "conflict_fractions": {
+            "0.1": 0.19230769230769232,
+            "0.2": 0.3125,
+            "0.3": 0.375,
+            "0.4": 0.4423076923076923,
+            "0.5": 0.5625
+          }
+        },
+        {
+          "timestep": 41,
+          "score": 0.792970855478716,
+          "selected_mean_similarity": 0.21762334820400261,
+          "expanded_mean_similarity": 0.21281399355396458,
+          "expanded_weighted_similarity": 0.21739439643919148,
+          "conflict_count": 56,
+          "conflict_fraction": 0.2692307692307692,
+          "mean_similarity": 0.207043671783458,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.15375560522079468,
+            "viewpoint": 0.06998998671770096
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 39,
+            "0.2": 46,
+            "0.3": 56,
+            "0.4": 97,
+            "0.5": 123
+          },
+          "conflict_fractions": {
+            "0.1": 0.1875,
+            "0.2": 0.22115384615384615,
+            "0.3": 0.2692307692307692,
+            "0.4": 0.46634615384615385,
+            "0.5": 0.5913461538461539
+          }
+        },
+        {
+          "timestep": 401,
+          "score": 0.7984231779793622,
+          "selected_mean_similarity": 0.2296689782636419,
+          "expanded_mean_similarity": 0.2210113216247499,
+          "expanded_weighted_similarity": 0.22242695499097828,
+          "conflict_count": 101,
+          "conflict_fraction": 0.4855769230769231,
+          "mean_similarity": 0.20123252634036573,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.25499507784843445,
+            "viewpoint": 0.16613656282424927
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 42,
+            "0.2": 79,
+            "0.3": 101,
+            "0.4": 113,
+            "0.5": 123
+          },
+          "conflict_fractions": {
+            "0.1": 0.20192307692307693,
+            "0.2": 0.3798076923076923,
+            "0.3": 0.4855769230769231,
+            "0.4": 0.5432692307692307,
+            "0.5": 0.5913461538461539
+          }
+        },
+        {
+          "timestep": 601,
+          "score": 0.7617674530621226,
+          "selected_mean_similarity": 0.23099951491503118,
+          "expanded_mean_similarity": 0.24497973573206064,
+          "expanded_weighted_similarity": 0.24467742920766178,
+          "conflict_count": 54,
+          "conflict_fraction": 0.25961538461538464,
+          "mean_similarity": 0.23609725879404533,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.3188140392303467,
+            "viewpoint": 0.24571330845355988
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 33,
+            "0.2": 44,
+            "0.3": 54,
+            "0.4": 68,
+            "0.5": 78
+          },
+          "conflict_fractions": {
+            "0.1": 0.15865384615384615,
+            "0.2": 0.21153846153846154,
+            "0.3": 0.25961538461538464,
+            "0.4": 0.3269230769230769,
+            "0.5": 0.375
+          }
+        },
+        {
+          "timestep": 801,
+          "score": 0.7242635011754385,
+          "selected_mean_similarity": 0.34288925057402453,
+          "expanded_mean_similarity": 0.2928133647915764,
+          "expanded_weighted_similarity": 0.2973593885861869,
+          "conflict_count": 26,
+          "conflict_fraction": 0.125,
+          "mean_similarity": 0.2765753537697646,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.4033176302909851,
+            "viewpoint": 0.2886687219142914
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 10,
+            "0.2": 15,
+            "0.3": 26,
+            "0.4": 31,
+            "0.5": 34
+          },
+          "conflict_fractions": {
+            "0.1": 0.04807692307692308,
+            "0.2": 0.07211538461538461,
+            "0.3": 0.125,
+            "0.4": 0.14903846153846154,
+            "0.5": 0.16346153846153846
+          }
+        },
+        {
+          "timestep": 1,
+          "score": 0.7636663740048284,
+          "selected_mean_similarity": 0.3918695464694443,
+          "expanded_mean_similarity": 0.33547894151773877,
+          "expanded_weighted_similarity": 0.3427872965655423,
+          "conflict_count": 24,
+          "conflict_fraction": 0.11538461538461539,
+          "mean_similarity": 0.21730518981575397,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.1584138423204422,
+            "viewpoint": 0.05128616467118263
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 20,
+            "0.2": 23,
+            "0.3": 24,
+            "0.4": 24,
+            "0.5": 26
+          },
+          "conflict_fractions": {
+            "0.1": 0.09615384615384616,
+            "0.2": 0.11057692307692307,
+            "0.3": 0.11538461538461539,
+            "0.4": 0.11538461538461539,
+            "0.5": 0.125
+          }
+        },
+        {
+          "timestep": 901,
+          "score": 0.6367504955173672,
+          "selected_mean_similarity": 0.48875303204672843,
+          "expanded_mean_similarity": 0.4309550087746734,
+          "expanded_weighted_similarity": 0.44008411457241564,
+          "conflict_count": 8,
+          "conflict_fraction": 0.038461538461538464,
+          "mean_similarity": 0.35841833035130266,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 0.7229160666465759,
+            "viewpoint": 0.34409841895103455
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 3,
+            "0.2": 8,
+            "0.3": 8,
+            "0.4": 8,
+            "0.5": 9
+          },
+          "conflict_fractions": {
+            "0.1": 0.014423076923076924,
+            "0.2": 0.038461538461538464,
+            "0.3": 0.038461538461538464,
+            "0.4": 0.038461538461538464,
+            "0.5": 0.04326923076923077
+          }
+        },
+        {
+          "timestep": 981,
+          "score": 0.5749726611497984,
+          "selected_mean_similarity": 0.5932007830616874,
+          "expanded_mean_similarity": 0.5246661337943246,
+          "expanded_weighted_similarity": 0.5359424189515782,
+          "conflict_count": 1,
+          "conflict_fraction": 0.004807692307692308,
+          "mean_similarity": 0.4137333225705124,
+          "num_selected": 208,
+          "num_expanded": 1040,
+          "mean_ca": {
+            "style": 1.2671514749526978,
+            "viewpoint": 0.4506124258041382
+          },
+          "axis_pair": [
+            "style",
+            "viewpoint"
+          ],
+          "similarity_source": "mean_of_cos",
+          "sim_threshold": 0.18516782075166702,
+          "primary_quantile": 0.3,
+          "sim_thresholds": {
+            "0.1": 0.13915710896253586,
+            "0.2": 0.16826914548873903,
+            "0.3": 0.18516782075166702,
+            "0.4": 0.19838033020496368,
+            "0.5": 0.21350722759962082
+          },
+          "conflict_counts": {
+            "0.1": 1,
+            "0.2": 1,
+            "0.3": 1,
+            "0.4": 1,
+            "0.5": 1
+          },
+          "conflict_fractions": {
+            "0.1": 0.004807692307692308,
+            "0.2": 0.004807692307692308,
+            "0.3": 0.004807692307692308,
+            "0.4": 0.004807692307692308,
+            "0.5": 0.004807692307692308
+          }
+        }
+      ],
+      "rankings": {
+        "expanded_weighted_similarity": [
+          201,
+          301,
+          121,
+          81,
+          481,
+          701,
+          41,
+          401,
+          601,
+          801,
+          1,
+          901,
+          981
+        ],
+        "conflict_count": [
+          201,
+          301,
+          121,
+          401,
+          81,
+          481,
+          701,
+          41,
+          601,
+          801,
+          1,
+          901,
+          981
+        ],
+        "score": [
+          201,
+          301,
+          121,
+          81,
+          401,
+          481,
+          701,
+          41,
+          1,
+          601,
+          801,
+          901,
+          981
+        ]
+      }
+    }
+  },
+  "split_half_agreement": {
+    "cos_of_means": {
+      "expanded_weighted_similarity": {
+        "rank_by": "expanded_weighted_similarity",
+        "num_common": 13,
+        "timesteps": [
+          1,
+          41,
+          81,
+          121,
+          201,
+          301,
+          401,
+          481,
+          601,
+          701,
+          801,
+          901,
+          981
+        ],
+        "spearman": 0.9835164835164835,
+        "top_n": 5,
+        "top_a": [
+          201,
+          301,
+          121,
+          81,
+          401
+        ],
+        "top_b": [
+          201,
+          301,
+          121,
+          81,
+          41
+        ],
+        "top_overlap": 0.6666666666666666,
+        "num_top_shared": 4
+      },
+      "conflict_count": {
+        "rank_by": "conflict_count",
+        "num_common": 13,
+        "timesteps": [
+          1,
+          41,
+          81,
+          121,
+          201,
+          301,
+          401,
+          481,
+          601,
+          701,
+          801,
+          901,
+          981
+        ],
+        "spearman": 0.9504132231404959,
+        "top_n": 5,
+        "top_a": [
+          301,
+          201,
+          401,
+          121,
+          481
+        ],
+        "top_b": [
+          201,
+          301,
+          121,
+          401,
+          81
+        ],
+        "top_overlap": 0.6666666666666666,
+        "num_top_shared": 4
+      },
+      "score": {
+        "rank_by": "score",
+        "num_common": 13,
+        "timesteps": [
+          1,
+          41,
+          81,
+          121,
+          201,
+          301,
+          401,
+          481,
+          601,
+          701,
+          801,
+          901,
+          981
+        ],
+        "spearman": 0.978021978021978,
+        "top_n": 5,
+        "top_a": [
+          201,
+          121,
+          301,
+          81,
+          41
+        ],
+        "top_b": [
+          201,
+          121,
+          81,
+          301,
+          41
+        ],
+        "top_overlap": 1.0,
+        "num_top_shared": 5
+      }
+    },
+    "mean_of_cos": {
+      "expanded_weighted_similarity": {
+        "rank_by": "expanded_weighted_similarity",
+        "num_common": 13,
+        "timesteps": [
+          1,
+          41,
+          81,
+          121,
+          201,
+          301,
+          401,
+          481,
+          601,
+          701,
+          801,
+          901,
+          981
+        ],
+        "spearman": 0.7692307692307693,
+        "top_n": 5,
+        "top_a": [
+          201,
+          301,
+          121,
+          401,
+          481
+        ],
+        "top_b": [
+          201,
+          701,
+          121,
+          81,
+          301
+        ],
+        "top_overlap": 0.42857142857142855,
+        "num_top_shared": 3
+      },
+      "conflict_count": {
+        "rank_by": "conflict_count",
+        "num_common": 13,
+        "timesteps": [
+          1,
+          41,
+          81,
+          121,
+          201,
+          301,
+          401,
+          481,
+          601,
+          701,
+          801,
+          901,
+          981
+        ],
+        "spearman": 0.8461538461538461,
+        "top_n": 5,
+        "top_a": [
+          301,
+          201,
+          401,
+          121,
+          481
+        ],
+        "top_b": [
+          201,
+          301,
+          121,
+          81,
+          701
+        ],
+        "top_overlap": 0.42857142857142855,
+        "num_top_shared": 3
+      },
+      "score": {
+        "rank_by": "score",
+        "num_common": 13,
+        "timesteps": [
+          1,
+          41,
+          81,
+          121,
+          201,
+          301,
+          401,
+          481,
+          601,
+          701,
+          801,
+          901,
+          981
+        ],
+        "spearman": 0.7032967032967034,
+        "top_n": 5,
+        "top_a": [
+          301,
+          201,
+          121,
+          401,
+          81
+        ],
+        "top_b": [
+          201,
+          701,
+          81,
+          121,
+          301
+        ],
+        "top_overlap": 0.6666666666666666,
+        "num_top_shared": 4
+      }
+    }
+  }
+}

@@ -1,95 +1,53 @@
 # Improving CA-LoRA
 
-A full reimplementation of **CA-LoRA** (Concept-Aware LoRA, CVPR 2026, [arXiv:2503.22172](https://arxiv.org/abs/2503.22172) — no official code) on SDXL + Cityscapes, which replaces the paper's heuristic choice of the CA-measurement timestep (t = 81) with a quantitative gradient-direction criterion, and adds multi-timestep aggregation and a training-time CA drift analysis.
+**English** | [한국어](README.ko.md)
 
-## TL;DR
+A reimplementation of CA-LoRA on SDXL + Cityscapes, and a quantitative rule for choosing the timestep its head selection is measured at.
 
-- **The reproduction succeeds.** All 4 selection pairs reproduce the style/viewpoint signature of the paper's Figure 6: style adapters win domain fit, viewpoint adapters preserve weather-prompt controllability.
-- **The quantitative timestep criterion reveals a metric-dependent trade-off, not a single best t.** The paper's heuristic t = 81 stays best on CMMD (domain fit), while the criterion's winner t = 41 and the multi-t aggregate win weather-prompt controllability. *Honesty note:* a random 2% control matches or beats most CA runs on CMMD — the value of CA selection lies on the controllability-preservation side, and the report discusses this openly.
-- **The CA selection does not survive its own training.** The selected heads are pushed out of the top-2% within ~500 steps. This is boundary competition, not CA collapse: the global CA ranking stays largely intact.
+CA-LoRA (Concept-Aware LoRA, CVPR 2026, [arXiv:2503.22172](https://arxiv.org/abs/2503.22172)) fine-tunes only the attention heads that are sensitive to one concept (style or viewpoint), so the model fits a target domain while keeping its ability to follow prompts the training data never covered. That sensitivity (CA) is measured at a single diffusion timestep, and the selected heads change a lot with it; the paper picked t = 81 by eye and gave no quantitative rule.
 
-![CMMD versus weather CLIP-Score, one point per trained adapter](figures/tradeoff_scatter.png)
+This repository reimplements CA-LoRA from the paper alone (no official code has been released) and proposes such a rule, **ews**: the CA-weighted cosine similarity between the style and viewpoint gradients on the high-CA heads, with the lowest-ews timestep chosen.
 
-*Domain fit (CMMD, lower is better) vs. weather-prompt controllability (CLIP-Score, higher is better): no trained adapter wins both.*
+ews picks t = 201. Against the paper's t = 81, with adapters trained on the same 10 Cityscapes images (one seed), the viewpoint adapter kept more weather-prompt controllability but fit the domain worse (higher CMMD), and the style adapter got worse on both metrics. Most of the CMMD gaps are no larger than the gap between two nearly identical selections, and a random selection of the same size reaches a lower CMMD than every CA-based one. In short, the ews-chosen timestep was not uniformly better than t = 81.
 
-## Pipeline
+The full report is in Korean: **[REPORT.md](REPORT.md)**.
 
-Six commands — the report's five stages, with generation and evaluation as their two separate scripts. Stages 1–3 (measurement, timestep ranking, selection) run under `configs/tsweep_sdxl.yaml`, the 13-timestep sweep; stages 4–6 (training, generation, evaluation) run under `configs/sdxl_cityscapes.yaml`, the paper-reproduction config. `tsweep_sdxl.yaml` inherits from `sdxl_cityscapes.yaml` and only overrides the measurement grid, so the two share every model, data, and training setting. Set `data.root` in `configs/sdxl_cityscapes.yaml` to your Cityscapes directory first.
+## Run
 
 ```bash
-# 1. CA measurement over the 13-timestep grid -> runs/tsweep_sdxl/measurements/t*.safetensors
-python scripts/measure_ca.py --config configs/tsweep_sdxl.yaml
+pip install -e ".[diffusion,dev]"
+python -m pytest tests/ -q                # CPU only, toy model, no downloads
 
-# 2. Rank timesteps by ews (direction criterion) -> runs/tsweep_sdxl/timestep_scores.json
-python scripts/score_timesteps.py --config configs/tsweep_sdxl.yaml
-
-# 3. Selection: one JSON per arm, 208 head units each (top 2% of 10,400).
-#    All arms read the same measurements, so they differ only in the selection.
-python scripts/select_projections.py --config configs/tsweep_sdxl.yaml \
-    --strategy single --timesteps 41 --set select.axis=style --out selection_t41_style.json
-python scripts/select_projections.py --config configs/tsweep_sdxl.yaml \
-    --strategy aggregate --from-scores --set select.top_timesteps=3 select.axis=style \
-    --out selection_multi_t_style.json
-python scripts/select_projections.py --config configs/tsweep_sdxl.yaml \
-    --strategy random --seed 0 --out selection_random.json   # controls: --strategy all = full attention
-
-# 4. Train one arm (10k steps). For the drift analysis use
-#    configs/sdxl_cityscapes_drift.yaml instead: same training, plus CA re-measured
-#    every 500 steps (outputs land in the same runs/sdxl_cityscapes/<arm>/).
-python scripts/train_lora.py --config configs/sdxl_cityscapes.yaml \
-    --selection runs/tsweep_sdxl/selection_t41_style.json --run-name t41_style
-
-# 5. Generate 900 images for the arm (500 in-domain + 4 weather conditions x 100)
-python scripts/generate_images.py --config configs/sdxl_cityscapes.yaml \
-    --lora runs/sdxl_cityscapes/t41_style/lora-final.safetensors \
-    --run-name t41_style --mode both
-
-# 6. CMMD + CLIP-Score -> runs/sdxl_cityscapes/t41_style/eval.json
-python scripts/evaluate.py --config configs/sdxl_cityscapes.yaml --run-name t41_style
+# Final experiment (one A100 80GB). Set data.root in configs/sdxl_cityscapes.yaml first.
+CA=configs/ca_selfgen.yaml; FT=configs/sdxl_cityscapes_selfgen_fewshot10.yaml
+python scripts/generate_selfgen.py   --config $CA     # 256 images sampled from base SDXL
+python scripts/measure_ca.py         --config $CA --set measure.precision=bf16
+python scripts/score_timesteps.py    --config $CA --timesteps 1 41 81 121 201 301 401 481 601 701 801 901 981
+python scripts/select_projections.py --config $CA --strategy single --timesteps 201 --set select.axis=style --out selection_C_t201_style.json
+python scripts/train_lora.py         --config $FT --run-name C_t201_style --selection runs/ca_selfgen/selection_C_t201_style.json
+python scripts/generate_images.py    --config $FT --run-name C_t201_style --mode both --lora runs/sdxl_cityscapes_selfgen_fewshot10/C_t201_style/lora-final.safetensors
+python scripts/evaluate.py           --config $FT --run-name C_t201_style
 ```
 
-**Training throughput.** `configs/sdxl_cityscapes.yaml` trains with bf16 autocast over fp32 weights, TF32 matmuls, no gradient checkpointing, and a latent cache: each uncropped 2048×1024 frame is VAE-encoded once per orientation and the paper's 1024px random crop is taken as a 128×128 latent window per step. The cache is written to `train.latent_cache_dir` (sha256-verified), so only the first arm pays for the encodes. Every hyperparameter is unchanged, but the numbers are not bit-identical to the reported runs, which used fp32, checkpointing, a per-step pixel crop + encode and drift snapshots (~2.0–2.3 s/step, 5.6–6.3 h per arm); the config header gives the `--set` overrides that restore that setup. The training log and `train_summary.json` report optimisation time separately from drift-snapshot time. `scripts/measure_ca.py` always runs full fp32 with checkpointing, whatever the config says.
+Cityscapes is not included and must be downloaded separately from [cityscapes-dataset.com](https://www.cityscapes-dataset.com/). The last four commands are repeated for each adapter; `scripts/ops/` holds the scripts that actually ran the experiment on the server.
 
-Repeat stages 3–6 per arm; the full run matrix is {t = 81, t = 41, t = 1, multi-t [41, 1, 81]} x {style, viewpoint} plus the random and full-attention controls. Every script takes `--config` and accepts dotted overrides via `--set key=value`. `scripts/check_drift_autocast_gate.py` is the one-off gate that validates the bf16 drift snapshots against fp32 before training (its thresholds are fixed in code).
-
-## Setup
-
-Python >= 3.10. The core library (CA engine, selection, sliced LoRA, tests) needs only PyTorch, NumPy, safetensors, PyYAML and Pillow; the real SDXL runs additionally need diffusers/transformers:
-
-```bash
-pip install -e .              # core
-pip install -e ".[diffusion]" # + diffusers, transformers (needed for SDXL runs)
-pip install -e ".[dev]"       # + pytest, matplotlib (full test suite without skips)
-```
-
-Verification without a GPU:
-
-```bash
-python -m pytest tests/ -q     # CPU, seconds
-python scripts/smoke_test.py   # whole pipeline end-to-end on a toy UNet (configs/tiny_cpu.yaml)
-```
-
-The reported experiments ran on a single A100 80GB. Cityscapes must be obtained separately from [cityscapes-dataset.com](https://www.cityscapes-dataset.com/) (it is not redistributable); see `src/calora/data/cityscapes.py` for the expected `leftImg8bit/` + `gtFine/` layout.
-
-## Repository structure
+## Layout
 
 ```
-configs/        sdxl_cityscapes.yaml (reproduction), sdxl_cityscapes_drift.yaml (+ CA drift),
-                tsweep_sdxl.yaml (13-t sweep), tiny_cpu.yaml (CPU toy),
-                prompt_augmentations.json (the paper's c_Aug templates)
-scripts/        the six pipeline stages + smoke_test.py and the drift autocast gate
-src/calora/     ca/ (measurement, statistics, selection), models/ (projection table, sliced LoRA,
-                SDXL + toy adapters), train/, eval/ (CMMD, CLIP-Score), analysis/ (CA drift), data/
-tests/          unit tests for every invariant (batch=1, pairing, head slicing, checkpoint metadata)
-figures/        the four report figures
-results/        experiment raw artifacts backing the report tables (with sha256 manifest)
-REPORT.md       the full research report
-PREREGISTRATION.md   pre-registered decisions and their deviations
+configs/      experiment configs (ca_selfgen.yaml: CA measurement, sdxl_cityscapes_selfgen_fewshot10.yaml: training)
+scripts/      one script per pipeline stage; scripts/ops/ = server-side runners of the final experiment
+src/calora/   CA measurement and head selection, sliced LoRA, training, evaluation (CMMD, CLIP-Score)
+tests/        CPU unit tests on a toy UNet
+results/      raw outputs behind the report's tables
+REPORT.md     research report (Korean)
 ```
 
-## Report and provenance
+`results/ca_selfgen/` has the CA measurement summary, the ews scores (`timestep_scores.json`) and the selections; `results/sdxl_cityscapes_selfgen_fewshot10/` has the six CA-selected adapters. The three baselines in the report (random heads, all heads, base SDXL) do not depend on CA; they come from an earlier run on the same 10 images and are in `results/sdxl_cityscapes_fewshot10/`.
 
-- **[REPORT.md](REPORT.md)** — the full research report: method, setup, results, discussion, limitations.
-- **[PREREGISTRATION.md](PREREGISTRATION.md)** — the decisions fixed before measurement (primary metric, demotion rule, aggregation width, autocast gate thresholds) and every deviation from them.
-- **[results/MANIFEST.md](results/MANIFEST.md)** — artifact manifest: sha256 for each released artifact, plus the Hugging Face locations of the large files that are too big for git — LoRA checkpoints at [huggingface.co/chs35/improving-ca-lora-checkpoints](https://huggingface.co/chs35/improving-ca-lora-checkpoints), CA measurement safetensors and generated images at [huggingface.co/datasets/chs35/improving-ca-lora-artifacts](https://huggingface.co/datasets/chs35/improving-ca-lora-artifacts), with their full sha256 lists in `results/sha256_checkpoints.txt`, `results/sha256_measurements.txt` and `results/sha256_generated_images.csv`.
-- **`scripts/make_figures.py`** regenerates the four figures from `results/`.
+## Related repositories
+
+**Improving-CA-LoRA** (choosing the CA timestep with a quantitative criterion) → [CA-LoRA-TSM](https://github.com/chs35/CA-LoRA-TSM) (not relying on one timestep) → [Hierarchical-CFG](https://github.com/chs35/Hierarchical-CFG) (restoring controllability at sampling time).
+
+## License
+
+[MIT](LICENSE). SDXL weights and Cityscapes images are not included and keep their own licenses.

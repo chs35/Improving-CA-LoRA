@@ -762,7 +762,7 @@ def test_drift_autocast_defaults_to_a_null_context():
 
 
 def test_drift_autocast_bf16_measures_the_same_baseline(adapter, table, dataset, tmp_path):
-    """Tier 2 of the plan: bf16 forward/backward, fp32 accumulation.
+    """bf16 forward/backward, fp32 accumulation.
 
     Baseline and snapshots share the mode, so a zero learning rate still has to
     report zero drift — a mismatch between the two would show up as spurious

@@ -148,7 +148,7 @@ def main() -> None:
 def _provenance_meta(results) -> dict:
     """What the scores were measured on, carried into the selection JSON.
 
-    Downstream consumers (CA-LoRA-TSM, Hierarchial-CFG) refuse a selection whose
+    Downstream consumers (CA-LoRA-TSM, Hierarchical-CFG) refuse a selection whose
     ``data_source`` is not ``selfgen``, and read ``selfgen_manifest_sha256`` to
     tell which generated set it came from.
     """

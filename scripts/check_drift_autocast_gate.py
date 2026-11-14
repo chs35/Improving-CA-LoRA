@@ -12,7 +12,7 @@ otherwise.
 The drift snapshot is ~50% of a training arm's wall clock, and running its
 forward/backward under bf16 autocast roughly halves it. That is only sound if the
 *measured* CA is unchanged for the purpose it is put to — ranking projections —
-so a gate was pre-registered: measure CA twice at the run's drift timestep
+so a gate was fixed in advance: measure CA twice at the run's drift timestep
 with the identical samples and seed, once under
 ``drift_autocast="no"`` and once under ``"bf16"``, and require
 
@@ -61,7 +61,7 @@ from calora.utils.logging import get_logger  # noqa: E402
 
 logger = get_logger("check_drift_autocast_gate")
 
-#: The plan's pre-registered thresholds. Both are required; neither is tunable
+#: The gate's thresholds, fixed in advance. Both are required; neither is tunable
 #: after the fact, which is the whole point of writing them down here.
 SPEARMAN_THRESHOLD = 0.99
 JACCARD_THRESHOLD = 0.8
@@ -294,7 +294,7 @@ def main() -> None:
     )
 
     adapter = load_adapter(cfg.model)
-    # The gate's reference is pre-registered as an fp32 measurement; with
+    # The gate's reference is fixed as an fp32 measurement; with
     # model.allow_tf32 on (a training setting) the "no" side would silently be TF32.
     set_matmul_tf32(False)
     # Pre-injection, so the identity check below compares like with like. The gate
